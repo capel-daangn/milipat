@@ -138,8 +138,8 @@
 <p align="center">
   <!--
   <strong>🏆 2023 제주특별자치도 도지사상 수상 작품 🏆</strong>
-  -->
   <br/>
+   -->
   <br/>
   <a href='https://github.com/ziweek/desirable-sea/blob/main/README.md'>
     KOREAN
@@ -150,7 +150,7 @@
   </a>
   <br/>
   <br/>
-  <strong>방산분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼 개발</strong>
+  <strong>방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼</strong>
   <br/>
   <strong>An Intelligent Platform for Patent Search and Analysis in the Defense Industry Field</strong>
   <br/>
@@ -172,7 +172,6 @@
   
   <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white"/> 
-  <img src="https://img.shields.io/badge/Google%20Maps-4285F4?style=flat-square&logo=googlemaps&logoColor=white"/>
   <img src="https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
@@ -188,7 +187,7 @@
   <strong>아래의 뱃지에서 프로토타입을 확인해보세요.<strong>
   <br/>
   <br/>
-  <a href='https://desirable-sea.vercel.app/'>
+  <a href='https://milipat.vercel.app/'>
     <img src="https://img.shields.io/badge/Product-Vercel-000000?style=flat-square"/>
   </a>
   <a href='https://goor.me/edkv2g6bKZt7nopy6'>
@@ -205,7 +204,7 @@
 # 1. 개요
 
 > [!NOTE]
-> - 본 아이디어는, 대한민국 국방부에서 주최하는 [2024년도 국방 공공데이터 활용 경진대회](https://data.mnd.go.kr/mbshome/mbs/data)에 출품하여 대상(제주특별자치도지사상)을 수상한 프로젝트입니다.
+> - 본 아이디어는, 대한민국 국방부에서 주최하는 [2024년도 국방 공공데이터 활용 경진대회](https://data.mnd.go.kr/mbshome/mbs/data)에 출품한 프로젝트입니다.
 >   
 > - 본 아이디어는, 제주 위성데이터를 활용하고 컴퓨터 비전의 객체 인식 AI 기술을 적용하여, 제주 지역에서 장기적으로 주차되거나 방치되어 있는 차량을 탐지하고, 해당 정보를 유관 기관이 통합하여 관리할 수 있는 지능형 플랫폼을 연구 및 개발하는 것입니다.
 
@@ -215,17 +214,17 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
   <tr>
      <td>
       <p align='center'>
-        초고상도 이미지 개선 모델
+        온프레미스 LLM 앙상블 구조
       </p>
     </td>
     <td>
       <p align='center'>
-        소형 객체 인식 모델링
+        국내외 방산 특허 조회 및 분석
       </p>
     </td>
     <td>
       <p align='center'>
-        프로덕트 웹페이지
+        특허 유사도 분석 및 기술 동향 예측
       </p>
     </td>
   </tr>
@@ -288,7 +287,7 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
 <details >
  <summary><b>핵심기능</b></summary><br/>
 
-#### 1. 초고해상도 이미지 개선 딥러닝 모델
+#### 1. 국내외 방산 특허 조회 및 분석
    
  <table>
    <tr>
@@ -305,7 +304,7 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
 <br/>
 
 
-#### 2. 소형 객체 탐지 딥러닝 모델
+#### 2. 특허 유사도 분석 및 기술 동향 예측
 
  <table>
    <tr>
