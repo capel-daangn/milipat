@@ -206,7 +206,7 @@
 > [!NOTE]
 > - 본 아이디어는, 대한민국 국방부에서 주최하는 [2024년도 국방 공공데이터 활용 경진대회](https://data.mnd.go.kr/mbshome/mbs/data)에 출품한 프로젝트입니다.
 >   
-> - 본 아이디어는, 제주 위성데이터를 활용하고 컴퓨터 비전의 객체 인식 AI 기술을 적용하여, 제주 지역에서 장기적으로 주차되거나 방치되어 있는 차량을 탐지하고, 해당 정보를 유관 기관이 통합하여 관리할 수 있는 지능형 플랫폼을 연구 및 개발하는 것입니다.
+> - 본 아이디어는, “방위사업청_보유_특허_데이터” 등의 국방 분야 공공데이터를 다면적으로 활용하고 온프레미스 환경의 LLM 앙상블 구조 및 실시간 구조도 3D 렌더링 기술을 적용하여, 국내외의 방산분야 특허를 조회하고 분석하여 양질의 방산특허를 유도하고 글로벌 방산시장에서 지적재산권 경쟁의 우위를 확보할 수 있는 지능형 플랫폼을 연구 및 개발하는 것입니다.
 
 https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-7d2adbb045ec
 
@@ -214,17 +214,17 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
   <tr>
      <td>
       <p align='center'>
-        온프레미스 LLM 앙상블 구조
-      </p>
-    </td>
-    <td>
-      <p align='center'>
         국내외 방산 특허 조회 및 분석
       </p>
     </td>
     <td>
       <p align='center'>
         특허 유사도 분석 및 기술 동향 예측
+      </p>
+    </td>
+    <td>
+      <p align='center'>
+        구조도 실시간 3D 렌더링
       </p>
     </td>
   </tr>
@@ -321,7 +321,7 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
 <br/>
 
 
-#### 3. 사용자 편의 기능
+#### 3. 구조도 실시간 3D 렌더링
 
  <table>
    <tr>
