@@ -70,7 +70,7 @@ export default function Query() {
 
   return (
     <section
-      className="mx-auto flex w-full max-w-[1200px] flex-row px-4 py-4"
+      className="mx-auto flex w-full max-w-[1200px] flex-row px-4"
       style={{
         display: "grid",
         gridTemplateColumns: mobile ? "1fr" : "100px 600px 1fr",
@@ -89,7 +89,7 @@ export default function Query() {
       </div>
       {/*  */}
       <div className="flex flex-col items-start justify-center space-y-8">
-        <div
+        {/* <div
           // data-aos="zoom-in-down"
           // data-aos-duration="500"
           className={`w-full 
@@ -99,7 +99,7 @@ export default function Query() {
             title="MiliPat-GPT 서치어드바이저"
             initialQuery="국방 인공지능 모델 기술과제 분석과 발전방안 연구"
           ></GptBox>
-        </div>
+        </div> */}
         <div className="w-full space-y-2">
           {dataset.map((data, i) => {
             return (
@@ -111,17 +111,17 @@ export default function Query() {
                 // isPressable
               >
                 <div className="flex w-full flex-row items-end justify-between">
-                  <div className="flex flex-row items-center justify-end space-x-2">
+                  <div className="flex flex-col items-start justify-center">
                     <Link href={data.href}>
                       <p className="text-left text-lg font-bold leading-loose">
                         {data.title}
                       </p>
                     </Link>
-                    <p className="text-left text-xs leading-loose">
+                    <p className="text-left text-xs leading-loose text-secondary">
                       {data.publish}, {data.date}
                     </p>
                   </div>
-                  <div className="space-x-2">
+                  {/* <div className="space-x-2">
                     {[
                       {
                         text: "비교하기",
@@ -147,9 +147,9 @@ export default function Query() {
                         </Button>
                       );
                     })}
-                  </div>
+                  </div> */}
                 </div>
-                <p className="line-clamp-3 text-justify indent-4 text-sm leading-loose">
+                <p className="line-clamp-3 text-justify text-sm leading-loose">
                   {data.text}
                 </p>
               </Card>
