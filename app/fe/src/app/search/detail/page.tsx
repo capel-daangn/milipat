@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CircularProgress,
-  Pagination,
-  Tabs,
-  Tab,
-} from "@nextui-org/react";
+import { Card, CircularProgress, Pagination } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -19,6 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 import dynamic from "next/dynamic";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 const TldrawComponent = dynamic(
   () => import("../../../components/tldraw-component"),
@@ -31,6 +26,21 @@ export default function DetailPage(props: any): any {
   const [numPages, setNumPages] = useState<any>();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isLoaded, setisLoaded] = useState(false);
+
+  const isMobile = useIsMobile();
+  const [mobile, setMobile] = useState<boolean>(false);
+
+  const checkResize = () => {
+    if (isMobile) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    checkResize();
+  }, [isMobile]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -47,35 +57,48 @@ export default function DetailPage(props: any): any {
 
   return (
     <section
-      className="flex h-screen flex-row items-center justify-between px-24 pt-[10vh]"
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2vw" }}
+      className="mx-auto flex h-full w-full max-w-[1200px] flex-row items-start justify-between p-4"
+      style={{
+        display: "grid",
+        gridTemplateColumns: mobile ? "1fr" : "2fr 1fr",
+        gridTemplateRows: mobile ? "1fr 1fr" : "1fr",
+        gap: "20px",
+      }}
     >
-      <Card className="relative flex h-[80vh] w-full flex-col items-center justify-center">
+      <Card className="relative flex h-fit max-h-[70vh] w-full flex-col items-center justify-center">
         <Document
           file={"/sample.pdf"}
           onLoadSuccess={onDocumentLoadSuccess}
           loading={<CircularProgress></CircularProgress>}
+          className={"overflow-scroll"}
         >
+          <Page pageNumber={pageNumber} scale={1.5} />
+          <Page pageNumber={pageNumber} />
           <Page pageNumber={pageNumber} />
         </Document>
-        <div className="absolute bottom-4 z-10">
+        <div className="absolute bottom-0 z-10 flex w-full flex-col items-center justify-center bg-secondary py-2">
           <Pagination
             loop
             size={"sm"}
             isCompact
             showControls
-            // variant={"light"}
+            variant={"light"}
             total={numPages}
             initialPage={1}
             onChange={(e) => {
               setPageNumber(e);
             }}
-            classNames={{}}
+            // classNames={{
+            //   base: "bg-trasparent",
+            //   wrapper: "",
+            //   item: "text-white font-bold",
+            //   next: "bg-white font-bold",
+            // }}
             // radius={"full"}
           />
         </div>
       </Card>
-      <Card className="flex h-[80vh] w-full flex-col">
+      <Card className="flex h-full max-h-[70vh] w-full flex-col">
         {isWindowLoaded ? (
           <TldrawComponent />
         ) : (
