@@ -14,11 +14,11 @@ export default function SearchLayout({
 
   return (
     <section>
-      <Header
+      {/* <Header
         isLogoVisible={pathname !== "/search"}
         isSearchBarVisible={pathname !== "/search"}
         searchedText={searchedText || ""}
-      ></Header>
+      ></Header> */}
       {children}
     </section>
   );

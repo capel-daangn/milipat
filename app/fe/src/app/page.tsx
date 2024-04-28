@@ -1,29 +1,37 @@
 "use client";
 
-import { IconLogo } from "@/components/common/icons";
+import { Button, Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
 import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Divider,
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-  Link,
-  Tooltip,
-} from "@nextui-org/react";
+  Lottie3DModel,
+  LottieArrowDown,
+  LottieDotCircle,
+  LottieEnsemble,
+  LottieVoiceRecognition,
+} from "@/components/common/lotties";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useMediaQuery";
+import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
-import Image from "next/image";
+import Footer from "@/components/layout/footer";
 
 export default function Home() {
   const router = useRouter();
+  const isMobile = useIsMobile();
+  const [mobile, setMobile] = useState<boolean>(false);
+
+  const checkResize = () => {
+    if (isMobile) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    checkResize();
+  }, [isMobile]);
 
   useEffect(() => {
     AOS.init();
@@ -31,373 +39,195 @@ export default function Home() {
   }, []);
 
   return (
-    <section>
-      {/*  */}
-      <div
-        className={`absolute top-0 flex w-full min-w-[1200px] flex-row items-center justify-between px-24 py-8 ${
-          true ? "bg-black/75" : ""
-        }`}
-      >
-        <div>
-          <button
-            onClick={() => {
-              router.push("/search");
-            }}
-          >
-            <div className="flex flex-row items-end justify-start space-x-2">
-              <IconLogo width={"120px"} fill={"white"}></IconLogo>
-              <div className="item-start flex h-full flex-col justify-end">
-                <p className="select-none text-start text-xs text-white">
-                  미래기술강군을 위한,
-                </p>
-                <p className="select-none text-start text-xs text-white">
-                  방산분야 특허 관리 지능형 플랫폼
-                </p>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div></div>
-        <div className="flex flex-row items-center justify-end space-x-4">
-          <Button
-            variant="light"
-            disableRipple
-            onPress={() => {
-              router.push("/");
-            }}
-          >
-            <p className={`font-bold text-white`}>서비스 소개</p>
-          </Button>
-          <Button
-            variant="light"
-            disableRipple
-            onPress={() => {
-              router.push("https://github.com/ziweek/milipat");
-            }}
-          >
-            <p className={`font-bold text-white`}>개발팀 소개</p>
-          </Button>
-        </div>
-      </div>
-      {/*  */}
-      <div>
-        {/* 1 */}
-        <div className="flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
-          <div className="flex flex-col items-center justify-center space-y-4">
+    <section className="mx-auto h-full min-h-full w-full select-none">
+      {/* 1. 프로젝트 소개  */}
+      <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
+        <div className="flex w-full flex-col items-center justify-center space-y-4">
+          {/* 소개 텍스트 */}
+          <div className="flex w-full flex-col items-center justify-center gap-1">
+            <Image
+              src={"/images/logo-text-white.png"}
+              width={100}
+              height={100}
+              alt="logo"
+              className={`${mobile ? "w-[150px]" : "w-[250px]"}`}
+            ></Image>
             <p
-              data-aos={"fade-in"}
-              data-aos-duration="1000"
-              className="select-none pt-24 text-2xl font-bold text-white"
+              className={`text-center font-bold text-white ${
+                mobile ? "text-sm" : "text-md"
+              }`}
             >
-              방산분야의 혁신을 선도하는 지능형 특허 관리 솔루션
+              방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼
             </p>
+          </div>
+          {/*  */}
+          <div className="flex w-full flex-col items-center justify-center space-y-4">
             <div
-              data-aos={"fade-in"}
-              data-aos-delay="250"
-              data-aos-duration="1000"
+              className={`${
+                mobile ? "h-[150px]" : "h-[200px]"
+              } flex  flex-col justify-center overflow-y-clip`}
             >
-              <div className="flex flex-row space-x-4">
-                <Button
-                  className="hover:-translate-y-1"
-                  size={"lg"}
-                  variant={"bordered"}
-                  onClick={() => {
-                    router.push("/search");
-                  }}
-                >
-                  <p className="font-bold text-white">서비스 소개자료</p>
-                </Button>
-                <Button
-                  className="hover:-translate-y-1"
-                  size={"lg"}
-                  variant={"bordered"}
-                  onClick={() => {
-                    router.push("/search");
-                  }}
-                >
-                  <p className="font-bold text-white">서비스 체험하기</p>
-                </Button>
-              </div>
+              <LottieDotCircle
+                play
+                loop
+                width={mobile ? "200px" : "300px"}
+              ></LottieDotCircle>
+            </div>
+            <div className="flex flex-row space-x-2">
+              <Button
+                className={`font-bold text-white hover:-translate-y-1 ${
+                  mobile ? "border-2" : "border-3"
+                }`}
+                size={mobile ? "md" : "lg"}
+                color={"default"}
+                variant={"bordered"}
+                onClick={() => {
+                  window.open("https://github.com/ziweek/milipat");
+                }}
+              >
+                프로젝트 소개자료
+              </Button>
+              <Button
+                className={`font-bold text-white hover:-translate-y-1 ${
+                  mobile ? "border-2" : "border-3"
+                }`}
+                size={mobile ? "md" : "lg"}
+                color={"default"}
+                variant={"bordered"}
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                프로젝트 체험하기
+              </Button>
             </div>
           </div>
         </div>
-        {/* 2 */}
-        <div className="flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-fk-21-2.jpeg')] bg-cover bg-center">
+        <div className="absolute bottom-4">
+          <LottieArrowDown play loop width={50}></LottieArrowDown>
+        </div>
+      </div>
+      {/* 2. 개발배경 소개  */}
+      <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-fk-21-2.jpeg')] bg-cover bg-center">
+        <div className="flex w-full flex-col items-center justify-center space-y-4">
+          {/* 소개 텍스트 */}
           <div
             data-aos={"fade-in"}
-            data-aos-duration="1000"
+            data-aos-duration="500"
             className="flex flex-col items-center justify-center space-y-4"
           >
-            <p className="select-none text-2xl font-bold text-white">
+            <p
+              className={`${
+                mobile ? "text-xl" : "text-2xl"
+              } select-none font-bold text-white`}
+            >
               미래기술강군으로 도약하기 위한 디딤돌
             </p>
-            <p className="select-none text-white">
-              신속하고 정확한 특허 검색, 통합된 관리 솔루션으로 양질의 특허자산
+            <p
+              className={`${
+                mobile ? "w-[80%] text-sm" : "text-md"
+              } select-none text-center text-white`}
+            >
+              신속하고 정확한 특허 검색, 통합된 분석 솔루션으로 양질의 특허자산
               확보를 유도
             </p>
           </div>
         </div>
-        {/* 3 */}
-        <div className="flex h-screen flex-col items-center justify-center space-y-8 bg-white">
-          <p className="select-none text-4xl font-bold">핵심기능 소개</p>
-          <div
-            className="flex min-h-[60vh] w-[90vw] select-none flex-row items-center justify-between"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-              gap: "20px",
-            }}
-          >
-            {[
-              { title: "스마트 서치바", text: "sdf" },
-              { title: "MiliPat-GPT 서치어드바이저", text: "sdf" },
-              { title: "특허문서 분석 대쉬보드", text: "sdf" },
-            ].map((content, i) => {
-              return (
-                <Card key={i} className="h-full p-4" isBlurred>
-                  <CardHeader>
-                    <p className="text-lg font-bold">{content.title}</p>
-                  </CardHeader>
-                  <Divider></Divider>
-                  <CardBody>
-                    <p>{content.text}</p>
-                  </CardBody>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex h-screen flex-col items-center justify-center space-y-8 bg-white">
-          <p className="select-none text-4xl font-bold">서비스 아키텍쳐</p>
-          <div
-            className="flex min-h-[60vh] w-[90vw] select-none flex-row items-center justify-between"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 2fr",
-              gap: "20px",
-            }}
-          >
-            {[
-              {
-                title: "활용 데이터셋",
-                children: (
-                  <Table aria-label="table of dataset" removeWrapper>
-                    <TableHeader>
-                      <TableColumn>데이터 제공처</TableColumn>
-                      <TableColumn>데이터셋</TableColumn>
-                    </TableHeader>
-                    <TableBody>
-                      {[
-                        {
-                          publish: "국방부",
-                          name: "국방부_국방정보기술표준 목록",
-                          link: "",
-                        },
-                        {
-                          publish: "방위사업청",
-                          name: "방위사업청_보유 특허목록",
-                          link: "",
-                        },
-                        {
-                          publish: "방위사업청",
-                          name: "방위사업청_방산업체 지정현황",
-                          link: "",
-                        },
-                        {
-                          publish: "방위사업청",
-                          name: "방위사업청_국방규격공개 정보",
-                          link: "",
-                        },
-                        {
-                          publish: "방위사업청",
-                          name: "	방위사업청_군수품 목록화 현황",
-                          link: "",
-                        },
-                        {
-                          publish: "AI hub",
-                          name: "논문자료 요약",
-                          link: "",
-                        },
-                        {
-                          publish: "AI hub",
-                          name: "도서자료 요약",
-                          link: "",
-                        },
-                        {
-                          publish: "AI hub",
-                          name: "특허 지식베이스",
-                          link: "",
-                        },
-                      ].map((row, i) => {
-                        return (
-                          <TableRow key={i}>
-                            <TableCell>{row.publish}</TableCell>
-                            <TableCell>
-                              <Link href={row.link}>{row.name}</Link>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                ),
-              },
-              {
-                title: "시스템 아키텍쳐",
-                children: (
-                  <div className="flex w-full flex-row">
-                    {[
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/nextjs.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/nestjs.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/mysql.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/fastapi.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/chatgptapi.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/docker.png",
-                        content: "I am a tooltip",
-                      },
-                      {
-                        name: "NEXT.js",
-                        imgSrc: "/images/logo/aws.png",
-                        content: "I am a tooltip",
-                      },
-                    ].map((achitecture, i) => (
-                      <Tooltip
-                        key={i}
-                        showArrow
-                        content={
-                          <div className="flex flex-col space-y-2">
-                            <p className="font-bold">{achitecture.name}</p>
-                            <p>{achitecture.content}</p>
-                          </div>
-                        }
-                        placement={"bottom"}
-                      >
-                        <Card>
-                          <Image
-                            src={achitecture.imgSrc}
-                            width={150}
-                            height={50}
-                            alt="a"
-                          ></Image>
-                        </Card>
-                      </Tooltip>
-                    ))}
-                  </div>
-                ),
-              },
-            ].map((content, i) => {
-              return (
-                <Card key={i} className="h-full p-4" isBlurred>
-                  <CardHeader>
-                    <p className="text-lg font-bold">{content.title}</p>
-                  </CardHeader>
-                  <Divider></Divider>
-                  <CardBody className="flex flex-col items-center justify-center">
-                    {content.children}
-                  </CardBody>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex h-screen flex-col items-center justify-center space-y-8 bg-[url('../../public/images/background-whiteboard.jpg')] bg-cover bg-center">
-          <p className="select-none text-4xl font-bold text-black">
-            서비스 개발 회고
-          </p>
-          <div
-            className="flex min-h-[70vh] w-[80vw] select-none flex-row items-center justify-between"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "20px",
-            }}
-          >
-            {[
-              {
-                name: "김지욱",
-                rank: "상병",
-                unit: "미8군사령부 본부대대",
-                children: (
-                  <Table aria-label="table of dataset" removeWrapper>
-                    <TableHeader>
-                      <TableColumn>데이터 제공처</TableColumn>
-                      <TableColumn>데이터셋</TableColumn>
-                    </TableHeader>
-                    <TableBody>
-                      {[1, 2, 3].map((row, i) => {
-                        return (
-                          <TableRow key={i}>
-                            <TableCell>Tony Reichert</TableCell>
-                            <TableCell>CEO</TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                ),
-              },
-              {
-                name: "박병현",
-                rank: "상병",
-                unit: "미2사단 순환여단",
-                children: <></>,
-              },
-            ].map((content, i) => {
-              return (
-                <Card key={i} className="h-full p-4">
-                  <CardHeader>
-                    <div className="flex flex-row items-end justify-end space-x-2 text-black">
-                      <p className="text-lg font-bold">{content.name}</p>
-                      <p>{content.unit}</p>
-                      <p>{content.rank}</p>
-                    </div>
-                  </CardHeader>
-                  <Divider></Divider>
-                  <CardBody>
-                    <div
-                      className="h-full p-2"
-                      style={{
-                        display: "grid",
-                        gridTemplateRows: "1fr 1fr",
-                        gap: "20px",
-                      }}
-                    >
-                      <Card shadow={"none"} className="bg-transparent p-4">
-                        sdf
-                      </Card>
-                      <Card shadow={"none"} className="bg-transparent p-4">
-                        <p>감사합니다.</p>
-                      </Card>
-                    </div>
-                  </CardBody>
-                </Card>
-              );
-            })}
-          </div>
+      </div>
+      {/* 3. 핵심 기술 설명 */}
+      <div className="bg-primary-50 flex h-full min-h-screen flex-col items-center justify-center space-y-8 py-16">
+        <p className="select-none text-2xl font-bold text-primary">
+          핵심기능 소개
+        </p>
+        <div
+          className="flex min-h-[40vh] w-full max-w-[1024px] select-none flex-col items-center justify-between px-4"
+          style={
+            mobile
+              ? { gap: "20px" }
+              : {
+                  display: "grid",
+                  gridTemplateAreas: `"a b" "c d"`,
+                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateRows: "1fr 1fr",
+                  gap: "20px",
+                }
+          }
+        >
+          {[
+            {
+              title: "Ollama를 활용한 온디바이스 생성형 AI",
+              gridArea: "a",
+              img: (
+                <Image
+                  src={"/images/logo_ollama.png"}
+                  width={100}
+                  height={100}
+                  alt="img"
+                  className="mx-auto h-[120px] w-fit drop-shadow-md"
+                ></Image>
+              ),
+              text: "자체적으로 구분된 독립적인 서버를 사용하여 보안 문제를 해결하기 위해 Ollama 프레임워크를 활용하였습니다. 이 덕분에 Mistral 등의 다양한 LLM 모델을 운용할 수 있습니다.",
+            },
+            {
+              title: "Agent 간 Ensemble을 통한 정확도 개선",
+              gridArea: "b",
+              img: (
+                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                  <LottieEnsemble height={120} goTo={10}></LottieEnsemble>
+                </div>
+              ),
+              text: " 다수의 에이전트 모델 간의 상호작용을 시키는 앙상블 기법을 활용하여 LLM 특유의 ‘할루시네이션’(환각) 현상을 최소화하고 경제적인 관점에서 최대한의 효율적인 성능을 확보할 수 있습니다.",
+            },
+            {
+              title: "특허 유사도 분석 및 기술 동향 예측",
+              gridArea: "c",
+              img: (
+                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                  <LottieVoiceRecognition
+                    // play
+                    // loop
+                    height={80}
+                    goTo={12}
+                  ></LottieVoiceRecognition>
+                </div>
+              ),
+              text: "텍스트 질의 뿐만 아니라 카메라 또는 음성 인식 등의 멀티모달 인터페이스를 지원하여 사용자 편의성을 개선하였습니다.",
+            },
+            {
+              title: "구조도 실시간 3D 렌더링",
+              gridArea: "d",
+              img: (
+                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                  <Lottie3DModel goTo={30} height={120}></Lottie3DModel>
+                </div>
+              ),
+              text: "blender 등의 소프트웨어로 작성된 3D 모델링 구조도를 통해 운용장비의 파트에 대해 직관적으로 접근할 수 있습니다.",
+            },
+          ].map((content, i) => {
+            return (
+              <Card
+                key={i}
+                className="h-full min-h-[300px] w-full p-4"
+                style={{ gridArea: content.gridArea }}
+                shadow={"sm"}
+              >
+                <CardHeader>
+                  <p className="text-md font-bold text-primary">
+                    {content.title}
+                  </p>
+                </CardHeader>
+                <Divider></Divider>
+                <CardBody className="text-pretty gap-2">
+                  {content.img}
+                  <p className="text-justify leading-loose">{content.text}</p>
+                </CardBody>
+              </Card>
+            );
+          })}
         </div>
       </div>
+      {/* Footer */}
+      <Footer isFixed></Footer>
     </section>
   );
 }

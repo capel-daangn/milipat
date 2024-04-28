@@ -1,58 +1,51 @@
 import { Button } from "@nextui-org/react";
-import { IconLogo } from "../common/icons";
+import { useRouter } from "next/navigation";
+import { IconGithub, IconLinkedIn } from "../common/icons";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
-export default function Footer() {
+export default function Footer(props: any) {
+  const router = useRouter();
+
   return (
-    <div
-      className="sticky bottom-0 left-0 right-0 flex w-full flex-row items-center justify-between px-24 py-8"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 4fr 2fr",
-        gap: "10px",
-      }}
+    <section
+      className={`bg-primary-50 bottom-0 z-50 min-h-[60px] w-full pb-6 ${
+        props.isFixed ? "" : ""
+      }`}
     >
-      {/* <div>
-        {props.isLogoVisible || props.isLogoVisible == undefined ? (
-          <button
-            onClick={() => {
-              router.push("/search");
+      <div className="flex h-full select-none flex-col items-center justify-center gap-1">
+        <div className="flex h-full select-none flex-col items-center justify-center gap-1 leading-none">
+          <p className="text-sm font-bold text-primary">TEAM MiliPat</p>
+          <p className="text-tiny text-primary">
+            2024년 국방 공공데이터 활용 경진대회
+          </p>
+        </div>
+        <div className="flex h-full flex-row gap-1 ">
+          <Button
+            isIconOnly
+            color={"primary"}
+            variant={"light"}
+            size={"sm"}
+            onPress={() => {
+              window.open("https://github.com/ziweek");
             }}
           >
-            <IconLogo width={"10vw"} fill="black"></IconLogo>
-          </button>
-        ) : (
-          <></>
-        )}
+            <IconGithub fill="#1D4A83" width={"20px"}></IconGithub>
+          </Button>
+          <Button
+            isIconOnly
+            variant={"light"}
+            color={"primary"}
+            size={"sm"}
+            onPress={() => {
+              window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
+            }}
+          >
+            <IconLinkedIn fill="#1D4A83" width={"20px"}></IconLinkedIn>
+          </Button>
+        </div>
       </div>
-      <div>
-        {props.isSearchBarVisible ? (
-          <div className="flex h-[80px] w-full flex-col items-center justify-center">
-            <SearchBar value={props.searchedText}></SearchBar>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div> */}
-      <div className="flex flex-row items-center justify-end space-x-4">
-        <Button
-          variant="light"
-          disableRipple
-          onPress={() => {
-            // router.push("/");
-          }}
-        >
-          서비스 소개
-        </Button>
-        <Button
-          variant="light"
-          disableRipple
-          onPress={() => {
-            // router.push("https://github.com/ziweek/milipat");
-          }}
-        >
-          개발팀 소개
-        </Button>
-      </div>
-    </div>
+    </section>
   );
 }

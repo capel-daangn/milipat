@@ -82,6 +82,7 @@ const dataset = [
 
 interface SearchBarProps {
   value?: string;
+  mobile?: boolean;
 }
 
 export default function SearchBar(props: SearchBarProps): any {
@@ -103,17 +104,17 @@ export default function SearchBar(props: SearchBarProps): any {
   return (
     <Autocomplete
       className={`w-full ${
-        pathname == "/search" ? "max-w-lg" : ""
+        pathname == "/search" ? "max-w-lg" : props.mobile ? "max-w-sm" : ""
       } select-text`}
       classNames={{
-        clearButton: "text-[#006FEE]",
-        selectorButton: "text-[#006FEE]",
+        clearButton: "text-primary",
+        selectorButton: "text-primary",
       }}
       inputProps={{
         classNames: {
-          base: "text-[#006FEE]",
+          base: "text-[#000000]",
           inputWrapper: "border-4",
-          label: "text-[#006FEE]",
+          label: "text-primary",
         },
       }}
       listboxProps={{}}
