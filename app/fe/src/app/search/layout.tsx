@@ -13,12 +13,12 @@ export default function SearchLayout({
   const searchedText = searchParams.get("query");
 
   return (
-    <section>
-      {/* <Header
-        isLogoVisible={pathname !== "/search"}
-        isSearchBarVisible={pathname !== "/search"}
+    <section className="flex flex-col items-center">
+      <Header
+        isLogoVisible={pathname == "/search" ? false : true}
+        isSearchBarVisible={pathname == "/search" ? false : true}
         searchedText={searchedText || ""}
-      ></Header> */}
+      ></Header>
       {children}
     </section>
   );

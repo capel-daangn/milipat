@@ -2,11 +2,11 @@
 
 import { IconBookmark, IconSearch } from "@/components/common/icons";
 import GptBox from "@/components/gpt-box";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 import { Button, Card, Link, Pagination } from "@nextui-org/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 const dataset = [
   {
@@ -48,6 +48,20 @@ const dataset = [
 
 export default function Query() {
   const [isAnimationTriggered, setIsAnimationTriggered] = useState(false);
+  const isMobile = useIsMobile();
+  const [mobile, setMobile] = useState<boolean>(false);
+
+  const checkResize = () => {
+    if (isMobile) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    checkResize();
+  }, [isMobile]);
 
   useEffect(() => {
     AOS.init();
@@ -56,22 +70,22 @@ export default function Query() {
 
   return (
     <section
-      className="flex w-full flex-row justify-between px-24 py-[110px]"
+      className="mx-auto flex w-full max-w-[1200px] flex-row px-4 py-4"
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 4fr 2fr",
-        gap: "10px",
+        gridTemplateColumns: mobile ? "1fr" : "100px 600px 1fr",
+        gap: "20px",
       }}
     >
       {/*  */}
-      <div>
-        <Button
+      <div className="w-full">
+        {/* <Button
           onClick={() => {
             setIsAnimationTriggered(!isAnimationTriggered);
           }}
         >
           11
-        </Button>
+        </Button> */}
       </div>
       {/*  */}
       <div className="flex flex-col items-start justify-center space-y-8">
@@ -86,7 +100,7 @@ export default function Query() {
             initialQuery="국방 인공지능 모델 기술과제 분석과 발전방안 연구"
           ></GptBox>
         </div>
-        <div className="space-y-2">
+        <div className="w-full space-y-2">
           {dataset.map((data, i) => {
             return (
               <Card

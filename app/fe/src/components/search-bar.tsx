@@ -83,6 +83,7 @@ const dataset = [
 interface SearchBarProps {
   value?: string;
   mobile?: boolean;
+  isDisabled?: boolean;
 }
 
 export default function SearchBar(props: SearchBarProps): any {
@@ -103,6 +104,7 @@ export default function SearchBar(props: SearchBarProps): any {
 
   return (
     <Autocomplete
+      isDisabled={props.isDisabled}
       className={`w-full ${
         pathname == "/search" ? "max-w-lg" : props.mobile ? "max-w-sm" : ""
       } select-text`}
@@ -113,8 +115,9 @@ export default function SearchBar(props: SearchBarProps): any {
       inputProps={{
         classNames: {
           base: "text-[#000000]",
-          inputWrapper: "border-4",
+          inputWrapper: "border-2",
           label: "text-primary",
+          input: "text-lg",
         },
       }}
       listboxProps={{}}
@@ -122,7 +125,7 @@ export default function SearchBar(props: SearchBarProps): any {
       fullWidth
       radius="full"
       allowsCustomValue={true}
-      placeholder="검색 키워드를 입력하시오."
+      // placeholder="검색 키워드를 입력하시오."
       variant="bordered"
       size={pathname == "/search" ? "md" : "sm"}
       isClearable={true}
@@ -145,8 +148,8 @@ export default function SearchBar(props: SearchBarProps): any {
           <IconSearch
             width={20}
             height={20}
-            strokeWidth={3}
-            fill="#006FEE"
+            strokeWidth={4}
+            fill="#1D4A83"
           ></IconSearch>
         </div>
       }

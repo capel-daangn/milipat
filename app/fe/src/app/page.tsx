@@ -15,6 +15,7 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/components/layout/footer";
+import { IconLogo } from "@/components/common/icons";
 
 export default function Home() {
   const router = useRouter();
@@ -44,14 +45,15 @@ export default function Home() {
       <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
         <div className="flex w-full flex-col items-center justify-center space-y-4">
           {/* 소개 텍스트 */}
-          <div className="flex w-full flex-col items-center justify-center gap-1">
-            <Image
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            {/* <Image
               src={"/images/logo-text-white.png"}
               width={100}
               height={100}
               alt="logo"
               className={`${mobile ? "w-[150px]" : "w-[250px]"}`}
-            ></Image>
+            ></Image> */}
+            <IconLogo width={mobile ? 150 : 200} fill="#fff"></IconLogo>
             <p
               className={`text-center font-bold text-white ${
                 mobile ? "text-sm" : "text-md"

@@ -31,13 +31,13 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="flex h-screen w-full flex-col items-center justify-center gap-8 px-4">
+    <section className="flex h-screen w-full flex-col items-center justify-center gap-4 px-4">
       <div
         data-aos={"fade-in"}
         data-aos-duration="1000"
-        className="flex flex-row items-end justify-end space-x-2"
+        className="flex flex-row items-end justify-end gap-2"
       >
-        <IconLogo fill="#000000" width={mobile ? 120 : 200}></IconLogo>
+        <IconLogo fill="#000000" width={mobile ? 120 : 150}></IconLogo>
         <p
           className={`select-none font-bold ${
             mobile ? "text-tiny" : "text-md"
@@ -50,17 +50,23 @@ export default function Home() {
       <div
         data-aos={"fade-in"}
         data-aos-duration="750"
-        className="mx-auto flex w-full flex-row items-end justify-center space-x-4"
+        className="mx-auto flex w-full flex-row items-end justify-center pb-16"
       >
         <SearchBar mobile></SearchBar>
       </div>
-      <div className="flex flex-col items-center justify-center gap-2">
-        <p className="select-none text-xs font-bold text-black/30">
+      <div className="fixed bottom-4 flex flex-col items-center justify-center gap-2">
+        <p
+          className={`select-none font-bold text-black/30 ${
+            mobile ? "text-tiny" : "text-xs"
+          }`}
+        >
           Data Provided by
         </p>
         <div
-          className={`select-none gap-2 ${
-            mobile ? "grid grid-cols-2 grid-rows-2" : "flex flex-row pb-4"
+          className={`select-none pb-4 ${
+            mobile
+              ? "grid grid-cols-2 grid-rows-2 gap-1"
+              : "flex flex-row gap-2"
           }`}
         >
           {[
@@ -74,7 +80,7 @@ export default function Home() {
               src={e}
               width={100}
               height={100}
-              className={`${mobile ? "w-[100px]" : "w-[120px]"}`}
+              className={`${mobile ? "w-[80px]" : "w-[100px]"}`}
               alt={"logo"}
             ></Image>
           ))}
