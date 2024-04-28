@@ -1,5 +1,6 @@
 "use client";
 
+import { IconLogo } from "@/components/common/icons";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { Button, Card, Input } from "@nextui-org/react";
 import Image from "next/image";
@@ -31,26 +32,20 @@ export default function Home() {
       className="h-screen w-full flex-col"
       style={{
         display: "grid",
-        gridTemplateColumns: mobile ? "1fr" : "1fr auto",
+        gridTemplateColumns: mobile ? "1fr" : "1fr minmax(500px, auto)",
         gridTemplateRows: mobile ? "1fr 1fr" : "1fr",
       }}
     >
       <div className="flex h-full w-full flex-col bg-[url('../../public/images/background-development.jpg')] bg-cover bg-center"></div>
       <Card
-        className={`bg-primary-50 h-full max-h-fit w-full p-8 ${
-          mobile ? "" : "min-w-[450px]"
+        className={`bg-primary-50 flex h-full max-h-fit w-full flex-col px-4 pb-8 ${
+          mobile ? "" : ""
         }`}
         radius={"none"}
       >
         <div className="mx-auto flex h-full w-full max-w-sm flex-col items-center justify-center gap-8 px-4">
-          <div className="flex w-full flex-col items-center justify-center gap-1">
-            <Image
-              src={"/images/logo-text-black.png"}
-              width={100}
-              height={100}
-              alt="logo"
-              className={`${mobile ? "w-[150px]" : "w-[200px]"}`}
-            ></Image>
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            <IconLogo width={mobile ? 150 : 200} fill="#000"></IconLogo>
             <p
               className={`text-center font-bold ${
                 mobile ? "text-tiny" : "text-sm"
@@ -69,6 +64,7 @@ export default function Home() {
                 setInputEmail(e.target.value);
               }}
               isClearable
+              classNames={{ input: "text-lg" }}
               onClear={() => {
                 setInputEmail("");
               }}
@@ -82,6 +78,7 @@ export default function Home() {
                 setInputPassword(e.target.value);
               }}
               isClearable
+              classNames={{ input: "text-lg" }}
               onClear={() => {
                 setInputPassword("");
               }}

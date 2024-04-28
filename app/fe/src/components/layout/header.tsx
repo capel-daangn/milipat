@@ -1,82 +1,199 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
-import { IconLogo } from "../common/icons";
+import {
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+  User,
+  Button,
+} from "@nextui-org/react";
+import { IconLogo, IconLogoSquare } from "../common/icons";
 import { useRouter } from "next/navigation";
 import SearchBar from "../search-bar";
+import { Key, useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 type HeaderProps = {
   isLogoVisible?: boolean;
   isSearchBarVisible?: boolean;
   searchedText?: string;
   logoFill?: string;
-  textColor?: string;
-  isBackgroundVisible?: boolean;
 };
 
 export default function Header(props: HeaderProps) {
   const router = useRouter();
+  const isMobile = useIsMobile();
+  const [mobile, setMobile] = useState<boolean>(false);
+
+  const checkResize = () => {
+    if (isMobile) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    checkResize();
+  }, [isMobile]);
 
   return (
     <div
-      className={`absolute top-0 flex w-full min-w-[1200px] flex-row items-center justify-between px-24 py-8 ${
-        props.isBackgroundVisible ? "bg-black/75" : ""
-      }`}
+      className={`${
+        props.isSearchBarVisible ? "" : "absolute"
+      } top-0 z-50 mx-auto flex w-full max-w-[1200px] flex-row items-center justify-between p-4 pt-8`}
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 4fr 2fr",
-        gap: "10px",
+        gridTemplateColumns: props.isSearchBarVisible
+          ? mobile
+            ? "auto 1fr auto"
+            : "auto 600px 1fr auto"
+          : "auto 1fr auto",
+        gridTemplateRows: props.isSearchBarVisible
+          ? mobile
+            ? "3fr"
+            : "2fr"
+          : "1fr",
+        gap: "20px",
       }}
     >
-      <div>
-        {props.isLogoVisible || props.isLogoVisible == undefined ? (
+      {props.isSearchBarVisible && (
+        <>
           <button
             onClick={() => {
               router.push("/search");
             }}
+            className="w-fit"
           >
-            <IconLogo
-              width={"10vw"}
-              fill={props.logoFill || "black"}
-            ></IconLogo>
+            {mobile ? (
+              <IconLogoSquare width={50} fill="#000"></IconLogoSquare>
+            ) : (
+              <IconLogo width={100} fill="#000"></IconLogo>
+            )}
           </button>
-        ) : (
-          <></>
-        )}
-      </div>
-      <div>
-        {props.isSearchBarVisible ? (
-          <div className="flex w-full flex-col items-center justify-center">
-            <SearchBar value={props.searchedText}></SearchBar>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      <div className="flex h-[60px] flex-row items-center justify-end space-x-4">
-        <Button
-          variant="light"
-          disableRipple
-          onPress={() => {
-            router.push("/");
-          }}
-        >
-          <p className={`font-bold text-${props.textColor || "black"}`}>
-            서비스 소개
-          </p>
-        </Button>
-        <Button
-          variant="light"
-          disableRipple
-          onPress={() => {
-            router.push("https://github.com/ziweek/milipat");
-          }}
-        >
-          <p className={`font-bold text-${props.textColor || "black"}`}>
-            개발팀 소개
-          </p>
-        </Button>
-      </div>
+
+          {mobile ? (
+            <div className="w-full"></div>
+          ) : (
+            <div className="flex w-full flex-col items-center justify-center">
+              <SearchBar value={props.searchedText}></SearchBar>
+            </div>
+          )}
+
+          {!mobile && (
+            <div className="w-full flex-col items-center justify-center opacity-0">
+              <SearchBar value={props.searchedText} isDisabled></SearchBar>
+            </div>
+          )}
+
+          <Dropdown placement={"bottom-end"} className="min-w-fit">
+            <DropdownTrigger className="min-w-fit">
+              <Avatar
+                size={"sm"}
+                isBordered
+                as="button"
+                className="min-w-fit transition-transform"
+                // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-semibold">Signed in as</p>
+                <p className="font-semibold">zoey@example.com</p>
+              </DropdownItem>
+              <DropdownItem key="settings">My Settings</DropdownItem>
+              <DropdownItem key="team_settings">Team Settings</DropdownItem>
+              <DropdownItem key="analytics">Analytics</DropdownItem>
+              <DropdownItem key="system">System</DropdownItem>
+              <DropdownItem key="configurations">Configurations</DropdownItem>
+              <DropdownItem key="help_and_feedback">
+                Help & Feedback
+              </DropdownItem>
+              <DropdownItem key="logout" color="danger">
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+
+          {mobile && (
+            <div className="flex w-full flex-col items-center justify-center">
+              <SearchBar value={props.searchedText}></SearchBar>
+            </div>
+          )}
+
+          <button className="w-fit">
+            {mobile ? (
+              <IconLogoSquare width={50} fill="#00000000"></IconLogoSquare>
+            ) : (
+              <IconLogo width={100} fill="#00000000"></IconLogo>
+            )}
+          </button>
+
+          <Tabs
+            aria-label="Options"
+            variant={"underlined"}
+            color={"primary"}
+            onSelectionChange={(key: Key) => {
+              console.log(key);
+            }}
+          >
+            <Tab key="search" title="탐색 뷰"></Tab>
+            <Tab key="analysis" title="분석 뷰"></Tab>
+          </Tabs>
+        </>
+      )}
+
+      {/*  */}
+      {!props.isSearchBarVisible && (
+        <>
+          <Tabs
+            aria-label="Options"
+            variant={"underlined"}
+            color={"primary"}
+            onSelectionChange={(key: Key) => {
+              console.log(key);
+            }}
+          >
+            <Tab key="search" title="탐색 뷰"></Tab>
+            <Tab key="analysis" title="분석 뷰"></Tab>
+          </Tabs>
+
+          <div></div>
+
+          <Dropdown placement={"bottom-end"} className="min-w-fit">
+            <DropdownTrigger className="min-w-fit">
+              <Avatar
+                size={"sm"}
+                isBordered
+                as="button"
+                className="min-w-fit transition-transform"
+                // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-semibold">Signed in as</p>
+                <p className="font-semibold">zoey@example.com</p>
+              </DropdownItem>
+              <DropdownItem key="settings">My Settings</DropdownItem>
+              <DropdownItem key="team_settings">Team Settings</DropdownItem>
+              <DropdownItem key="analytics">Analytics</DropdownItem>
+              <DropdownItem key="system">System</DropdownItem>
+              <DropdownItem key="configurations">Configurations</DropdownItem>
+              <DropdownItem key="help_and_feedback">
+                Help & Feedback
+              </DropdownItem>
+              <DropdownItem key="logout" color="danger">
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </>
+      )}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function Footer(props: any) {
 
   return (
     <section
-      className={`bg-primary-50 bottom-0 z-50 min-h-[60px] w-full pb-6 ${
+      className={`bg-primary-50 bottom-0 z-50 min-h-[60px] w-full max-w-[1200px] pb-6 ${
         props.isFixed ? "" : ""
       }`}
     >
