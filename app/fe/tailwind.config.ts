@@ -17,15 +17,24 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        primary: {
+          50: "#1D4A8325",
+          500: "#1D4A8350",
+          750: "#1D4A8375",
+          DEFAULT: "#1D4A83",
+        },
+        secondary: "#4E8D91",
+      },
     },
   },
   plugins: [
     nextui({
       addCommonColors: true,
-      themes: {
-        light: { colors: { primary: "#006FEE" } },
-        dark: { colors: { primary: "#006FEE" } },
-      },
+      // themes: {
+      //   light: { colors: { primary: "#006FEE" } },
+      //   dark: { colors: { primary: "#006FEE" } },
+      // },
     }),
   ],
 };
