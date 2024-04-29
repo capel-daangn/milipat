@@ -4,7 +4,8 @@ import lottieCongratulationsJson from "../../../public/lotties/congratulations.j
 import lottieHiJson from "../../../public/lotties/hi.json";
 import lottieComplete from "../../../public/lotties/complete.json";
 import lottieArrowDown from "../../../public/lotties/arrow.json";
-import lottieVoiceRecognition from "../../../public/lotties/voice-recognition.json";
+import lottieSecurityCheckBlue from "../../../public/lotties/security-check-blue.json";
+import lottieSecurityCheckRed from "../../../public/lotties/security-check-red.json";
 import lottieDotLoading from "../../../public/lotties/dots-loading.json";
 import lottie3DModel from "../../../public/lotties/3d-model.json";
 import lottieEnsemble from "../../../public/lotties/ensemble.json";
@@ -16,6 +17,7 @@ type PropsForLottie = {
   loop?: boolean;
   play?: boolean;
   goTo?: number;
+  color?: string;
 };
 
 export function LottieSearch(params: PropsForLottie) {
@@ -68,11 +70,13 @@ export function LottieComplete(params: PropsForLottie) {
   );
 }
 
-export function LottieVoiceRecognition(params: PropsForLottie) {
+export function LottieSecurityCheck(params: PropsForLottie) {
   return (
     <Lottie
       loop={params.loop || false}
-      animationData={lottieVoiceRecognition}
+      animationData={
+        params.color == "red" ? lottieSecurityCheckRed : lottieSecurityCheckBlue
+      }
       play={params.play}
       goTo={params.goTo}
       style={{ width: params.width, height: params.height }}

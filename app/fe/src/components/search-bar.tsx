@@ -106,7 +106,7 @@ export default function SearchBar(props: SearchBarProps): any {
     <Autocomplete
       isDisabled={props.isDisabled}
       className={`w-full ${
-        pathname == "/search" ? "max-w-lg" : props.mobile ? "max-w-sm" : ""
+        pathname == "/home" ? "max-w-lg" : props.mobile ? "max-w-sm" : ""
       } select-text`}
       classNames={{
         clearButton: "text-primary",
@@ -127,7 +127,7 @@ export default function SearchBar(props: SearchBarProps): any {
       allowsCustomValue={true}
       // placeholder="검색 키워드를 입력하시오."
       variant="bordered"
-      size={pathname == "/search" ? "md" : "sm"}
+      size={pathname == "/home" ? "md" : "sm"}
       isClearable={true}
       inputValue={textInput}
       onInputChange={(e) => {
@@ -135,12 +135,12 @@ export default function SearchBar(props: SearchBarProps): any {
       }}
       onSelectionChange={(e) => {
         const query = createQueryString("query", e.toString());
-        router.push("/search/result" + "?" + query);
+        router.push("/home/result" + "?" + query);
       }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           const query = createQueryString("query", textInput);
-          router.push("/search/result" + "?" + query);
+          router.push("/home/result" + "?" + query);
         }
       }}
       startContent={

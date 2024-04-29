@@ -8,8 +8,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
-  User,
-  Button,
 } from "@nextui-org/react";
 import { IconLogo, IconLogoSquare } from "../common/icons";
 import { useRouter } from "next/navigation";
@@ -30,15 +28,15 @@ export default function Header(props: HeaderProps) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
   useEffect(() => {
+    const checkResize = () => {
+      if (isMobile) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+
     checkResize();
   }, [isMobile]);
 
@@ -75,7 +73,7 @@ export default function Header(props: HeaderProps) {
           <>
             <button
               onClick={() => {
-                router.push("/search");
+                router.push("/home");
               }}
               className="w-fit"
             >
