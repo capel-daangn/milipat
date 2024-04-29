@@ -5,6 +5,7 @@ import { ResizableBox } from "react-resizable";
 import { useState, useEffect } from "react";
 import { Button, Card } from "@nextui-org/react";
 import HeaderWorkspace from "@/components/layout/header-workspace";
+import ThreeRender from "@/components/3d-render";
 
 const data = [1, 2, 3];
 
@@ -89,6 +90,9 @@ export default function Home() {
                       >
                         sdfsdfsdfsd
                       </strong>
+                      {/* {i == 0 && (
+                        <ThreeRender src={"/models/k9.glb"}></ThreeRender>
+                      )} */}
                     </Card>
                   </ResizableBox>
                 </Draggable>
