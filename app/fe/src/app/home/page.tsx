@@ -136,7 +136,60 @@ function AnalysisView(props: any) {
 
   return (
     <>
-      <div className="h-full w-full max-w-[1200px] pb-8 pt-[100px]">
+      <div className="h-full w-full max-w-[1200px] space-y-8 pb-8 pt-[100px]">
+        <div
+          className={`grid h-full w-full items-center gap-4 px-4 ${
+            mobile ? "grid-cols-1 grid-rows-3" : "grid-cols-3 grid-rows-1"
+          }`}
+        >
+          {[
+            {
+              name: "지역 기반 분석",
+              description:
+                "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
+              bgImg: "/images/background/map.jpg",
+            },
+            {
+              name: "추세 기반 분석",
+              description:
+                "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
+              bgImg: "/images/background/trend.jpg",
+            },
+            {
+              name: "비교 기반 분석",
+              description:
+                "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
+              bgImg: "/images/background/compare.jpg",
+            },
+          ].map((e, i) => {
+            return (
+              <Card
+                key={i}
+                className={`row-span-1 ${
+                  mobile ? "aspect-[3/1]" : "aspect-[3/2]"
+                } gap-4 bg-black/50 bg-cover bg-center p-6 bg-blend-darken`}
+                isPressable
+                style={{ backgroundImage: `url('${e.bgImg}')` }}
+              >
+                <p
+                  className={`${
+                    mobile ? "text-xl" : "text-2xl"
+                  } break-keep font-bold text-white`}
+                >
+                  {e.name}
+                </p>
+                {!mobile && (
+                  <p className="break-keep text-start text-sm leading-relaxed text-[#ffffff]">
+                    {e.description}
+                  </p>
+                )}
+              </Card>
+            );
+          })}
+        </div>
         <div
           className={`grid h-full w-full items-center gap-4 px-4 ${
             mobile ? "grid-cols-2 grid-rows-2" : "grid-cols-4 grid-rows-1"
@@ -144,25 +197,25 @@ function AnalysisView(props: any) {
         >
           {[
             {
-              name: "네트워크 분석",
+              name: "기술 동향 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
             },
             {
-              name: "네트워크 분석",
+              name: "키워드 네트워크 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
             },
             {
-              name: "네트워크 분석",
+              name: "특허 유사도 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
             },
             {
-              name: "네트워크 분석",
+              name: "국가 경쟁력 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
@@ -171,10 +224,14 @@ function AnalysisView(props: any) {
             return (
               <Card
                 key={i}
-                className="row-span-1 h-full w-full gap-4 p-8"
+                className="row-span-1 flex h-full w-full flex-col items-center justify-center gap-4 p-8"
                 isPressable
               >
-                <p className={`${mobile ? "text-lg" : "text-2xl"} font-bold`}>
+                <p
+                  className={`${
+                    mobile ? "text-md" : "text-xl"
+                  } break-keep font-bold`}
+                >
                   {e.name}
                 </p>
                 {!mobile && (
@@ -182,70 +239,75 @@ function AnalysisView(props: any) {
                     {e.description}
                   </p>
                 )}
-                {e.content}
-                {/* <ChartNetwork></ChartNetwork> */}
               </Card>
             );
           })}
         </div>
-        <div className="col-span-4 h-fit w-full pt-8">
+        <div className="col-span-4 h-fit w-full">
           <HorizontalSlider
             title="# 나의 최근 분석 프로젝트"
             width={300}
             height={400}
-            backgroundColor="#00000075"
+            backgroundColor="#1D4A83"
             content={[
               {
                 title: "평택 시티 러닝 챌린지",
                 text: "평택의 도심을 뛰면서 온천을 즐기고 도심의 활력을 느껴보세요!",
-                bgImgSrc: "/images/thumbnail/running.jpg",
+                // bgImgSrc: "/images/thumbnail/running.jpg",
+                bgColor: "#1D4A83",
                 tags: ["러닝"],
               },
               {
                 title: "인천 자전거 해맞이 투어",
                 text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
-                bgImgSrc: "/images/thumbnail/cycle.jpg",
+                // bgImgSrc: "/images/thumbnail/cycle.jpg",
+                bgColor: "#1D4A83",
                 tags: ["자전거"],
               },
               {
                 title: "대전 도심 미니 마라톤",
                 text: "대전의 도심을 달리는 마라톤에 참여하여 도시의 에너지를 느껴보세요.",
-                bgImgSrc: "/images/thumbnail/marathon.jpg",
+                // bgImgSrc: "/images/thumbnail/marathon.jpg",
+                bgColor: "#1D4A83",
                 tags: ["마라톤"],
               },
               {
                 title: "울산 해안 플로깅 어드벤처",
                 text: "울산의 해안을 따라 뛰면서 쓰레기를 주워 깨끗한 해안을 만들어 보세요. ",
-                bgImgSrc: "/images/thumbnail/suwon.jpg",
+                // bgImgSrc: "/images/thumbnail/suwon.jpg",
+                bgColor: "#1D4A83",
                 tags: ["플로깅"],
               },
               {
                 title: "인천 자전거 해맞이 투어",
                 text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
-                bgImgSrc: "/images/thumbnail/cycle.jpg",
+                // bgImgSrc: "/images/thumbnail/cycle.jpg",
+                bgColor: "#1D4A83",
                 tags: ["자전거"],
               },
               {
                 title: "대전 도심 미니 마라톤",
                 text: "대전의 도심을 달리는 마라톤에 참여하여 도시의 에너지를 느껴보세요.",
-                bgImgSrc: "/images/thumbnail/marathon.jpg",
+                // bgImgSrc: "/images/thumbnail/marathon.jpg",
+                bgColor: "#1D4A83",
                 tags: ["마라톤"],
               },
               {
                 title: "울산 해안 플로깅 어드벤처",
                 text: "울산의 해안을 따라 뛰면서 쓰레기를 주워 깨끗한 해안을 만들어 보세요. ",
-                bgImgSrc: "/images/thumbnail/suwon.jpg",
+                // bgImgSrc: "/images/thumbnail/suwon.jpg",
+                bgColor: "#1D4A83",
                 tags: ["플로깅"],
               },
             ]}
           ></HorizontalSlider>
         </div>
-        <div className="col-span-4 h-fit w-full pt-8">
+        <div className="col-span-4 h-fit w-full">
           <HorizontalSlider
             title="# 최근 조회한 군용장비"
             width={250}
             height={250}
-            backgroundColor="#00000075"
+            backgroundColor="#1D4A8330"
             content={[
               {
                 title: "평택 시티 러닝 챌린지",
@@ -348,19 +410,25 @@ function ChatbotView(props: any) {
 
   return (
     <div
-      className={`grid h-screen w-full max-w-[1200px] grid-rows-1 gap-4 pb-8 pt-[100px] ${
-        mobile ? "grid-cols-3" : "grid-cols-4"
-      }`}
+      className={`grid h-screen w-full max-w-[1200px] gap-4 pt-[100px]`}
+      style={{
+        gridTemplateColumns: mobile ? "1fr" : "auto 1fr",
+        gridTemplateRows: mobile ? "1fr" : "1fr",
+      }}
     >
       {/*  */}
       {!mobile && (
         <div className="flex h-full w-full flex-col gap-4 overflow-auto p-6 py-8">
-          <div className="flex h-min flex-col gap-4 whitespace-nowrap">
-            {[1, 2, 3, 4].map((e, i) => {
+          <div
+            className="flex h-min w-min gap-4 whitespace-nowrap scrollbar-hide"
+            style={{ flexDirection: mobile ? "row" : "column" }}
+          >
+            {[1, 2, 3].map((e, i) => {
               return (
                 <Card
                   key={i}
-                  className="flex h-[70px] w-full flex-col items-start justify-center border-1 p-4 drop-shadow-md"
+                  style={{ flexDirection: mobile ? "row" : "column" }}
+                  className="flex aspect-[4/1] h-[70px] w-full items-start justify-center border-1 p-4 drop-shadow-md"
                   isPressable
                   shadow={"none"}
                 >
@@ -371,11 +439,12 @@ function ChatbotView(props: any) {
           </div>
         </div>
       )}
+
       {/*  */}
       <div
         className={`${
-          mobile ? "pb-4" : ""
-        } relative col-span-3 flex h-full w-full flex-col items-center justify-start`}
+          mobile ? "pb-1" : ""
+        } relative flex h-full w-full flex-col items-center justify-start`}
         style={{
           display: "grid",
           gridTemplateRows: "1fr auto",
