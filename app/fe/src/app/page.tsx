@@ -6,7 +6,6 @@ import {
   LottieArrowDown,
   LottieDotCircle,
   LottieEnsemble,
-  LottieVoiceRecognition,
 } from "@/components/common/lotties";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,15 +21,15 @@ export default function Home() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
   useEffect(() => {
+    const checkResize = () => {
+      if (isMobile) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+
     checkResize();
   }, [isMobile]);
 
@@ -137,7 +136,7 @@ export default function Home() {
         </div>
       </div>
       {/* 3. 핵심 기술 설명 */}
-      <div className="bg-primary-50 flex h-full min-h-screen flex-col items-center justify-center space-y-8 py-16">
+      <div className="flex h-full min-h-screen flex-col items-center justify-center space-y-8 bg-primary-50 py-16">
         <p className="select-none text-2xl font-bold text-primary">
           핵심기능 소개
         </p>
@@ -185,12 +184,12 @@ export default function Home() {
               gridArea: "c",
               img: (
                 <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                  <LottieVoiceRecognition
+                  <LottieEnsemble
                     // play
                     // loop
                     height={80}
                     goTo={12}
-                  ></LottieVoiceRecognition>
+                  ></LottieEnsemble>
                 </div>
               ),
               text: "텍스트 질의 뿐만 아니라 카메라 또는 음성 인식 등의 멀티모달 인터페이스를 지원하여 사용자 편의성을 개선하였습니다.",

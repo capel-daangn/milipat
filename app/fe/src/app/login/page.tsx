@@ -15,15 +15,14 @@ export default function Home() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
   useEffect(() => {
+    const checkResize = () => {
+      if (isMobile) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
     checkResize();
   }, [isMobile]);
 
@@ -90,7 +89,7 @@ export default function Home() {
             color={"primary"}
             variant={"shadow"}
             onClick={() => {
-              router.push("/search");
+              router.push("/home");
             }}
           >
             로그인 하기
