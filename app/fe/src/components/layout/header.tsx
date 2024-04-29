@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import SearchBar from "../search-bar";
 import { Key, useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 
 type HeaderProps = {
   isLogoVisible?: boolean;
@@ -40,6 +41,14 @@ export default function Header(props: HeaderProps) {
   useEffect(() => {
     checkResize();
   }, [isMobile]);
+
+  const [indexOfTabs, setIndexOfTabs] = useState<string>("search");
+
+  const queryClient = useQueryClient();
+  const queryIndexOfTabs = useQuery({
+    queryKey: ["indexOfTabs"],
+    queryFn: () => indexOfTabs,
+  });
 
   return (
     <div
@@ -117,8 +126,10 @@ export default function Header(props: HeaderProps) {
               aria-label="Options"
               variant={"underlined"}
               color={"primary"}
-              onSelectionChange={(key: Key) => {
-                console.log(key);
+              onSelectionChange={(key: any) => {
+                setIndexOfTabs(key);
+                // console.log(key);
+                queryIndexOfTabs.refetch();
               }}
             >
               <Tab key="search" title="탐색 뷰"></Tab>
@@ -181,8 +192,10 @@ export default function Header(props: HeaderProps) {
               aria-label="Options"
               variant={"underlined"}
               color={"primary"}
-              onSelectionChange={(key: Key) => {
-                console.log(key);
+              onSelectionChange={(key: any) => {
+                setIndexOfTabs(key);
+                // console.log(key);
+                queryIndexOfTabs.refetch();
               }}
             >
               <Tab key="search" title="탐색 뷰"></Tab>
@@ -198,8 +211,9 @@ export default function Header(props: HeaderProps) {
             aria-label="Options"
             variant={"underlined"}
             color={"primary"}
-            onSelectionChange={(key: Key) => {
-              console.log(key);
+            onSelectionChange={async (key: any) => {
+              await setIndexOfTabs(key);
+              await queryIndexOfTabs.refetch();
             }}
           >
             <Tab key="search" title="탐색 뷰"></Tab>

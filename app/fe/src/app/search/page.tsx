@@ -1,6 +1,6 @@
 "use client";
 
-import { IconLogo } from "@/components/common/icons";
+import { IconLogo, IconLogoSquare } from "@/components/common/icons";
 import SearchBar from "@/components/search-bar";
 import { Button, Card, CardFooter, Spacer } from "@nextui-org/react";
 import Image from "next/image";
@@ -8,8 +8,29 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
+import HorizontalSlider from "@/components/horizontal-slider";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
+  const queryIndexOfTabs = useQuery<any>({
+    queryKey: ["indexOfTabs"],
+    queryFn: () => {},
+    refetchOnMount: true,
+  });
+
+  return (
+    <section className="flex h-screen w-full flex-col items-center justify-center gap-4 px-4">
+      {(queryIndexOfTabs.data as string) == "search" && (
+        <SearchView></SearchView>
+      )}
+      {(queryIndexOfTabs.data as string) == "analysis" && (
+        <AnalysisView></AnalysisView>
+      )}
+    </section>
+  );
+}
+
+function SearchView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
@@ -31,11 +52,11 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="flex h-screen w-full flex-col items-center justify-center gap-4 px-4">
+    <>
       <div
         data-aos={"fade-in"}
         data-aos-duration="1000"
-        className="flex flex-row items-end justify-end gap-2"
+        className="flex flex-row items-center justify-center gap-2"
       >
         <IconLogo fill="#000000" width={mobile ? 120 : 150}></IconLogo>
         <p
@@ -49,7 +70,7 @@ export default function Home() {
       </div>
       <div
         data-aos={"fade-in"}
-        data-aos-duration="750"
+        data-aos-duration="1500"
         className="mx-auto flex w-full flex-row items-end justify-center pb-16"
       >
         <SearchBar mobile></SearchBar>
@@ -86,6 +107,65 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </section>
+    </>
+  );
+}
+
+function AnalysisView(props: any) {
+  return (
+    <>
+      <div className="h-full w-full max-w-[1200px] pt-[100px]">
+        <HorizontalSlider
+          title="# 러닝하고 온천으로 힐링 어떄?"
+          width={250}
+          height={200}
+          backgroundColor="#00000075"
+          content={[
+            {
+              title: "평택 시티 러닝 챌린지",
+              text: "평택의 도심을 뛰면서 온천을 즐기고 도심의 활력을 느껴보세요!",
+              bgImgSrc: "/images/thumbnail/running.jpg",
+              tags: ["러닝"],
+            },
+            {
+              title: "인천 자전거 해맞이 투어",
+              text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
+              bgImgSrc: "/images/thumbnail/cycle.jpg",
+              tags: ["자전거"],
+            },
+            {
+              title: "대전 도심 미니 마라톤",
+              text: "대전의 도심을 달리는 마라톤에 참여하여 도시의 에너지를 느껴보세요.",
+              bgImgSrc: "/images/thumbnail/marathon.jpg",
+              tags: ["마라톤"],
+            },
+            {
+              title: "울산 해안 플로깅 어드벤처",
+              text: "울산의 해안을 따라 뛰면서 쓰레기를 주워 깨끗한 해안을 만들어 보세요. ",
+              bgImgSrc: "/images/thumbnail/suwon.jpg",
+              tags: ["플로깅"],
+            },
+            {
+              title: "인천 자전거 해맞이 투어",
+              text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
+              bgImgSrc: "/images/thumbnail/cycle.jpg",
+              tags: ["자전거"],
+            },
+            {
+              title: "대전 도심 미니 마라톤",
+              text: "대전의 도심을 달리는 마라톤에 참여하여 도시의 에너지를 느껴보세요.",
+              bgImgSrc: "/images/thumbnail/marathon.jpg",
+              tags: ["마라톤"],
+            },
+            {
+              title: "울산 해안 플로깅 어드벤처",
+              text: "울산의 해안을 따라 뛰면서 쓰레기를 주워 깨끗한 해안을 만들어 보세요. ",
+              bgImgSrc: "/images/thumbnail/suwon.jpg",
+              tags: ["플로깅"],
+            },
+          ]}
+        ></HorizontalSlider>
+      </div>
+    </>
   );
 }

@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <section
-      className="h-screen w-full flex-col"
+      className="h-screen w-full select-none flex-col"
       style={{
         display: "grid",
         gridTemplateColumns: mobile ? "1fr" : "1fr minmax(500px, auto)",
@@ -38,7 +38,7 @@ export default function Home() {
     >
       <div className="flex h-full w-full flex-col bg-[url('../../public/images/background-development.jpg')] bg-cover bg-center"></div>
       <Card
-        className={`bg-primary-50 flex h-full max-h-fit w-full flex-col px-4 pb-8 ${
+        className={`flex h-full max-h-fit w-full flex-col bg-primary-50 px-4 pb-8 ${
           mobile ? "" : ""
         }`}
         radius={"none"}
