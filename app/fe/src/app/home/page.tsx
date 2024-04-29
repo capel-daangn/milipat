@@ -11,6 +11,7 @@ import { useIsMobile } from "@/hooks/useMediaQuery";
 import HorizontalSlider from "@/components/horizontal-slider";
 import { useQuery } from "@tanstack/react-query";
 import ChartNetwork from "@/components/chart/network-chart";
+import ThreeRender from "@/components/3d-render";
 
 export default function Home() {
   const queryIndexOfTabs = useQuery<any>({
@@ -140,21 +141,25 @@ function AnalysisView(props: any) {
               name: "네트워크 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
             },
             {
               name: "네트워크 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
             },
             {
               name: "네트워크 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
             },
             {
               name: "네트워크 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
+              content: <></>,
             },
           ].map((e, i) => {
             return (
@@ -171,6 +176,7 @@ function AnalysisView(props: any) {
                     {e.description}
                   </p>
                 )}
+                {e.content}
                 {/* <ChartNetwork></ChartNetwork> */}
               </Card>
             );
@@ -230,9 +236,9 @@ function AnalysisView(props: any) {
         </div>
         <div className="col-span-4 h-fit w-full pt-8">
           <HorizontalSlider
-            title="# 인기 있는 분석 프로젝트"
-            width={400}
-            height={200}
+            title="# 최근 조회한 군용장비"
+            width={250}
+            height={250}
             backgroundColor="#00000075"
             content={[
               {

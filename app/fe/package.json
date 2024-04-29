@@ -11,6 +11,7 @@
   "dependencies": {
     "@blocknote/core": "^0.10.1",
     "@nextui-org/react": "^2.2.9",
+    "@react-three/drei": "^9.105.5",
     "@tanstack/react-query": "^5.32.0",
     "@tanstack/react-query-devtools": "^5.32.0",
     "@tldraw/tldraw": "^1.29.2",
