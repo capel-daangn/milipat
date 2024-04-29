@@ -160,7 +160,7 @@ export default function SearchBar(props: SearchBarProps): any {
           title={`${data.section} 키워드 추천 특허`}
           classNames={{
             heading:
-              "flex w-full font-bold sticky top-1 z-20 py-2 px-2 bg-default-100 shadow-small rounded-small bg-[#dbeafe] select-none",
+              "flex w-full font-bold sticky top-1 z-20 py-2 px-2 bg-default-100 shadow-small rounded-small bg-primary text-white select-none",
           }}
         >
           {data.documents.map((document, j) => (

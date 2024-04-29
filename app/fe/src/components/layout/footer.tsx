@@ -10,11 +10,11 @@ export default function Footer(props: any) {
 
   return (
     <section
-      className={`bg-primary-50 bottom-0 z-50 min-h-[60px] w-full max-w-[1200px] pb-6 ${
+      className={`bottom-0 z-50 min-h-[60px] w-full bg-primary-50 pb-6 ${
         props.isFixed ? "" : ""
       }`}
     >
-      <div className="flex h-full select-none flex-col items-center justify-center gap-1">
+      <div className="mx-auto flex h-full max-w-[1200px] select-none flex-col items-center justify-center gap-1">
         <div className="flex h-full select-none flex-col items-center justify-center gap-1 leading-none">
           <p className="text-sm font-bold text-primary">TEAM MiliPat</p>
           <p className="text-tiny text-primary">
