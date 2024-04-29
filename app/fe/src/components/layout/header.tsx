@@ -132,13 +132,14 @@ export default function Header(props: HeaderProps) {
             >
               <Tab key="search" title="탐색 뷰"></Tab>
               <Tab key="analysis" title="분석 뷰"></Tab>
+              <Tab key="chatbot" title="챗봇 뷰"></Tab>
             </Tabs>
           </>
         ) : (
           <>
             <button
               onClick={() => {
-                router.push("/search");
+                router.push("/home");
               }}
               className="w-fit"
             >
@@ -198,6 +199,7 @@ export default function Header(props: HeaderProps) {
             >
               <Tab key="search" title="탐색 뷰"></Tab>
               <Tab key="analysis" title="분석 뷰"></Tab>
+              <Tab key="chatbot" title="챗봇 뷰"></Tab>
             </Tabs>
           </>
         ))}
@@ -216,6 +218,7 @@ export default function Header(props: HeaderProps) {
           >
             <Tab key="search" title="탐색 뷰"></Tab>
             <Tab key="analysis" title="분석 뷰"></Tab>
+            <Tab key="chatbot" title="챗봇 뷰"></Tab>
           </Tabs>
 
           <div></div>
