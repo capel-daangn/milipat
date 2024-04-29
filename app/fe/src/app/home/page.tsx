@@ -36,15 +36,14 @@ function SearchView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
   useEffect(() => {
+    const checkResize = () => {
+      if (isMobile) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
     checkResize();
   }, [isMobile]);
 
@@ -54,7 +53,7 @@ function SearchView(props: any) {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4  px-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4  px-4">
       <div
         data-aos={"fade-in"}
         data-aos-duration="1000"
@@ -117,15 +116,14 @@ function AnalysisView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
-  const checkResize = () => {
-    if (isMobile) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-  };
-
   useEffect(() => {
+    const checkResize = () => {
+      if (isMobile) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
     checkResize();
   }, [isMobile]);
 
