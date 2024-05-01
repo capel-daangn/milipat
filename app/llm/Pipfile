@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+chainlit = "*"
+langchain = "*"
+langchain-community = "*"
+pypdf2 = "*"
+pypdf = "*"
+chromadb = "*"
+langchainhub = "*"
+loguru = "*"
+sentence-transformers = "*"
+qdrant-client = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

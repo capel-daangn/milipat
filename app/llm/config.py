@@ -1,0 +1,4 @@
+OLLAMA_MODEL = "gemma:2b"
+EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
+QDRANT_URL = "http://localhost:6333"
+QDRANT_COLLECTION_NAME = "디지털_크리에이터"
