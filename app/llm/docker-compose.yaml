@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  ollama:
+    container_name: ollama
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    volumes:
+      - ./.docker/ollama:/root/.ollama
+    restart: unless-stopped
+    depends_on:
+      - qdrant
+    # environment:
+    #   - gpus=all
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  qdrant:
+    container_name: qdrant
+    image: qdrant/qdrant:v1.7.3
+    ports:
+      - 6333:6333
+    volumes:
+      - ./.docker/data/qdrant_storage:/qdrant/storage
