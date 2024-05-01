@@ -51,7 +51,7 @@ export default function Header(props: HeaderProps) {
   return (
     <div
       className={`${
-        props.isSearchBarVisible ? "" : "absolute"
+        props.isSearchBarVisible == true ? "" : "absolute"
       } top-0 z-50 mx-auto flex w-full max-w-[1200px] flex-row items-center justify-between p-4 px-4 pt-8`}
       style={{
         display: "grid",
@@ -197,15 +197,30 @@ export default function Header(props: HeaderProps) {
                 queryIndexOfTabs.refetch();
               }}
             >
-              <Tab key="search" title="탐색 뷰"></Tab>
-              <Tab key="analysis" title="분석 뷰"></Tab>
-              <Tab key="chatbot" title="챗봇 뷰"></Tab>
+              <Tab key="result-search" title="탐색 뷰"></Tab>
+              {/* <Tab key="result-analysis" title="분석 뷰"></Tab>
+              <Tab key="result-chatbot" title="챗봇 뷰"></Tab> */}
+            </Tabs>
+
+            <Tabs
+              aria-label="Options"
+              variant={"underlined"}
+              color={"primary"}
+              onSelectionChange={(key: any) => {
+                setIndexOfTabs(key);
+                // console.log(key);
+                queryIndexOfTabs.refetch();
+              }}
+            >
+              {/* <Tab key="result-search" title="탐색 뷰"></Tab> */}
+              <Tab key="result-analysis" title="분석 뷰"></Tab>
+              <Tab key="result-chatbot" title="챗봇 뷰"></Tab>
             </Tabs>
           </>
         ))}
 
       {/*  */}
-      {!props.isSearchBarVisible && (
+      {props.isSearchBarVisible == false && (
         <>
           <Tabs
             aria-label="Options"

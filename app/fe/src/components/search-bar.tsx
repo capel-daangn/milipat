@@ -12,29 +12,29 @@ const dataset = [
     section: "인공지능",
     documents: [
       {
-        title: "국방 인공지능 모델 기술과제 분석과 발전방안 연구",
+        title: "복합무기체계의 BIT공유 시스템",
         publish: "국방연구원",
-        date: "2023.01.01",
+        date: "2019-08-31",
+        patentApplicationNumber: "10-2014-0053239",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title:
+          "공포탄 격발인지모듈, 레이저발사기 및 이를 이용한 공포탄 격발인지방법",
+        publish: "미국 등록",
+        date: "2019-01-03",
+        patentApplicationNumber: "10-2018-0071443",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "공포탄 어댑터",
+        publish: "미국 등록",
+        date: "2019-01-03",
+        patentApplicationNumber: "10-2018-0071388",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
-      },
-      {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "전구급 합동작전 분석 시뮬레이터",
+        publish: "미국 등록",
+        date: "2021-07-30",
+        patentApplicationNumber: "10-2020-0162167",
       },
     ],
   },
@@ -42,19 +42,34 @@ const dataset = [
     section: "제조업",
     documents: [
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "포 발사식 탄약",
+        publish: "미국 등록",
+        date: "2018-10-02",
+        patentApplicationNumber: "10-2016-0181330",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "성형파편 탄체 제조방법 및 이의 제조 방법에 의해 제조된 탄체",
+        publish: "미국 등록",
+        date: "2017-10-27",
+        patentApplicationNumber: "10-2015-0089992",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "성형 파편체를 구비하는 고폭탄 제조 공법",
+        publish: "미국 등록",
+        date: "2017-11-03",
+        patentApplicationNumber: "10-2015-0162625",
+      },
+      {
+        title: "낙하지점 표시기능을 갖는 묘사탄",
+        publish: "미국 등록",
+        date: "2018-06-18",
+        patentApplicationNumber: "10-2017-0141402",
+      },
+      {
+        title: "게이지 장착 공구",
+        publish: "미국 등록",
+        date: "2011-06-09",
+        patentApplicationNumber: "10-2009-0029408",
       },
     ],
   },
@@ -62,19 +77,34 @@ const dataset = [
     section: "군사장비",
     documents: [
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "클램프를 이용한 타이어용 런플렛 지지체의 조립구조",
+        publish: "미국 등록",
+        date: "2015-09-16",
+        patentApplicationNumber: "10-2014-0011959",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "타이어용 런플렛 지지체의 연결 및 분리구조",
+        publish: "미국 등록",
+        date: "2015-09-16",
+        patentApplicationNumber: "10-2014-0015214",
       },
       {
-        title: "방산 분야 인공지능 동향 연구",
-        publish: "국방연구원",
-        date: "2023.01.01",
+        title: "발열기능을 갖는 대공사격훈련용 슬리브",
+        publish: "미국 등록",
+        date: "2017-01-13",
+        patentApplicationNumber: "10-2015-0005462",
+      },
+      {
+        title: "방호의자용 거치장치",
+        publish: "미국 등록",
+        date: "2015-12-03",
+        patentApplicationNumber: "10-2015-0115167",
+      },
+      {
+        title: "실총기 기반 사격 훈련이 가능한 모의 소총",
+        publish: "미국 등록",
+        date: "2015-11-02",
+        patentApplicationNumber: "10-2015-0108679",
       },
     ],
   },
@@ -157,7 +187,7 @@ export default function SearchBar(props: SearchBarProps): any {
       {dataset.map((data, i) => (
         <AutocompleteSection
           key={i}
-          title={`${data.section} 키워드 추천 특허`}
+          title={`${data.section} 연관 트랜드 특허`}
           classNames={{
             heading:
               "flex w-full font-bold sticky top-1 z-20 py-2 px-2 bg-default-100 shadow-small rounded-small bg-primary text-white select-none",
@@ -171,14 +201,31 @@ export default function SearchBar(props: SearchBarProps): any {
             >
               <div className="flex flex-row items-center justify-between space-y-1 py-2">
                 <div className="flex flex-col items-start justify-between">
-                  <p className="truncate">{document.title}</p>
+                  <p className="max-w-[300px] truncate">{document.title}</p>
                   <p className="text-xs text-black/50">
-                    {document.publish}, {document.date.split(".")[0]}
+                    {document.patentApplicationNumber},
                   </p>
+                  <div className="flex flex-row gap-1">
+                    <p className="text-xs text-black/50">
+                      {document.date.split(".")[0]}
+                    </p>
+                    <p className="text-xs text-black/50">{document.publish}</p>
+                  </div>
                 </div>
-                <p className="text-xs">
-                  {Math.round(Math.random() * (200 - 50) + 50)}
-                </p>
+                <div className="flex flex-row gap-2">
+                  <div className="flex flex-col items-center justify-center gap-1">
+                    <p className="text-tiny">분석수</p>
+                    <p className="text-xs">
+                      {Math.round(Math.random() * (100 - 50) + 50)}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-1">
+                    <p className="text-tiny">조회수</p>
+                    <p className="text-xs">
+                      {Math.round(Math.random() * (200 - 50) + 50)}
+                    </p>
+                  </div>
+                </div>
               </div>
             </AutocompleteItem>
           ))}
