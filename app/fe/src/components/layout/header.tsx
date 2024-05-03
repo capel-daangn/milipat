@@ -41,11 +41,17 @@ export default function Header(props: HeaderProps) {
   }, [isMobile]);
 
   const [indexOfTabs, setIndexOfTabs] = useState<string>("search");
+  const [indexOfViews, setIndexOfViews] = useState<string>("analysis");
 
   const queryClient = useQueryClient();
   const queryIndexOfTabs = useQuery({
     queryKey: ["indexOfTabs"],
     queryFn: () => indexOfTabs,
+  });
+
+  const queryIndexOfViews = useQuery({
+    queryKey: ["indexOfViews"],
+    queryFn: () => indexOfViews,
   });
 
   return (
@@ -192,9 +198,9 @@ export default function Header(props: HeaderProps) {
               variant={"underlined"}
               color={"primary"}
               onSelectionChange={(key: any) => {
-                setIndexOfTabs(key);
-                // console.log(key);
-                queryIndexOfTabs.refetch();
+                // setIndexOfTabs(key);
+                // // console.log(key);
+                // queryIndexOfTabs.refetch();
               }}
             >
               <Tab key="result-search" title="탐색 뷰"></Tab>
@@ -206,15 +212,15 @@ export default function Header(props: HeaderProps) {
               aria-label="Options"
               variant={"underlined"}
               color={"primary"}
-              onSelectionChange={(key: any) => {
-                setIndexOfTabs(key);
+              onSelectionChange={async (key: any) => {
+                await setIndexOfViews(key);
                 // console.log(key);
-                queryIndexOfTabs.refetch();
+                await queryIndexOfViews.refetch();
               }}
             >
               {/* <Tab key="result-search" title="탐색 뷰"></Tab> */}
-              <Tab key="result-analysis" title="분석 뷰"></Tab>
-              <Tab key="result-chatbot" title="챗봇 뷰"></Tab>
+              <Tab key="analysis" title="분석 뷰"></Tab>
+              <Tab key="chatbot" title="챗봇 뷰"></Tab>
             </Tabs>
           </>
         ))}
