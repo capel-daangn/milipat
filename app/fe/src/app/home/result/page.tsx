@@ -45,7 +45,6 @@ const dataset = [
 ];
 
 export default function Query() {
-  const [isAnimationTriggered, setIsAnimationTriggered] = useState(false);
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
