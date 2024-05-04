@@ -37,6 +37,7 @@ import {
   LineElement,
   ArcElement,
 } from "chart.js";
+// import ChartNetwork from "@/components/chart/network-chart";
 
 // const DynamicComponentWithNoSSR = dynamic(() => import("./Chart"), {
 //   ssr: false,
@@ -262,7 +263,7 @@ function AnalysisView(props: any) {
           subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
           classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
         >
-          <ChartRadar></ChartRadar>
+          {/* <ChartRadar></ChartRadar> */}
         </AccordionItem>
         <AccordionItem
           key="3"
