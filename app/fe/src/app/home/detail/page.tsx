@@ -38,6 +38,17 @@ import {
   ArcElement,
 } from "chart.js";
 
+// const DynamicComponentWithNoSSR = dynamic(() => import("./Chart"), {
+//   ssr: false,
+// });
+
+const ChartNetworkComponent = dynamic(
+  () => import("../../../components/chart/network-chart"),
+  {
+    ssr: false,
+  },
+);
+
 Chart.register(RadialLinearScale, PointElement, LineElement, ArcElement);
 
 const TldrawComponent = dynamic(
@@ -229,8 +240,8 @@ function AnalysisView(props: any) {
     <div className={`flex h-full w-full gap-4`}>
       {/*  */}
       <Accordion
-        className="h-full"
-        defaultExpandedKeys={["1"]}
+        className="h-fit"
+        // defaultExpandedKeys={["1"]}
         fullWidth
         variant={"shadow"}
         keepContentMounted
@@ -238,16 +249,18 @@ function AnalysisView(props: any) {
         <AccordionItem
           key="1"
           aria-label="wordCloud"
-          title="워드클라우드"
+          title="워드 클라우드"
           subtitle="주요 키워드의 빈도를 강조하여 시각적으로 표현합니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
         >
           <ChartWordCloud></ChartWordCloud>
         </AccordionItem>
         <AccordionItem
           key="2"
           aria-label="Accordion 2"
-          title="막대 그래프"
-          subtitle="각 핵심어 키워드의 상대적 중요성을 보여줍니다."
+          title="방사형 그래프"
+          subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
         >
           <ChartRadar></ChartRadar>
         </AccordionItem>
@@ -256,8 +269,9 @@ function AnalysisView(props: any) {
           aria-label="Accordion 3"
           title="네트워크 그래프"
           subtitle="핵심어 키워드 간의 관계와 연관성을 나타냅니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
         >
-          {/* <ChartNetwork></ChartNetwork> */}
+          <ChartNetworkComponent></ChartNetworkComponent>
         </AccordionItem>
       </Accordion>
     </div>
@@ -511,64 +525,3 @@ function ChartRadar(params: any) {
     )
   );
 }
-
-// function ChartNetwork(params: any) {
-//   const nodes = [
-//     {
-//       id: "1",
-//       label: "1",
-//     },
-//     {
-//       id: "2",
-//       label: "2",
-//     },
-//   ];
-
-//   const edges = [
-//     {
-//       source: "1",
-//       target: "2",
-//       id: "1-2",
-//       label: "1-2",
-//     },
-//     {
-//       source: "2",
-//       target: "1",
-//       id: "2-1",
-//       label: "2-1",
-//     },
-//   ];
-
-//   return typeof window !== "undefined" ? (
-//     <div className="relative flex h-full min-h-[300px]">
-//       <GraphCanvas
-//         nodes={[
-//           {
-//             id: "1",
-//             label: "1",
-//           },
-//           {
-//             id: "2",
-//             label: "2",
-//           },
-//         ]}
-//         edges={[
-//           {
-//             source: "1",
-//             target: "2",
-//             id: "1-2",
-//             label: "1-2",
-//           },
-//           {
-//             source: "2",
-//             target: "1",
-//             id: "2-1",
-//             label: "2-1",
-//           },
-//         ]}
-//       />
-//     </div>
-//   ) : (
-//     <></>
-//   );
-// }

@@ -10,8 +10,8 @@ import { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import HorizontalSlider from "@/components/horizontal-slider";
 import { useQuery } from "@tanstack/react-query";
-import ChartNetwork from "@/components/chart/network-chart";
-import ThreeRender from "@/components/3d-render";
+// import ChartNetwork from "@/components/chart/network-chart";
+// import ThreeRender from "@/components/3d-render";
 
 import TextBubble from "@/components/text-bubble";
 import FooterTray from "@/components/common/footer-tray";

@@ -1,3 +1,5 @@
+"use strict";
+
 import { GraphCanvas } from "reagraph";
 
 const nodes = [
@@ -27,5 +29,13 @@ const edges = [
 ];
 
 export default function ChartNetwork(props: any) {
-  return <GraphCanvas nodes={nodes} edges={edges} />;
+  return (
+    <div className="relative flex h-full min-h-[300px]">
+      {typeof window !== "undefined" ? (
+        <GraphCanvas nodes={nodes} edges={edges} />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 }
