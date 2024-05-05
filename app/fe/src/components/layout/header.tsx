@@ -203,7 +203,7 @@ export default function Header(props: HeaderProps) {
                 // queryIndexOfTabs.refetch();
               }}
             >
-              <Tab key="result-search" title="탐색 뷰"></Tab>
+              <Tab key="result-search" title="탐색 탭"></Tab>
               {/* <Tab key="result-analysis" title="분석 뷰"></Tab>
               <Tab key="result-chatbot" title="챗봇 뷰"></Tab> */}
             </Tabs>
@@ -219,8 +219,8 @@ export default function Header(props: HeaderProps) {
               }}
             >
               {/* <Tab key="result-search" title="탐색 뷰"></Tab> */}
-              <Tab key="analysis" title="분석 뷰"></Tab>
-              <Tab key="chatbot" title="챗봇 뷰"></Tab>
+              <Tab key="analysis" title="분석 탭"></Tab>
+              <Tab key="chatbot" title="챗봇 탭"></Tab>
             </Tabs>
           </>
         ))}

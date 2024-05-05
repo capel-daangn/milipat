@@ -17,7 +17,6 @@ import "react-pdf/dist/Page/TextLayer.css";
 import WordCloud from "react-d3-cloud";
 import { scaleOrdinal } from "d3-scale";
 import { schemeCategory10 } from "d3-scale-chromatic";
-import { GraphCanvas } from "reagraph";
 import { Radar } from "react-chartjs-2";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -37,6 +36,8 @@ import {
   LineElement,
   ArcElement,
 } from "chart.js";
+import ThreeRender from "@/components/3d-render";
+
 // import ChartNetwork from "@/components/chart/network-chart";
 
 // const DynamicComponentWithNoSSR = dynamic(() => import("./Chart"), {
@@ -135,68 +136,80 @@ export default function DetailPage(props: any): any {
           </div>
         </Card>
 
-        <Card className="relative flex h-full min-h-full w-full flex-col items-center justify-center">
-          <Document
-            file={"/sample.pdf"}
-            onLoadSuccess={onDocumentLoadSuccess}
-            loading={<CircularProgress></CircularProgress>}
-            className={"h-full overflow-scroll"}
-          >
-            <Page pageNumber={pageNumber} scale={scale} />
-          </Document>
-          <div className="absolute top-0 z-10 flex w-full flex-col items-center justify-center py-2">
-            <ButtonGroup color={"default"} variant={"flat"} radius={"none"}>
-              <Button
-                isIconOnly
-                onPress={() => {
-                  if (scale > 0.75) {
-                    setScale(() => scale - 0.25);
-                  }
-                }}
+        <Card className="relative flex aspect-square h-full min-h-full w-full flex-col items-center justify-center">
+          {true ? (
+            <>
+              <Document
+                file={"/sample.pdf"}
+                onLoadSuccess={onDocumentLoadSuccess}
+                loading={
+                  <div className="flex h-[500px] w-full flex-col items-center justify-center">
+                    <CircularProgress></CircularProgress>
+                  </div>
+                }
+                className={"h-full overflow-auto overflow-x-auto"}
               >
-                -
-              </Button>
-              <Button
-                isIconOnly
-                onPress={() => {
-                  setScale(() => 1);
-                }}
-              >
-                <p className="text-tiny font-bold">{scale * 100}%</p>
-              </Button>
-              <Button
-                isIconOnly
-                onPress={() => {
-                  setScale(() => scale + 0.25);
-                }}
-              >
-                +
-              </Button>
-            </ButtonGroup>
-          </div>
-          <div className="absolute bottom-0 z-10 flex w-full flex-col items-center justify-center py-2">
-            <Pagination
-              className="opacity-90"
-              loop
-              size={"sm"}
-              isCompact
-              showControls
-              variant={"flat"}
-              total={numPages}
-              initialPage={1}
-              color={"default"}
-              onChange={(e) => {
-                setPageNumber(e);
-              }}
-              // classNames={{
-              //   base: "bg-trasparent",
-              //   wrapper: "",
-              //   item: "text-white font-bold",
-              //   next: "bg-white font-bold",
-              // }}
-              radius={"none"}
-            />
-          </div>
+                <Page pageNumber={pageNumber} scale={scale} />
+              </Document>
+              <div className="absolute top-0 z-10 flex w-full flex-col items-center justify-center py-2">
+                <ButtonGroup color={"default"} variant={"flat"} radius={"none"}>
+                  <Button
+                    isIconOnly
+                    onPress={() => {
+                      if (scale > 0.75) {
+                        setScale(() => scale - 0.25);
+                      }
+                    }}
+                  >
+                    -
+                  </Button>
+                  <Button
+                    isIconOnly
+                    onPress={() => {
+                      setScale(() => 1);
+                    }}
+                  >
+                    <p className="text-tiny font-bold">{scale * 100}%</p>
+                  </Button>
+                  <Button
+                    isIconOnly
+                    onPress={() => {
+                      setScale(() => scale + 0.25);
+                    }}
+                  >
+                    +
+                  </Button>
+                </ButtonGroup>
+              </div>
+              <div className="absolute bottom-0 z-10 flex w-full flex-col items-center justify-center py-2">
+                <Pagination
+                  className="opacity-90"
+                  loop
+                  size={"sm"}
+                  isCompact
+                  showControls
+                  variant={"flat"}
+                  total={numPages}
+                  initialPage={1}
+                  color={"default"}
+                  onChange={(e) => {
+                    setPageNumber(e);
+                  }}
+                  // classNames={{
+                  //   base: "bg-trasparent",
+                  //   wrapper: "",
+                  //   item: "text-white font-bold",
+                  //   next: "bg-white font-bold",
+                  // }}
+                  radius={"none"}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="h-full w-full overflow-clip">
+              <ThreeRender src={"/models/k9.glb"}></ThreeRender>
+            </div>
+          )}
         </Card>
       </div>
 
@@ -204,19 +217,9 @@ export default function DetailPage(props: any): any {
         {(queryIndexOfViews.data as string) == "analysis" && (
           <AnalysisView></AnalysisView>
         )}
-        {
-          (queryIndexOfViews.data as string) == "chatbot" && (
-            // (
-            //   isWindowLoaded ? (
-            <ChatbotView></ChatbotView>
-          )
-          // ) : (
-          //   <div className="flex h-full w-full flex-col items-center justify-center">
-          //     <CircularProgress></CircularProgress>
-          //   </div>
-          // )
-          // )
-        }
+        {(queryIndexOfViews.data as string) == "chatbot" && (
+          <ChatbotView></ChatbotView>
+        )}
       </div>
     </section>
   );
@@ -456,18 +459,17 @@ function ChartWordCloud(params: any) {
 function ChartRadar(params: any) {
   const data = {
     labels: [
-      "Eating",
-      "Drinking",
-      "Sleeping",
-      "Designing",
-      "Coding",
-      "Cycling",
-      "Running",
+      "무기 및 무기 시스템",
+      "통신 및 통신 장비",
+      "군사 차량 및 운송 수단",
+      "센서 및 탐지 시스템",
+      "방어 및 보호 장비",
+      "정보 수집 및 분석 시스템",
     ],
     datasets: [
       {
-        label: "My First Dataset",
-        data: [65, 59, 90, 81, 56, 55, 40],
+        label: "Drone Bomb Device",
+        data: [90, 60, 20, 80, 10, 40],
         fill: true,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgb(255, 99, 132)",
@@ -475,17 +477,6 @@ function ChartRadar(params: any) {
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgb(255, 99, 132)",
-      },
-      {
-        label: "My Second Dataset",
-        data: [28, 48, 40, 19, 96, 27, 100],
-        fill: true,
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgb(54, 162, 235)",
-        pointBackgroundColor: "rgb(54, 162, 235)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgb(54, 162, 235)",
       },
     ],
   };
@@ -501,7 +492,7 @@ function ChartRadar(params: any) {
     },
     ticks: {
       beginAtZero: true,
-      display: false,
+      display: true,
       maxTicksLimit: 2,
     },
     // title: {
