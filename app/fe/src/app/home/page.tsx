@@ -144,21 +144,21 @@ function AnalysisView(props: any) {
         >
           {[
             {
-              name: "지역 기반 분석",
+              name: "기술 동향 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
               bgImg: "/images/background/map.jpg",
             },
             {
-              name: "추세 기반 분석",
+              name: "특허 유사도 분석",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
               bgImg: "/images/background/trend.jpg",
             },
             {
-              name: "비교 기반 분석",
+              name: "특허 경쟁력 진단",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
@@ -169,7 +169,7 @@ function AnalysisView(props: any) {
               <Card
                 key={i}
                 className={`row-span-1 ${
-                  mobile ? "aspect-[3/1]" : "aspect-[3/2]"
+                  mobile ? "aspect-[4/1]" : "aspect-[3/2]"
                 } gap-4 bg-black/50 bg-cover bg-center p-6 bg-blend-darken`}
                 isPressable
                 style={{ backgroundImage: `url('${e.bgImg}')` }}
@@ -190,7 +190,7 @@ function AnalysisView(props: any) {
             );
           })}
         </div>
-        <div
+        {/* <div
           className={`grid h-full w-full items-center gap-4 px-4 ${
             mobile ? "grid-cols-2 grid-rows-2" : "grid-cols-4 grid-rows-1"
           }`}
@@ -242,12 +242,12 @@ function AnalysisView(props: any) {
               </Card>
             );
           })}
-        </div>
+        </div> */}
         <div className="col-span-4 h-fit w-full">
           <HorizontalSlider
             title="# 나의 최근 분석 프로젝트"
-            width={300}
-            height={400}
+            width={210}
+            height={280}
             backgroundColor="#1D4A83"
             content={[
               {
@@ -314,30 +314,45 @@ function AnalysisView(props: any) {
                 text: "평택의 도심을 뛰면서 온천을 즐기고 도심의 활력을 느껴보세요!",
                 bgImgSrc: "/images/thumbnail/running.jpg",
                 tags: ["러닝"],
+                onPress: () => {
+                  console.log(11);
+                },
               },
               {
                 title: "인천 자전거 해맞이 투어",
                 text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
                 bgImgSrc: "/images/thumbnail/cycle.jpg",
                 tags: ["자전거"],
+                onPress: () => {
+                  console.log(11);
+                },
               },
               {
                 title: "대전 도심 미니 마라톤",
                 text: "대전의 도심을 달리는 마라톤에 참여하여 도시의 에너지를 느껴보세요.",
                 bgImgSrc: "/images/thumbnail/marathon.jpg",
                 tags: ["마라톤"],
+                onPress: () => {
+                  console.log(11);
+                },
               },
               {
                 title: "울산 해안 플로깅 어드벤처",
                 text: "울산의 해안을 따라 뛰면서 쓰레기를 주워 깨끗한 해안을 만들어 보세요. ",
                 bgImgSrc: "/images/thumbnail/suwon.jpg",
                 tags: ["플로깅"],
+                onPress: () => {
+                  console.log(11);
+                },
               },
               {
                 title: "인천 자전거 해맞이 투어",
                 text: "인천의 해안 도로를 따라 해돋이를 보며 자전거 탐험을 즐겨보세요!",
                 bgImgSrc: "/images/thumbnail/cycle.jpg",
                 tags: ["자전거"],
+                onPress: () => {
+                  console.log(11);
+                },
               },
               {
                 title: "대전 도심 미니 마라톤",
