@@ -1,5 +1,7 @@
 docker-compose up -d
 
+# docker exec -itd ollama ollama run mistral
+
 docker exec -itd ollama ollama run gemma:2b
 
 pipenv shell

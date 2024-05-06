@@ -1,3 +1,4 @@
+# OLLAMA_MODEL = "mistral"
 OLLAMA_MODEL = "gemma:2b"
 EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
 QDRANT_URL = "http://localhost:6333"
