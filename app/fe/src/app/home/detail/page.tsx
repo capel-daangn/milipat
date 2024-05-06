@@ -37,6 +37,7 @@ import {
   ArcElement,
 } from "chart.js";
 import ThreeRender from "@/components/3d-render";
+import { usePathname, useSearchParams } from "next/navigation";
 
 // import ChartNetwork from "@/components/chart/network-chart";
 
@@ -61,6 +62,21 @@ const TldrawComponent = dynamic(
 );
 
 export default function DetailPage(props: any): any {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [type, setType] = useState<string | null>("patent");
+
+  useEffect(() => {
+    console.log(pathname);
+    console.log(searchParams.get("type"));
+
+    if (searchParams.get("type") && searchParams.get("type") != undefined) {
+      setType(searchParams.get("type"));
+    }
+  }, []);
+
+  //
   const [numPages, setNumPages] = useState<any>();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isLoaded, setisLoaded] = useState(false);
@@ -120,24 +136,43 @@ export default function DetailPage(props: any): any {
         }}
       >
         <Card className="h-full w-full p-4">
-          <div className="flex h-full select-none flex-col gap-2">
-            <p className="text-xl font-bold">휴대형 군사용 드론 폭탄 장치</p>
-            <div className="flex flex-row gap-2">
-              {["드론", "제어", "폭탄"].map((e, i) => (
-                <Chip key={i} color={"secondary"} size={"sm"}>
-                  #{e}
-                </Chip>
-              ))}
+          {type == "patent" ? (
+            <div className="flex h-full select-none flex-col gap-2">
+              <p className="text-xl font-bold">휴대형 군사용 드론 폭탄 장치</p>
+              <div className="flex flex-row gap-2">
+                {["드론", "제어", "폭탄"].map((e, i) => (
+                  <Chip key={i} color={"secondary"} size={"sm"}>
+                    #{e}
+                  </Chip>
+                ))}
+              </div>
+              <p className="line-clamp-2 text-sm">
+                본 특허는 휴대형 군사용 드론 폭탄 장치는 작은 크기의 드론에
+                폭탄을 부착하여 적군을 타격하는 군사 전술 장치에 관한
+                내용입니다.
+              </p>
             </div>
-            <p className="line-clamp-2 text-sm">
-              본 특허는 휴대형 군사용 드론 폭탄 장치는 작은 크기의 드론에 폭탄을
-              부착하여 적군을 타격하는 군사 전술 장치에 관한 내용입니다.
-            </p>
-          </div>
+          ) : (
+            <div className="flex h-full select-none flex-col gap-2">
+              <p className="text-xl font-bold">K9 자주곡사포</p>
+              <div className="flex flex-row gap-2">
+                {["국산", "자주포", "방산"].map((e, i) => (
+                  <Chip key={i} color={"secondary"} size={"sm"}>
+                    #{e}
+                  </Chip>
+                ))}
+              </div>
+              <p className="line-clamp-2 text-sm">
+                대한민국 국군 포병 전력의 주력 장비이자 대한민국 방산업계의 효자
+                상품으로 대한민국 국군뿐만 아니라 해외 여러 국가에서도 주력
+                자주포로 운용한다.
+              </p>
+            </div>
+          )}
         </Card>
 
         <Card className="relative flex aspect-square h-full min-h-full w-full flex-col items-center justify-center">
-          {true ? (
+          {type == "patent" ? (
             <>
               <Document
                 file={"/sample.pdf"}
@@ -322,7 +357,38 @@ function ChatbotView(props: any) {
             isLoading: false,
             imgSrc: "11",
             name: "MiliPat AI",
-            text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
+            text: `K9 자주포, 일명 K9 썬더는 대한민국에서 개발 및 생산된 자주포 시스템입니다. 다음은 K9 자주포의 주요 제원입니다:
+
+            1. **중량**: 전투중량으로 47톤에 이르며, 이는 차체의 전체적인 무게를 의미합니다.
+
+            2. **전장**: 12m로, 자주포의 길이를 나타냅니다. 차체의 길이는 7.44m입니다.
+
+            3. **전폭**: 3.5m로, 자주포의 폭을 의미합니다.
+
+            4. **전고**: 3.28m로, 자주포의 높이를 나타냅니다.
+
+            5. **주포**: 155mm CN98 곡사포가 장착되어 있습니다.
+
+            6. **부무장**: 12.7mm K6 중기관총이 부착되어 있습니다.
+
+            7. **급속사격 및 최대발사속도**: 분당 6~8발로, K9A3 버전에서는 분당 10~12발로 예정되어 있습니다.
+
+            8. **최대사거리**: 최대 100km까지 활공탄을 사용하여 공격할 수 있습니다.
+
+            9. **장갑**: 균질압연강판으로 전방위 35mm 이상의 장갑을 가지고 있습니다. 또한, 10m 위에서 떨어진 152mm 통상고폭탄에 대한 승무원 방호가 제공됩니다.
+
+            10. **최고속도**: 67km/h로, 빠른 전투 이동이 가능합니다.
+
+            11. **현수장치**: 유기압 현수장치를 사용합니다.
+
+            12. **최대주행거리**: 360km로, 광범위한 전투 영역에서 활동할 수 있습니다.
+
+            13. **엔진**: 초도 양산분은 MTU MT 881 Ka-500 디젤엔진을 사용하며, 추후 예정으로는 STX 엔진과 SMV-1000 디젤엔진이 개발 중에 있습니다.
+
+            14. **승무원**: 5명이 탑승할 수 있습니다. 단, K9A2 및 개량형은 3명의 승무원이 필요합니다.
+
+            15. **운용국**: 주로 대한민국에서 운용되며, 노르웨이, 에스토니아, 이집트, 인도, 튀르키, 폴란드, 핀란드, 호주, 우크라이나 등 여러 국가에서도 운용됩니다.`,
+            // text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
             // text: "k9 자주포 사격통제장치에 문제가 발생하셨군요.이런 문제가 발생시에 총 3가지의 조치 방법이 있습니다.\n\n1. 일부 측량계 장치의 과부하로 인한 오류입니다. 이 경우, 장비를 완전히 재부팅하고 다시한번 세팅하셔야합니다.\n\n2. 광학센서 장치의 노후화 문제입니다.\n이 장치의 수명은 약 5년이며, 이 기간이 지났을 경우에는 정비근무대를 통한 교체가 필요합니다.\n\n3. 중앙처리장치와 전원이 접촉 불량인 경우입니다.",
           },
         ]);
@@ -331,9 +397,9 @@ function ChatbotView(props: any) {
   }, [dialogContext]);
 
   return (
-    <Card className="flex h-full max-h-[75vh] w-full flex-col">
+    <Card className="relative flex h-full max-h-[75vh] w-full flex-col">
       <div
-        className={`grid h-full w-full gap-4`}
+        className={`relative grid h-full w-full gap-4`}
         style={{
           gridTemplateColumns: false ? "1fr" : "1fr",
           gridTemplateRows: false ? "1fr" : "1fr",
@@ -343,7 +409,7 @@ function ChatbotView(props: any) {
         <div
           className={`${
             mobile ? "pb-1" : ""
-          } relative flex h-full w-full flex-col items-center justify-start`}
+          } relative flex h-[75vh] w-full flex-col items-center justify-start overflow-scroll`}
           style={{
             display: "grid",
             gridTemplateRows: "1fr auto",
@@ -369,7 +435,7 @@ function ChatbotView(props: any) {
             })}
             <div ref={messageEndRef} className="h-[100px]"></div>
           </div>
-          <div className="flex h-fit w-full flex-col items-center">
+          <div className="z-50 flex h-fit w-full flex-col items-center">
             <FooterTray
               dialogContext={dialogContext}
               setDialogContext={setDialogContext}
@@ -391,13 +457,13 @@ function ChartWordCloud(params: any) {
     [],
   );
   const onWordClick = useCallback((word: any) => {
-    console.log(`onWordClick: ${word}`);
+    // console.log(`onWordClick: ${word}`);
   }, []);
   const onWordMouseOver = useCallback((word: any) => {
-    console.log(`onWordMouseOver: ${word}`);
+    // console.log(`onWordMouseOver: ${word}`);
   }, []);
   const onWordMouseOut = useCallback((word: any) => {
-    console.log(`onWordMouseOut: ${word}`);
+    // console.log(`onWordMouseOut: ${word}`);
   }, []);
   const data = [
     { text: "제어", value: 69 },
