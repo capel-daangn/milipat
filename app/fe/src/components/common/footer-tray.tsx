@@ -27,6 +27,7 @@ export default function FooterTray(props: any) {
       {props.showInput ? (
         <div className="flex h-fit w-full flex-row justify-between px-4 pb-4">
           <Input
+            radius={"none"}
             placeholder={"질의어를 입력하세요."}
             className="w-full"
             variant={"flat"}
@@ -103,7 +104,7 @@ export default function FooterTray(props: any) {
               icon: <IconBook height={25} fill="#000"></IconBook>,
             },
             {
-              text: "둘레 AI",
+              text: "MiliPat AI",
               onPress: async () => {
                 props.setIsModalVisible(true);
               },

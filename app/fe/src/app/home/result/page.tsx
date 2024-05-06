@@ -59,6 +59,11 @@ export default function Query() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
+  const queryIndexOfTabs = useQuery<any>({
+    queryKey: ["indexOfTabs"],
+    queryFn: () => {},
+    refetchOnMount: true,
+  });
   const queryIndexOfViews = useQuery<any>({
     queryKey: ["indexOfViews"],
     queryFn: () => {},
@@ -87,33 +92,17 @@ export default function Query() {
       className="mx-auto flex w-full max-w-[1200px] flex-row px-4"
       style={{
         display: "grid",
+        // gridTemplateAreas: `"aaa bbb ccc"`,
         gridTemplateColumns: mobile ? "1fr" : "100px 600px 1fr",
+        gridTemplateRows: "1fr",
         gap: "20px",
       }}
     >
       {/*  */}
-      <div className="w-full">
-        {/* <Button
-          onClick={() => {
-            setIsAnimationTriggered(!isAnimationTriggered);
-          }}
-        >
-          11
-        </Button> */}
-      </div>
+      <div className="w-full"></div>
       {/*  */}
+
       <div className="flex flex-col items-start justify-center space-y-8">
-        {/* <div
-          // data-aos="zoom-in-down"
-          // data-aos-duration="500"
-          className={`w-full 
-          ${isAnimationTriggered ? "" : ""}`}
-        >
-          <GptBox
-            title="MiliPat-GPT 서치어드바이저"
-            initialQuery="국방 인공지능 모델 기술과제 분석과 발전방안 연구"
-          ></GptBox>
-        </div> */}
         <div className="w-full space-y-2">
           {dataset.map((data, i) => {
             return (
@@ -136,32 +125,32 @@ export default function Query() {
                     </p>
                   </div>
                   {/* <div className="space-x-2">
-                    {[
-                      {
-                        text: "비교하기",
-                        icon: <IconBookmark width={"20px"}></IconBookmark>,
-                      },
-                      {
-                        text: "비교하기",
-                        icon: <IconBookmark width={"20px"}></IconBookmark>,
-                      },
-                      {
-                        text: "비교하기",
-                        icon: <IconBookmark width={"20px"}></IconBookmark>,
-                      },
-                    ].map((button, i) => {
-                      return (
-                        <Button
-                          key={i}
-                          isIconOnly
-                          size={"sm"}
-                          variant={"shadow"}
-                        >
-                          {button.icon}
-                        </Button>
-                      );
-                    })}
-                  </div> */}
+                  {[
+                    {
+                      text: "비교하기",
+                      icon: <IconBookmark width={"20px"}></IconBookmark>,
+                    },
+                    {
+                      text: "비교하기",
+                      icon: <IconBookmark width={"20px"}></IconBookmark>,
+                    },
+                    {
+                      text: "비교하기",
+                      icon: <IconBookmark width={"20px"}></IconBookmark>,
+                    },
+                  ].map((button, i) => {
+                    return (
+                      <Button
+                        key={i}
+                        isIconOnly
+                        size={"sm"}
+                        variant={"shadow"}
+                      >
+                        {button.icon}
+                      </Button>
+                    );
+                  })}
+                </div> */}
                 </div>
                 <p className="line-clamp-3 text-justify text-sm leading-loose">
                   {data.text}
@@ -179,8 +168,14 @@ export default function Query() {
           </div>
         </div>
       </div>
+
       {/*  */}
-      <div className="sticky top-16 flex h-full max-h-[500px] w-full flex-col px-4">
+
+      <div
+        className={`${
+          mobile ? "sticky top-16" : "max-h-[500px]"
+        } flex h-full w-full flex-col px-4`}
+      >
         {(queryIndexOfViews.data as string) == "analysis" && (
           <AnalysisView></AnalysisView>
         )}
@@ -288,7 +283,7 @@ function ChatbotView(props: any) {
             isSent: false,
             isLoading: false,
             imgSrc: "11",
-            name: "둘레 AI",
+            name: "MiliPat AI",
             text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
             // text: "k9 자주포 사격통제장치에 문제가 발생하셨군요.이런 문제가 발생시에 총 3가지의 조치 방법이 있습니다.\n\n1. 일부 측량계 장치의 과부하로 인한 오류입니다. 이 경우, 장비를 완전히 재부팅하고 다시한번 세팅하셔야합니다.\n\n2. 광학센서 장치의 노후화 문제입니다.\n이 장치의 수명은 약 5년이며, 이 기간이 지났을 경우에는 정비근무대를 통한 교체가 필요합니다.\n\n3. 중앙처리장치와 전원이 접촉 불량인 경우입니다.",
           },

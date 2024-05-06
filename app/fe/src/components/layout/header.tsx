@@ -48,7 +48,6 @@ export default function Header(props: HeaderProps) {
     queryKey: ["indexOfTabs"],
     queryFn: () => indexOfTabs,
   });
-
   const queryIndexOfViews = useQuery({
     queryKey: ["indexOfViews"],
     queryFn: () => indexOfViews,
@@ -130,10 +129,11 @@ export default function Header(props: HeaderProps) {
               aria-label="Options"
               variant={"underlined"}
               color={"primary"}
-              onSelectionChange={(key: any) => {
-                setIndexOfTabs(key);
-                // console.log(key);
-                queryIndexOfTabs.refetch();
+              onSelectionChange={async (key: any) => {
+                await setIndexOfViews(key);
+                await queryIndexOfViews.refetch();
+                // setIndexOfTabs(key);
+                // queryIndexOfTabs.refetch();
               }}
             >
               <Tab key="search" title="탐색 뷰"></Tab>
