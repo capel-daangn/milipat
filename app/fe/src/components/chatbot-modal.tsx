@@ -22,7 +22,7 @@ export default function ModalChatbot(props: propsForModal) {
       isSent: false,
       isLoading: false,
       imgSrc: "/images/logo.png",
-      name: "둘레 AI",
+      name: "MiliPat AI",
       text: "어떻게 도와드릴까요?",
     },
   ]);
@@ -52,7 +52,7 @@ export default function ModalChatbot(props: propsForModal) {
             isSent: false,
             isLoading: false,
             imgSrc: "11",
-            name: "둘레 AI",
+            name: "MiliPat AI",
             text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
             // text: "k9 자주포 사격통제장치에 문제가 발생하셨군요.이런 문제가 발생시에 총 3가지의 조치 방법이 있습니다.\n\n1. 일부 측량계 장치의 과부하로 인한 오류입니다. 이 경우, 장비를 완전히 재부팅하고 다시한번 세팅하셔야합니다.\n\n2. 광학센서 장치의 노후화 문제입니다.\n이 장치의 수명은 약 5년이며, 이 기간이 지났을 경우에는 정비근무대를 통한 교체가 필요합니다.\n\n3. 중앙처리장치와 전원이 접촉 불량인 경우입니다.",
           },
@@ -95,7 +95,7 @@ export default function ModalChatbot(props: propsForModal) {
           }}
         >
           <ModalHeader className="flex flex-col border-b-2">
-            둘레 AI 챗봇과 대화하기
+            MiliPat AI 챗봇과 대화하기
           </ModalHeader>
           <div className="flex h-full w-full flex-col items-center overflow-y-scroll px-4 py-4">
             {dialogContext.map((e, i) => {

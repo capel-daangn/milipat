@@ -16,15 +16,15 @@ type propsForTextBubble = {
 export default function TextBubble(props: propsForTextBubble) {
   return (
     <div
-      className={`space-y-1 flex flex-col w-full py-2 ${
+      className={`flex w-full flex-col space-y-1 py-2 ${
         props.isSent ? "items-end" : "items-start"
       }`}
     >
-      <p className="text-pretty text-center break-keep font-bold text-sm">
+      <p className="text-pretty break-keep text-center text-sm font-bold">
         {props.isSent ? "사용자" : props.name}
       </p>
       <Card
-        className={`w-fit max-w-[90%] h-fit shadow-none border-0 p-3 text-black ${
+        className={`h-fit w-fit max-w-[90%] rounded-none border-0 p-3 text-black shadow-none ${
           props.isSent ? "bg-gray-100" : "bg-primary-50"
         } `}
         shadow={"none"}
