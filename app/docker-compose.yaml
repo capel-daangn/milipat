@@ -1,0 +1,68 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./docker/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/data/certbot/conf:/etc/letsencrypt
+      - ./docker/data/certbot/www:/var/www/certbot
+    ports:
+      - 80:80
+      - 443:443
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    command: certonly -v --webroot --webroot-path=/var/www/certbot --email alex.jiuk.kim@google.com --agree-tos --no-eff-email -d example.ziwook.com
+    volumes:
+      - ./docker/data/certbot/conf:/etc/letsencrypt
+      - ./docker/data/certbot/www:/var/www/certbot
+#   #
+#   database:
+#     container_name: milipat/database/mysql
+#     image: mysql
+#     restart: unless-stopped
+#     volumes:
+#       - ./docker/data/database/mysql:/var/lib/mysql
+#     ports:
+#       - 3306:3306
+#     environment:
+#       - MYSQL_DATABASE=db_Dev
+#       - MYSQL_ROOT_PASSWORD=1234
+#       # - MYSQL_ROOT_USER=root
+#       # - MYSQL_PASSWORD
+#       - TZ=Asiz/Seoul
+#     networks:
+#       - milipat_dev_network
+#   #
+#   backend:
+#     container_name: milipat/backend
+#     platform: linux/amd64
+#     build:
+#       context: ./be/
+#       dockerfile: Dockerfile
+#     depends_on:
+#       - database
+#     restart: on-failure
+#     ports:
+#       - 8080:8080
+#     networks:
+#       - milipat_dev_network
+#   #
+#   frontend:
+#     container_name: milipat/frontend
+#     platform: linux/amd64
+#     build:
+#       context: ./fe/
+#       dockerfile: Dockerfile
+#     depends_on:
+#       - backend
+#     restart: on-failure
+#     ports:
+#       - 3000:3000
+#     networks:
+#       - milipat_dev_network
+
+# networks:
+#   milipat_dev_network:
