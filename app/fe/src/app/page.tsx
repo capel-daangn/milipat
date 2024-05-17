@@ -67,7 +67,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="mx-auto h-full min-h-full w-full select-none overflow-x-clip">
+    <section className="mx-auto h-full min-h-full w-full select-none">
       {/* 1. 프로젝트 소개  */}
       <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
         <div className="flex w-full flex-col items-center justify-center space-y-4">
@@ -182,7 +182,7 @@ export default function Home() {
       </div>
 
       {/* 3. 사명 */}
-      <div className="flex flex-col items-center justify-center gap-8 pt-48">
+      <div className="flex h-[400px] flex-col items-center justify-center gap-8 pt-48">
         <p
           data-aos="fade-in"
           data-aos-duration="1000"
@@ -193,7 +193,7 @@ export default function Home() {
         </p>
       </div>
 
-      {/* 인트로  */}
+      {/* 이야기  */}
       <div className="flex h-fit flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
@@ -241,6 +241,93 @@ export default function Home() {
         </div>
       </div>
 
+      {/* 목적 */}
+      <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="flex flex-col items-center justify-center space-y-6"
+        >
+          {/* <div className="flex flex-col items-center justify-center gap-1">
+            <IconLock width={20}></IconLock>
+            <p className="text-tiny">차별화 포인트 2</p>
+          </div> */}
+          <p className="select-none text-center text-3xl font-bold leading-snug">
+            격동하는 국제 정세 속에서<br></br>자랑스러운 대한민국 방산
+          </p>
+          <p className="select-none text-center">
+            전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
+            정책을 지향하며<br></br>지속적으로 노력하고 있습니다.
+          </p>
+        </div>
+        <div
+          className="flex flex-col gap-4 px-8"
+          // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
+          // style={
+          //   mobile
+          //     ? { gap: "20px" }
+          //     : {
+          //         display: "grid",
+          //         gridTemplateAreas: `"a b" "c d"`,
+          //         gridTemplateColumns: "1fr 1fr",
+          //         gridTemplateRows: "1fr",
+          //         gap: "20px",
+          //       }
+          // }
+        >
+          {[
+            {
+              title: "개발자도구 감지 및 차단 장치로 소스코드 유출 방지",
+              // gridArea: "a",
+              img: <></>,
+              // text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
+            },
+            {
+              title: "적대적 프롬프트 주입 공격을 필터링하는 sLLM 에이전트",
+              // gridArea: "a",
+              img: <></>,
+              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+            },
+            {
+              title: "적대적 프롬프트 주입 공격을 필터링하는 sLLM 에이전트",
+              // gridArea: "a",
+              img: <></>,
+              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+            },
+          ].map((content, i) => {
+            return (
+              <Card
+                key={i}
+                isPressable
+                data-aos="fade-left"
+                // data-aos-delay={i * 100 + 100}
+
+                data-aos-duration="1000"
+                className="h-full w-full bg-black p-4"
+                // style={{ gridArea: content.gridArea }}
+                shadow={"sm"}
+                // onPress={() => {
+                //   console.log(11);
+                // }}
+              >
+                <CardHeader>
+                  <p className="tprimary whitespace-pre-line break-keep text-xl font-bold leading-relaxed text-white">
+                    {content.title}
+                  </p>
+                </CardHeader>
+                {/* <Divider></Divider> */}
+                {/* <CardBody className="text-balance gap-4 break-keep"> */}
+                {/* <p className="text-sm leading-relaxed text-white">
+                    {content.text}
+                  </p>
+                  {content.img} */}
+                {/* </CardBody> */}
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+
       {/* 1. 놀라운 성능 */}
       <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
         <div
@@ -252,8 +339,8 @@ export default function Home() {
             <IconChart width={"30"}></IconChart>
             <p className="text-tiny">차별화 포인트 1</p>
           </div>
-          <p className="select-none text-3xl font-bold">
-            최고의 전투력을 위한,<br></br> 밀리팻의 놀라운 성능.
+          <p className="select-none text-3xl font-bold leading-snug">
+            최고의 분석력을 위한<br></br> 밀리팻의 놀라운 성능
           </p>
           <p className="select-none text-center">
             기술교범 계의 챗 GPT로 등장한 밀리팻은<br></br>뛰어난 성능에서부터
@@ -277,7 +364,8 @@ export default function Home() {
         >
           {[
             {
-              title: "LLM-Blender Ensenble 구조로\n기존의 모델을 상회하는 성능",
+              title:
+                "LLM-Blender Ensenble 구조로단일 모델을 능가하는 성능 지표",
               img: (
                 <Bar
                   data={{
@@ -286,12 +374,12 @@ export default function Home() {
                       {
                         label: "ChatGPT",
                         data: [33.3, 42.7],
-                        backgroundColor: "#74AA9C90",
+                        backgroundColor: "#74AA9C80",
                       },
                       {
                         label: "밀리팻 LLM",
                         data: [56.94, 59.05],
-                        backgroundColor: "#1D4A8390",
+                        backgroundColor: "#1D4A8380",
                       },
                     ],
                   }}
@@ -312,7 +400,8 @@ export default function Home() {
               ),
             },
             {
-              title: "실시간 3D 랜더링\n필터링하는 sLLM 에이전트",
+              title:
+                "어떠한 환경에서도 실시간으로\n랜더링하는 3D 구조도 모델링",
               img: (
                 <div className="flex h-[400px] w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
                   {isThreeModelVisible ? (
@@ -373,10 +462,10 @@ export default function Home() {
         >
           <div className="flex flex-col items-center justify-center gap-1">
             <IconLock width={20}></IconLock>
-            <p className="text-tiny">차별화 포인트 1</p>
+            <p className="text-tiny">차별화 포인트 2</p>
           </div>
-          <p className="select-none text-center text-3xl font-bold">
-            데이터를 보호하기 위한,<br></br>밀리팻의 지속적인 노력.
+          <p className="select-none text-center text-3xl font-bold leading-snug">
+            데이터를 보호하기 위한<br></br>밀리팻의 지속적인 노력
           </p>
           <p className="select-none text-center">
             전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
@@ -466,10 +555,10 @@ export default function Home() {
         >
           <div className="flex flex-col items-center justify-center gap-1">
             <IconLike width={20}></IconLike>
-            <p className="text-tiny">차별화 포인트 1</p>
+            <p className="text-tiny">차별화 포인트 3</p>
           </div>
-          <p className="select-none text-3xl font-bold">
-            누구나 손쉽게 배우는,<br></br>직관적인 사용자 경험.
+          <p className="select-none text-3xl font-bold leading-snug">
+            누구나 손쉽게 배우는<br></br>직관적인 사용자 경험
           </p>
           <p className="select-none text-center">
             모든 장병을 위해 설계된 밀리팻은<br></br>간단한 조작만으로도 기능을
@@ -552,13 +641,13 @@ export default function Home() {
           data-aos-duration="1000"
           className="flex flex-col items-center justify-center space-y-8"
         >
-          <p className="select-none text-center text-3xl font-bold">
-            밀리팻에 담아놓은<br></br>대한민국 방산의 이야기
+          <p className="select-none text-center text-3xl font-bold leading-snug">
+            밀리팻에 숨겨진<br></br>또다른 놀라운 기술들
           </p>
-          <p className="select-none text-center">
+          {/* <p className="select-none text-center">
             우리 육군의 실제 목소리를 담아<br></br>밀리팻이라는 도전을
             시작하였습니다.
-          </p>
+          </p> */}
         </div>
         <div
           data-aos="fade-up"
@@ -571,22 +660,49 @@ export default function Home() {
             backgroundColor="#00000050"
             content={[
               {
-                title: "육군종합정비창",
-                text: "K1A1 전차 종합 정비",
-                bgImgSrc: "/images/thumbnail/engineer.png",
-                tags: ["정비"],
+                title: "Ollama를 활용한 온디바이스 생성형 AI",
+                img: (
+                  <Image
+                    src={"/images/logo_ollama.png"}
+                    width={100}
+                    height={100}
+                    alt="img"
+                    className="mx-auto h-[120px] w-fit drop-shadow-md"
+                  ></Image>
+                ),
+                text: "자체적으로 구분된 독립적인 서버를 사용하여 보안 문제를 해결하기 위해 Ollama 프레임워크를 활용하였습니다. 이 덕분에 Mistral 등의 다양한 LLM 모델을 운용할 수 있습니다.",
               },
               {
-                title: "육군1사단 기동정비반",
-                text: "파손된 차량의 엔진 교체 작업 중",
-                bgImgSrc: "/images/thumbnail/engineer1.jpg",
-                tags: ["기동정비반"],
+                title: "Agent 간 Ensemble을 통한 정확도 개선",
+                img: (
+                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                    <LottieEnsemble height={120} goTo={10}></LottieEnsemble>
+                  </div>
+                ),
+                text: " 다수의 에이전트 모델 간의 상호작용을 시키는 앙상블 기법을 활용하여 LLM 특유의 ‘할루시네이션’(환각) 현상을 최소화하고 경제적인 관점에서 최대한의 효율적인 성능을 확보할 수 있습니다.",
               },
               {
-                title: "육군종합정비창",
-                text: "인터뷰 내용",
-                bgImgSrc: "/images/thumbnail/engineer2.jpg",
-                tags: ["정비"],
+                title: "특허 유사도 분석 및 기술 동향 예측",
+                img: (
+                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                    <LottieEnsemble
+                      // play
+                      // loop
+                      height={80}
+                      goTo={12}
+                    ></LottieEnsemble>
+                  </div>
+                ),
+                text: "텍스트 질의 뿐만 아니라 카메라 또는 음성 인식 등의 멀티모달 인터페이스를 지원하여 사용자 편의성을 개선하였습니다.",
+              },
+              {
+                title: "구조도 실시간 3D 렌더링",
+                img: (
+                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
+                    <Lottie3DModel goTo={30} height={120}></Lottie3DModel>
+                  </div>
+                ),
+                text: "blender 등의 소프트웨어로 작성된 3D 모델링 구조도를 통해 운용장비의 파트에 대해 직관적으로 접근할 수 있습니다.",
               },
             ]}
           ></HorizontalSlider>
