@@ -67,7 +67,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="mx-auto h-full min-h-full w-full select-none">
+    <section className="mx-auto h-full min-h-full w-full select-none overflow-x-clip">
       {/* 1. 프로젝트 소개  */}
       <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
         <div className="flex w-full flex-col items-center justify-center space-y-4">
