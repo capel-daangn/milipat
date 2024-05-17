@@ -3,17 +3,19 @@ import { Button, Card, Chip } from "@nextui-org/react";
 export default function HorizontalSlider(props: any) {
   return (
     <div className="grid w-full flex-col gap-1">
-      <div className="flex w-full flex-row items-center justify-between">
-        <p className="px-4 text-lg font-bold text-black">{props.title}</p>
-        <Button
-          variant={"light"}
-          disableRipple
-          color={"primary"}
-          className="font-bold underline underline-offset-4"
-        >
-          더 보기
-        </Button>
-      </div>
+      {props.isHeaderVisible && (
+        <div className="flex w-full flex-row items-center justify-between">
+          <p className="px-4 text-lg font-bold text-black">{props.title}</p>
+          <Button
+            variant={"light"}
+            disableRipple
+            color={"primary"}
+            className="font-bold underline underline-offset-4"
+          >
+            더 보기
+          </Button>
+        </div>
+      )}
       <div className="flex flex-col gap-2 overflow-auto px-4 scrollbar-hide">
         <div className="flex w-min gap-4 whitespace-nowrap pb-2">
           {props.content.map((e: any, i: any) => {
