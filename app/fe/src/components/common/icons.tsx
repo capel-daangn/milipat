@@ -196,9 +196,9 @@ export const IconLinkedIn = (props: IconProps) => {
         <svg
           fill={props.fill || "#080341"}
           // stroke={props.strokeFill || "#080341"}
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="0"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="0"
           height={props.height}
           width={props.width}
           viewBox="0 0 24 24"
@@ -213,9 +213,9 @@ export const IconLinkedIn = (props: IconProps) => {
         <svg
           fill={props.fill || "#080341"}
           // stroke={props.strokeFill || "#080341"}
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="0"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="0"
           height={props.height}
           width={props.width}
           viewBox="0 0 24 24"
@@ -249,7 +249,7 @@ export const IconGithub = (props: IconProps) => {
           <g
             id="Page-1"
             stroke="none"
-            stroke-width="1"
+            strokeWidth="1"
             fill="none"
             fill-rule="evenodd"
           >
@@ -282,7 +282,7 @@ export const IconGithub = (props: IconProps) => {
           <g
             id="Page-1"
             stroke="none"
-            stroke-width="1"
+            strokeWidth="1"
             fill="none"
             fill-rule="evenodd"
           >
@@ -319,37 +319,37 @@ export const IconVoice = (props: IconProps) => {
           <path
             d="M6 11L6 13"
             stroke={props.fill || "#080341"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M9 9L9 15"
             stroke={props.fill || "#080341"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M15 9L15 15"
             stroke={props.fill || "#080341"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M18 11L18 13"
             stroke={props.fill || "#080341"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11L12 13"
             stroke={props.fill || "#080341"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ) : (
@@ -363,37 +363,37 @@ export const IconVoice = (props: IconProps) => {
           <path
             d="M6 11L6 13"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M9 9L9 15"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M15 9L15 15"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M18 11L18 13"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11L12 13"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}
@@ -415,30 +415,30 @@ export const IconPrev = (props: IconProps) => {
           <path
             d="M7.00003 11.7501L11.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M7.00003 11.7501L11.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11.7501L16.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11.7501L16.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ) : (
@@ -452,30 +452,30 @@ export const IconPrev = (props: IconProps) => {
           <path
             d="M7.00003 11.7501L11.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M7.00003 11.7501L11.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11.7501L16.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 11.7501L16.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}
@@ -497,30 +497,30 @@ export const IconNext = (props: IconProps) => {
           <path
             d="M16 11.7501L11.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M16 11.7501L11.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M11 11.7501L6.50003 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M11 11.7501L6.50003 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ) : (
@@ -534,30 +534,30 @@ export const IconNext = (props: IconProps) => {
           <path
             d="M16 11.7501L11.5 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M16 11.7501L11.5 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M11 11.7501L6.50003 17.1501"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M11 11.7501L6.50003 6.35016"
             stroke={props.fill || "#000000"}
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}
@@ -851,9 +851,9 @@ export const IconFood = (props: IconProps) => {
             fill="#FFFFFF"
             r="20.125"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <circle
@@ -862,35 +862,35 @@ export const IconFood = (props: IconProps) => {
             fill="#FFFFFF"
             r="7.258"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="M2.933,55.559V38.341   V15.307c0,0,7.4,9.789,7.4,23.034H3.045"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="M55.584,15.307v5.645   c0,3.41,2.765,6.176,6.175,6.176l0,0c3.41,0,6.174-2.766,6.174-6.176v-5.645"
             fill="none"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <line
             fill="none"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             x1="61.759"
             x2="61.759"
             y1="15.703"
@@ -921,9 +921,9 @@ export const IconHotel = (props: IconProps) => {
             fill="#FFFFFF"
             height="51.426"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="41.669"
             x="14.599"
             y="16.508"
@@ -933,9 +933,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.896"
               x2="51.896"
               y1="20.719"
@@ -945,9 +945,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="43.723"
               x2="43.723"
               y1="20.719"
@@ -957,9 +957,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="35.549"
               x2="35.549"
               y1="20.719"
@@ -969,9 +969,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="27.376"
               x2="27.376"
               y1="20.719"
@@ -981,9 +981,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.203"
               x2="19.203"
               y1="20.719"
@@ -995,9 +995,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.896"
               x2="51.896"
               y1="28.252"
@@ -1007,9 +1007,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="43.723"
               x2="43.723"
               y1="28.252"
@@ -1019,9 +1019,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="35.549"
               x2="35.549"
               y1="28.252"
@@ -1031,9 +1031,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="27.376"
               x2="27.376"
               y1="28.252"
@@ -1043,9 +1043,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.203"
               x2="19.203"
               y1="28.252"
@@ -1057,9 +1057,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.896"
               x2="51.896"
               y1="35.787"
@@ -1069,9 +1069,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="43.723"
               x2="43.723"
               y1="35.787"
@@ -1081,9 +1081,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="35.549"
               x2="35.549"
               y1="35.787"
@@ -1093,9 +1093,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="27.376"
               x2="27.376"
               y1="35.787"
@@ -1105,9 +1105,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.203"
               x2="19.203"
               y1="35.787"
@@ -1119,9 +1119,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.896"
               x2="51.896"
               y1="43.32"
@@ -1131,9 +1131,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="43.723"
               x2="43.723"
               y1="43.32"
@@ -1143,9 +1143,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="35.549"
               x2="35.549"
               y1="43.32"
@@ -1155,9 +1155,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="27.376"
               x2="27.376"
               y1="43.32"
@@ -1167,9 +1167,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.203"
               x2="19.203"
               y1="43.32"
@@ -1181,9 +1181,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.896"
               x2="51.896"
               y1="50.854"
@@ -1193,9 +1193,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="43.723"
               x2="43.723"
               y1="50.854"
@@ -1205,9 +1205,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="35.549"
               x2="35.549"
               y1="50.854"
@@ -1217,9 +1217,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="27.376"
               x2="27.376"
               y1="50.854"
@@ -1229,9 +1229,9 @@ export const IconHotel = (props: IconProps) => {
             <line
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.203"
               x2="19.203"
               y1="50.854"
@@ -1243,36 +1243,36 @@ export const IconHotel = (props: IconProps) => {
             fill="#FFFFFF"
             points="50.082,2.934    48.387,6.369 44.596,6.92 47.339,9.594 46.69,13.37 50.082,11.588 53.473,13.37 52.825,9.594 55.568,6.92 51.777,6.369  "
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <polygon
             fill="#FFFFFF"
             points="35.433,2.934    33.737,6.369 29.946,6.92 32.69,9.594 32.042,13.37 35.433,11.588 38.824,13.37 38.176,9.594 40.919,6.92 37.128,6.369  "
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <polygon
             fill="#FFFFFF"
             points="20.784,2.934    19.089,6.369 15.298,6.92 18.041,9.594 17.394,13.37 20.784,11.588 24.175,13.37 23.527,9.594 26.271,6.92 22.479,6.369  "
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <rect
             fill="#FFFFFF"
             height="10.545"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="9.063"
             x="30.901"
             y="57.389"
@@ -1302,9 +1302,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="37.607"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="55"
             x="7.933"
             y="22.758"
@@ -1314,9 +1314,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="9.332"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="55"
             x="7.933"
             y="13.426"
@@ -1326,9 +1326,9 @@ export const IconCalendar = (props: IconProps) => {
             <line
               fill="none"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="19.312"
               x2="19.312"
               y1="9"
@@ -1338,9 +1338,9 @@ export const IconCalendar = (props: IconProps) => {
             <line
               fill="none"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="30.059"
               x2="30.059"
               y1="9"
@@ -1350,9 +1350,9 @@ export const IconCalendar = (props: IconProps) => {
             <line
               fill="none"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="40.806"
               x2="40.806"
               y1="9"
@@ -1362,9 +1362,9 @@ export const IconCalendar = (props: IconProps) => {
             <line
               fill="none"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               x1="51.553"
               x2="51.553"
               y1="9"
@@ -1376,9 +1376,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="5.112"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="6.186"
             x="26.419"
             y="28.201"
@@ -1388,9 +1388,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="5.112"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="6.186"
             x="14.578"
             y="28.201"
@@ -1401,9 +1401,9 @@ export const IconCalendar = (props: IconProps) => {
               fill="#FFFFFF"
               height="5.112"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               width="6.186"
               x="50.102"
               y="39.006"
@@ -1413,9 +1413,9 @@ export const IconCalendar = (props: IconProps) => {
               fill="#FFFFFF"
               height="5.112"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               width="6.186"
               x="38.261"
               y="39.006"
@@ -1425,9 +1425,9 @@ export const IconCalendar = (props: IconProps) => {
               fill="#FFFFFF"
               height="5.112"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               width="6.186"
               x="26.419"
               y="39.006"
@@ -1437,9 +1437,9 @@ export const IconCalendar = (props: IconProps) => {
               fill="#FFFFFF"
               height="5.112"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
               width="6.186"
               x="14.578"
               y="39.006"
@@ -1450,9 +1450,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="5.113"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="6.186"
             x="50.102"
             y="49.811"
@@ -1462,9 +1462,9 @@ export const IconCalendar = (props: IconProps) => {
             fill="#FFFFFF"
             height="5.113"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="6.186"
             x="38.261"
             y="49.811"
@@ -1494,10 +1494,10 @@ export const IconParking = (props: IconProps) => {
             fill="#FFFFFF"
             height="39.429"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="46.391"
             x="12.238"
             y="26.879"
@@ -1507,10 +1507,10 @@ export const IconParking = (props: IconProps) => {
             fill="#FFFFFF"
             points="   65.523,26.879 35.433,4.558 5.343,26.879  "
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <g>
@@ -1518,10 +1518,10 @@ export const IconParking = (props: IconProps) => {
               d="    M44.857,35.497c1.898,1.61,2.846,4.085,2.846,7.424s-0.977,5.78-2.921,7.327c-1.948,1.547-4.918,2.32-8.914,2.32h-3.594v7.539    h-6.032V33.08h9.551C39.943,33.08,42.963,33.886,44.857,35.497z M40.43,46.129c0.724-0.812,1.085-1.997,1.085-3.558    c0-1.559-0.472-2.668-1.412-3.325c-0.941-0.657-2.404-0.985-4.39-0.985h-3.439v9.086h4.06    C38.343,47.347,39.709,46.941,40.43,46.129z"
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </g>
         </g>
@@ -1549,9 +1549,9 @@ export const IconBenTaxi = (props: IconProps) => {
             d="M8.861,13.346h34.813   c2.97,0,5.631,1.836,6.686,4.612l3.356,8.835c0.772,2.031,2.721,3.375,4.895,3.375h2.123c4.651,0,8.422,3.771,8.422,8.422v4.207   c0,4.396-3.564,7.961-7.961,7.961H8.169c-3.568,0-6.46-2.892-6.46-6.459v-23.8C1.709,16.549,4.911,13.346,8.861,13.346z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <circle
@@ -1560,9 +1560,9 @@ export const IconBenTaxi = (props: IconProps) => {
             fill="#FFFFFF"
             r="6.763"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <circle
@@ -1571,27 +1571,27 @@ export const IconBenTaxi = (props: IconProps) => {
             fill="#FFFFFF"
             r="6.763"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="M43.675,18.456   c0.842,0,1.61,0.53,1.909,1.317l2.613,6.879c0.252,0.663,0.558,1.297,0.905,1.901H38.481V18.456H43.675z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <rect
             fill="#FFFFFF"
             height="10.098"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="10.723"
             x="22.649"
             y="18.456"
@@ -1601,17 +1601,17 @@ export const IconBenTaxi = (props: IconProps) => {
             d="M6.818,20.499   c0-1.126,0.917-2.043,2.043-2.043h8.679v10.098H6.818V20.499z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <line
             fill="none"
             stroke={props.strokeFill}
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             x1="38.481"
             x2="41.316"
             y1="34.992"
@@ -1642,10 +1642,10 @@ export const IconTourSpot = (props: IconProps) => {
             d="   M14.72,63.144h41.427c3.748,0,6.786-3.038,6.786-6.786v-24.68c0-3.748-3.038-6.786-6.786-6.786H14.72   c-3.748,0-6.787,3.038-6.787,6.786v24.68C7.933,60.105,10.972,63.144,14.72,63.144z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <g>
@@ -1653,20 +1653,20 @@ export const IconTourSpot = (props: IconProps) => {
               d="    M12.862,44.546V32.542c0-1.594,1.297-2.89,2.891-2.89h8.688v14.894H12.862z"
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
 
             <path
               d="    M46.427,44.546V29.652h8.688c1.594,0,2.891,1.296,2.891,2.89v12.004H46.427z"
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </g>
 
@@ -1674,10 +1674,10 @@ export const IconTourSpot = (props: IconProps) => {
             fill="#FFFFFF"
             height="28.651"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             width="14.764"
             x="28.052"
             y="29.652"
@@ -1686,10 +1686,10 @@ export const IconTourSpot = (props: IconProps) => {
           <line
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             x1="35.433"
             x2="35.433"
             y1="24.892"
@@ -1699,10 +1699,10 @@ export const IconTourSpot = (props: IconProps) => {
           <line
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             x1="55.397"
             x2="15.469"
             y1="16.705"
@@ -1734,36 +1734,36 @@ export const IconMap = (props: IconProps) => {
               fill="#FFFFFF"
               points="    44.123,67.934 61.502,63.322 61.502,22.418 44.123,27.029   "
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
 
             <polygon
               fill="#FFFFFF"
               points="    44.123,67.934 26.743,63.322 26.743,22.418 44.123,27.029   "
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
 
             <polygon
               fill="#FFFFFF"
               points="9.364,67.934     26.743,63.322 26.743,22.418 9.364,27.029   "
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
 
             <path
               d="M30.035,17.021    c0,7.78,14.088,25.658,14.088,25.658s14.088-17.878,14.088-25.658c0-7.781-6.308-14.088-14.088-14.088    C36.342,2.934,30.035,9.24,30.035,17.021z"
               fill="#FFFFFF"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
 
             <circle
@@ -1772,9 +1772,9 @@ export const IconMap = (props: IconProps) => {
               fill="#FFFFFF"
               r="6.731"
               stroke={props.strokeFill}
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-miterlimit="10"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </g>
         </g>
@@ -1804,19 +1804,19 @@ export const IconSign = (props: IconProps) => {
             fill="#FFFFFF"
             r="3.459"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <line
             fill="none"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
             x1="37.913"
             x2="37.913"
             y1="9.852"
@@ -1827,30 +1827,30 @@ export const IconSign = (props: IconProps) => {
             d="   M11.616,24.932h26.297V13.241H11.616c-3.229,0-5.846,2.617-5.846,5.846l0,0C5.771,22.315,8.388,24.932,11.616,24.932z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M22.243,41.904h15.67V30.212h-15.67c-3.229,0-5.846,2.618-5.846,5.846l0,0C16.397,39.287,19.015,41.904,22.243,41.904z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M59.25,33.418H37.913V21.727H59.25c3.229,0,5.846,2.617,5.846,5.846l0,0C65.096,30.801,62.479,33.418,59.25,33.418z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
         </g>
       </svg>
@@ -1877,92 +1877,141 @@ export const IconBadge = (props: IconProps) => {
             d="   M23.997,23.997L12.101,12.103c6.335-6.334,15.086-10.252,24.75-10.252v16.822C31.831,18.673,27.286,20.708,23.997,23.997z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M36.851,18.673V1.851c9.665,0,18.415,3.918,24.748,10.252L49.704,23.997C46.415,20.708,41.871,18.673,36.851,18.673z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M55.028,36.851c0-5.02-2.035-9.564-5.324-12.854l11.895-11.895c6.334,6.334,10.252,15.084,10.252,24.748l0,0H55.028L55.028,36.851z   "
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M18.673,36.851L18.673,36.851H1.851c0-9.664,3.918-18.414,10.25-24.748l11.896,11.895C20.708,27.286,18.673,31.831,18.673,36.851z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M36.851,55.028v16.822c-9.664,0-18.415-3.918-24.75-10.251l11.896-11.896C27.286,52.994,31.831,55.028,36.851,55.028z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M55.028,36.851h16.822c0,9.666-3.918,18.415-10.252,24.749L49.704,49.704C52.993,46.415,55.028,41.87,55.028,36.851z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M1.851,36.851h16.822c0,5.02,2.035,9.564,5.324,12.854L12.101,61.6C5.769,55.266,1.851,46.517,1.851,36.851L1.851,36.851z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M49.704,49.704L61.599,61.6c-6.333,6.333-15.083,10.251-24.748,10.251V55.028C41.871,55.028,46.415,52.994,49.704,49.704z"
             fill="#FFFFFF"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
 
           <path
             d="   M23.997,23.997c3.289-3.289,7.834-5.324,12.854-5.324c5.02,0,9.564,2.035,12.854,5.324s5.324,7.834,5.324,12.854l0,0   c0,5.02-2.035,9.564-5.324,12.854c-3.289,3.29-7.833,5.324-12.854,5.324c-5.02,0-9.564-2.034-12.854-5.324   c-3.289-3.289-5.324-7.834-5.324-12.854S20.708,27.286,23.997,23.997z"
             fill="none"
             stroke={props.strokeFill}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             stroke-miterlimit="10"
-            stroke-width="3"
+            strokeWidth="3"
           />
         </g>
+      </svg>
+    </>
+  );
+};
+
+export const IconChart = (props: IconProps) => {
+  return (
+    <>
+      <svg
+        fill={props.fill}
+        height={props.height}
+        width={props.width}
+        viewBox="-0.5 0 32 32"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid"
+      >
+        <path d="M30.000,32.000 L23.000,32.000 C22.447,32.000 22.000,31.552 22.000,31.000 L22.000,1.000 C22.000,0.448 22.447,-0.000 23.000,-0.000 L30.000,-0.000 C30.553,-0.000 31.000,0.448 31.000,1.000 L31.000,31.000 C31.000,31.552 30.553,32.000 30.000,32.000 ZM29.000,2.000 L24.000,2.000 L24.000,30.000 L29.000,30.000 L29.000,2.000 ZM19.000,32.000 L12.000,32.000 C11.448,32.000 11.000,31.552 11.000,31.000 L11.000,17.000 C11.000,16.448 11.448,16.000 12.000,16.000 L19.000,16.000 C19.553,16.000 20.000,16.448 20.000,17.000 L20.000,31.000 C20.000,31.552 19.553,32.000 19.000,32.000 ZM18.000,18.000 L13.000,18.000 L13.000,30.000 L18.000,30.000 L18.000,18.000 ZM8.000,32.000 L1.000,32.000 C0.448,32.000 0.000,31.552 0.000,31.000 L0.000,11.000 C0.000,10.448 0.448,10.000 1.000,10.000 L8.000,10.000 C8.552,10.000 9.000,10.448 9.000,11.000 L9.000,31.000 C9.000,31.552 8.552,32.000 8.000,32.000 ZM7.000,12.000 L2.000,12.000 L2.000,30.000 L7.000,30.000 L7.000,12.000 Z" />
+      </svg>
+    </>
+  );
+};
+export const IconLock = (props: IconProps) => {
+  return (
+    <>
+      <svg
+        fill={props.fill}
+        height={props.height}
+        width={props.width}
+        viewBox="0 0 32 32"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M25 12h-1v-3.816c0-4.589-3.32-8.184-8.037-8.184-4.736 0-7.963 3.671-7.963 8.184v3.816h-1c-2.206 0-4 1.794-4 4v12c0 2.206 1.794 4 4 4h18c2.206 0 4-1.794 4-4v-12c0-2.206-1.794-4-4-4zM10 8.184c0-3.409 2.33-6.184 5.963-6.184 3.596 0 6.037 2.716 6.037 6.184v3.816h-12v-3.816zM27 28c0 1.102-0.898 2-2 2h-18c-1.103 0-2-0.898-2-2v-12c0-1.102 0.897-2 2-2h18c1.102 0 2 0.898 2 2v12zM16 18c-1.104 0-2 0.895-2 2 0 0.738 0.405 1.376 1 1.723v3.277c0 0.552 0.448 1 1 1s1-0.448 1-1v-3.277c0.595-0.346 1-0.985 1-1.723 0-1.105-0.895-2-2-2z"></path>
+      </svg>
+    </>
+  );
+};
+export const IconLike = (props: IconProps) => {
+  return (
+    <>
+      <svg
+        fill={props.fill}
+        height={props.height}
+        width={props.width}
+        viewBox="0 0 32 32"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M19.017 31.992c-9.088 0-9.158-0.377-10.284-1.224-0.597-0.449-1.723-0.76-5.838-1.028-0.298-0.020-0.583-0.134-0.773-0.365-0.087-0.107-2.143-3.105-2.143-7.907 0-4.732 1.472-6.89 1.534-6.99 0.182-0.293 0.503-0.47 0.847-0.47 3.378 0 8.062-4.313 11.21-11.841 0.544-1.302 0.657-2.159 2.657-2.159 1.137 0 2.413 0.815 3.042 1.86 1.291 2.135 0.636 6.721 0.029 9.171 2.063-0.017 5.796-0.045 7.572-0.045 2.471 0 4.107 1.473 4.156 3.627 0.017 0.711-0.077 1.619-0.282 2.089 0.544 0.543 1.245 1.36 1.276 2.414 0.038 1.36-0.852 2.395-1.421 2.989 0.131 0.395 0.391 0.92 0.366 1.547-0.063 1.542-1.253 2.535-1.994 3.054 0.061 0.422 0.11 1.218-0.026 1.834-0.535 2.457-4.137 3.443-9.928 3.443zM3.426 27.712c3.584 0.297 5.5 0.698 6.51 1.459 0.782 0.589 0.662 0.822 9.081 0.822 2.568 0 7.59-0.107 7.976-1.87 0.153-0.705-0.59-1.398-0.593-1.403-0.203-0.501 0.023-1.089 0.518-1.305 0.008-0.004 2.005-0.719 2.050-1.835 0.030-0.713-0.46-1.142-0.471-1.16-0.291-0.452-0.185-1.072 0.257-1.38 0.005-0.004 1.299-0.788 1.267-1.857-0.024-0.849-1.143-1.447-1.177-1.466-0.25-0.143-0.432-0.39-0.489-0.674-0.056-0.282 0.007-0.579 0.183-0.808 0 0 0.509-0.808 0.49-1.566-0.037-1.623-1.782-1.674-2.156-1.674-2.523 0-9.001 0.025-9.001 0.025-0.349 0.002-0.652-0.164-0.84-0.443s-0.201-0.627-0.092-0.944c0.977-2.813 1.523-7.228 0.616-8.736-0.267-0.445-0.328-0.889-1.328-0.889-0.139 0-0.468 0.11-0.812 0.929-3.341 7.995-8.332 12.62-12.421 13.037-0.353 0.804-1.016 2.47-1.016 5.493 0 3.085 0.977 5.473 1.447 6.245z"></path>
       </svg>
     </>
   );

@@ -68,13 +68,13 @@ export default function DetailPage(props: any): any {
   const [type, setType] = useState<string | null>("patent");
 
   useEffect(() => {
-    console.log(pathname);
+    // console.log(pathname);
     console.log(searchParams.get("type"));
 
     if (searchParams.get("type") && searchParams.get("type") != undefined) {
       setType(searchParams.get("type"));
     }
-  }, []);
+  }, [searchParams]);
 
   //
   const [numPages, setNumPages] = useState<any>();
