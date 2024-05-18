@@ -39,7 +39,7 @@ export default function HorizontalSlider(props: any) {
                     <p
                       className={`${
                         props.height >= 200 ? "text-xl" : "text-md"
-                      } text-pretty w-full text-start font-bold text-white`}
+                      } text-pretty w-full whitespace-normal text-start font-bold text-black`}
                     >
                       {e.title}
                     </p>
@@ -58,7 +58,7 @@ export default function HorizontalSlider(props: any) {
                       </div>
                     )}
                   </div>
-                  <p className="text-pretty line-clamp-3 w-full whitespace-normal text-start text-sm text-white">
+                  <p className="text-pretty text-md line-clamp-3 w-full whitespace-normal text-start text-black">
                     {e.text}
                   </p>
                   {e?.badge && e?.badge != null && (
