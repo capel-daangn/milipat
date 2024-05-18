@@ -48,6 +48,10 @@ export default function Home() {
   const [isThreeModelVisible, setIsThreeModelVisible] =
     useState<boolean>(false);
   const theme = useTheme();
+  // const [isPressStarted, setIsPressStarted] = useState<boolean>(false);
+  const [indexOfPressedCard, setIndexOfPressedCard] = useState<
+    number | undefined
+  >(undefined);
 
   useEffect(() => {
     const checkResize = () => {
@@ -67,10 +71,10 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="mx-auto h-full min-h-full w-full select-none">
+    <section className="mx-auto h-full min-h-full w-screen select-none overflow-x-clip">
       {/* 1. 프로젝트 소개  */}
       <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
-        <div className="flex w-full flex-col items-center justify-center space-y-4">
+        <div className="z-20 flex w-full flex-col items-center justify-center space-y-4">
           {/* 소개 텍스트 */}
           <div className="flex w-full flex-col items-center justify-center gap-2">
             {/* <Image
@@ -154,9 +158,8 @@ export default function Home() {
       </div>
 
       {/* 2. 개발배경 소개  */}
-      <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-fk-21-2.jpeg')] bg-cover bg-center">
+      {/* <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-fk-21-2.jpeg')] bg-cover bg-center">
         <div className="flex w-full flex-col items-center justify-center space-y-4">
-          {/* 소개 텍스트 */}
           <div
             data-aos={"fade-in"}
             data-aos-duration="500"
@@ -179,14 +182,14 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* 3. 사명 */}
       <div className="flex h-[400px] flex-col items-center justify-center gap-8 pt-48">
         <p
           data-aos="fade-in"
           data-aos-duration="1000"
-          className="select-none text-center"
+          className={`${mobile ? "" : "text-lg"} select-none text-center`}
         >
           팀 밀리팻은 대한민국 국군의 일원으로<br></br>창조적인 아이디어와
           혁신적인 기술역량으로<br></br>우리 방산의 미래를 함께 고민합니다.
@@ -194,12 +197,16 @@ export default function Home() {
       </div>
 
       {/* 이야기  */}
-      <div className="flex h-fit flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
           className="flex flex-col items-center justify-center space-y-8"
         >
+          <div className="flex flex-col items-center justify-center gap-1">
+            <IconLock width={20}></IconLock>
+            <p className="text-tiny">사용자 인터뷰</p>
+          </div>
           <p className="select-none text-center text-3xl font-bold">
             밀리팻에 담아놓은<br></br>대한민국 방산의 이야기
           </p>
@@ -242,56 +249,76 @@ export default function Home() {
       </div>
 
       {/* 목적 */}
-      <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
           className="flex flex-col items-center justify-center space-y-6"
         >
-          {/* <div className="flex flex-col items-center justify-center gap-1">
+          <div className="flex flex-col items-center justify-center gap-1">
             <IconLock width={20}></IconLock>
-            <p className="text-tiny">차별화 포인트 2</p>
-          </div> */}
+            <p className="text-tiny">개발 배경</p>
+          </div>
           <p className="select-none text-center text-3xl font-bold leading-snug">
-            격동하는 국제 정세 속에서<br></br>자랑스러운 대한민국 방산
+            격동하는 국제 정세,<br></br>성장하는 대한민국 방산
           </p>
           <p className="select-none text-center">
-            전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
-            정책을 지향하며<br></br>지속적으로 노력하고 있습니다.
+            {/* 전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
+            정책을 지향하며<br></br>지속적으로 노력하고 있습니다. */}
+            아래 카드를 하나씩 탭하여 자세히 살펴보기
           </p>
         </div>
         <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
           className="flex flex-col gap-4 px-8"
           // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
-          // style={
-          //   mobile
-          //     ? { gap: "20px" }
-          //     : {
-          //         display: "grid",
-          //         gridTemplateAreas: `"a b" "c d"`,
-          //         gridTemplateColumns: "1fr 1fr",
-          //         gridTemplateRows: "1fr",
-          //         gap: "20px",
-          //       }
-          // }
+          style={
+            mobile
+              ? { gap: "20px" }
+              : {
+                  display: "grid",
+                  // gridTemplateAreas: `"a b" "c d"`,
+                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateRows: "1fr 1fr",
+                  gap: "20px",
+                }
+          }
         >
+          {/* <p className="col-span-4 select-none text-center">
+            아래 카드를 하나씩 탭하여 자세히 살펴보기
+          </p> */}
           {[
             {
-              title: "개발자도구 감지 및 차단 장치로 소스코드 유출 방지",
-              // gridArea: "a",
-              img: <></>,
+              title:
+                "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
+              tappedTitle:
+                "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
+              bgImg: "/images/background-k9.jpeg",
               // text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
             },
             {
-              title: "적대적 프롬프트 주입 공격을 필터링하는 sLLM 에이전트",
-              // gridArea: "a",
-              img: <></>,
+              title:
+                "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
+              tappedTitle:
+                "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
+              bgImg: "/images/background-k9.jpeg",
               // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
             },
             {
-              title: "적대적 프롬프트 주입 공격을 필터링하는 sLLM 에이전트",
-              // gridArea: "a",
-              img: <></>,
+              title:
+                "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+              tappedTitle:
+                "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+              bgImg: "/images/background-k9.jpeg",
+              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+            },
+            {
+              title:
+                '대한민국 방산사업은 현 정부의 핵심 사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 설정함.',
+              tappedTitle:
+                "연구 및 개발에 필요한 지적재산권 정보에 신속하게 접근하여, 장래에 양질의 방산 분야 특허 출원을 유도할 수 있음.",
+              bgImg: "/images/background-fk-21-2.jpeg",
               // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
             },
           ].map((content, i) => {
@@ -299,36 +326,61 @@ export default function Home() {
               <Card
                 key={i}
                 isPressable
-                data-aos="fade-left"
-                // data-aos-delay={i * 100 + 100}
-
-                data-aos-duration="1000"
-                className="h-full w-full bg-black p-4"
-                // style={{ gridArea: content.gridArea }}
-                shadow={"sm"}
-                // onPress={() => {
-                //   console.log(11);
+                // isHoverable
+                // onMouseOver={(e) => {
+                //   setIndexOfPressedCard(i);
                 // }}
+                // onMouseOut={(e) => {
+                //   setIndexOfPressedCard(i);
+                // }}
+                onPressStart={(e) => {
+                  setIndexOfPressedCard(i);
+                }}
+                onPressEnd={() => {
+                  setIndexOfPressedCard(undefined);
+                }}
+                // data-aos="fade-left"
+                // data-aos-duration="1000"
+                // data-aos-delay={i * 100 + 100}
+                className="h-[250px] w-full bg-cover bg-center p-2 bg-blend-darken"
+                shadow={"sm"}
+                onPress={() => {
+                  console.log(11);
+                }}
+                style={{
+                  backgroundColor:
+                    i == indexOfPressedCard ? "#000000" : "#00000050",
+                  backgroundImage:
+                    i == indexOfPressedCard ? "" : `url('${content.bgImg}')`,
+                }}
               >
-                <CardHeader>
-                  <p className="tprimary whitespace-pre-line break-keep text-xl font-bold leading-relaxed text-white">
-                    {content.title}
+                <CardBody
+                  className={`text-balance ${
+                    i == indexOfPressedCard ? "text-right" : ""
+                  } gap-1 break-keep leading-snug`}
+                >
+                  <p className="whitespace-pre-line break-keep text-2xl font-bold leading-relaxed text-white">
+                    {i == indexOfPressedCard
+                      ? `기대 효과 ${i + 1}`
+                      : `개발 배경 ${i + 1}`}
                   </p>
-                </CardHeader>
-                {/* <Divider></Divider> */}
-                {/* <CardBody className="text-balance gap-4 break-keep"> */}
-                {/* <p className="text-sm leading-relaxed text-white">
-                    {content.text}
+                  <p
+                    className={`text-lg leading-relaxed text-white ${
+                      i == indexOfPressedCard ? "text-right" : ""
+                    }`}
+                  >
+                    {i == indexOfPressedCard
+                      ? content.tappedTitle
+                      : content.title}
                   </p>
-                  {content.img} */}
-                {/* </CardBody> */}
+                </CardBody>
               </Card>
             );
           })}
         </div>
       </div>
 
-      {/* 1. 놀라운 성능 */}
+      {/* 1. 차별화 포인트 - 놀라운 성능 */}
       <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
@@ -365,7 +417,7 @@ export default function Home() {
           {[
             {
               title:
-                "LLM-Blender Ensenble 구조로단일 모델을 능가하는 성능 지표",
+                "LLM-Blender Ensenble 구조로\n단일 모델을 능가하는 성능 지표",
               img: (
                 <Bar
                   data={{
@@ -395,7 +447,7 @@ export default function Home() {
                       },
                     },
                   }}
-                  height={250}
+                  height={200}
                 ></Bar>
               ),
             },
@@ -453,7 +505,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 2. 강력한 보안 */}
+      {/* 2. 차별화 포인트 - 강력한 보안 */}
       <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
@@ -546,7 +598,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 3. 직관적인  */}
+      {/* 3. 차별화 포인트 - 직관적인  */}
       <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
@@ -634,8 +686,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 핵심기술 설명  */}
-      <div className="flex h-fit flex-col items-center justify-center gap-8 pt-48">
+      {/* 추가 기술 설명  */}
+      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -656,8 +708,8 @@ export default function Home() {
         >
           <HorizontalSlider
             width={300}
-            height={300}
-            backgroundColor="#00000050"
+            height={200}
+            backgroundColor="#fefefe"
             content={[
               {
                 title: "Ollama를 활용한 온디바이스 생성형 AI",
@@ -709,7 +761,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 3. 핵심 기술 설명 */}
+      {/* 핵심 기술 설명 */}
       {/* <div className="flex h-full min-h-screen flex-col items-center justify-center space-y-8 bg-primary-50 py-16">
         <p className="select-none text-2xl font-bold text-primary">
           핵심기능 소개
@@ -803,7 +855,7 @@ export default function Home() {
       </div> */}
 
       {/* Footer */}
-      <div className="mx-auto max-w-[600px] px-8 py-12">
+      <div className="mx-auto max-w-[600px] px-8 py-12 pt-36">
         <Accordion variant={"shadow"} className="bg-black/20" isDisabled>
           <AccordionItem
             key="1"

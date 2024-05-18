@@ -251,7 +251,7 @@ export const IconGithub = (props: IconProps) => {
             stroke="none"
             strokeWidth="1"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           >
             <g
               id="Dribbble-Light-Preview"
@@ -284,7 +284,7 @@ export const IconGithub = (props: IconProps) => {
             stroke="none"
             strokeWidth="1"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           >
             <g
               id="Dribbble-Light-Preview"

@@ -16,7 +16,7 @@ export default function Footer(props: any) {
     >
       <div className="mx-auto flex h-full max-w-[1200px] select-none flex-col items-center justify-center gap-1">
         <div className="flex h-full select-none flex-col items-center justify-center gap-1 leading-none">
-          <p className="text-sm font-bold text-primary">TEAM MiliPat</p>
+          <p className="text-sm font-bold text-primary">팀 MiliPat</p>
           <p className="text-tiny text-primary">
             2024년 국방 공공데이터 활용 경진대회
           </p>
