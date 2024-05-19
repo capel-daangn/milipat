@@ -77,8 +77,10 @@ export default function Header(props: HeaderProps) {
         (mobile ? (
           <>
             <button
-              onClick={() => {
-                router.push("/home");
+              onClick={async () => {
+                await setIndexOfViews("search");
+                await queryIndexOfViews.refetch();
+                await router.push("/home");
               }}
               className="w-fit"
             >
@@ -144,8 +146,10 @@ export default function Header(props: HeaderProps) {
         ) : (
           <>
             <button
-              onClick={() => {
-                router.push("/home");
+              onClick={async () => {
+                await setIndexOfViews("search");
+                await queryIndexOfViews.refetch();
+                await router.push("/home");
               }}
               className="w-fit"
             >
