@@ -24,7 +24,7 @@ export default function ThreeRender(props: any) {
             aria-label="Loading..."
             value={progress}
             color={"primary"}
-            className="w-1/2"
+            className="px-8"
             showValueLabel={true}
           />
         </div>
