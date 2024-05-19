@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import TextBubble from "@/components/text-bubble";
 import FooterTray from "@/components/common/footer-tray";
-import { useRouter } from "next/navigation";
+import WorldmapChart from "@/components/chart/worldmap-chart";
 
 export default function Home() {
   const queryIndexOfTabs = useQuery<any>({
@@ -62,7 +62,8 @@ function SearchView(props: any) {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4 px-4">
-      <div
+      <WorldmapChart></WorldmapChart>
+      {/* <div
         data-aos={"fade-in"}
         data-aos-duration="1000"
         className="flex flex-row items-center justify-center gap-2"
@@ -115,7 +116,7 @@ function SearchView(props: any) {
             ></Image>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -123,7 +124,6 @@ function SearchView(props: any) {
 function AnalysisView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
-  const router = useRouter();
 
   useEffect(() => {
     const checkResize = () => {
@@ -151,7 +151,6 @@ function AnalysisView(props: any) {
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
               bgImg: "/images/background/map.jpg",
-              router: "/analytics/tech-trend",
             },
             {
               name: "특허 유사도 분석",
@@ -159,7 +158,6 @@ function AnalysisView(props: any) {
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
               bgImg: "/images/background/trend.jpg",
-              router: "/analytics/patent-similarity",
             },
             {
               name: "특허 경쟁력 진단",
@@ -167,7 +165,6 @@ function AnalysisView(props: any) {
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
               bgImg: "/images/background/compare.jpg",
-              router: "/analytics/patent-power",
             },
           ].map((e, i) => {
             return (
@@ -178,9 +175,6 @@ function AnalysisView(props: any) {
                 } gap-4 bg-black/50 bg-cover bg-center p-6 bg-blend-darken`}
                 isPressable
                 style={{ backgroundImage: `url('${e.bgImg}')` }}
-                onPress={() => {
-                  router.push(e.router);
-                }}
               >
                 <p
                   className={`${
