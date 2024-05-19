@@ -182,9 +182,16 @@ export default function DetailPage(props: any): any {
                     <CircularProgress></CircularProgress>
                   </div>
                 }
-                className={"h-full overflow-auto overflow-x-auto"}
+                className={
+                  "flex h-full w-full flex-col items-center overflow-auto overflow-x-auto"
+                }
               >
-                <Page pageNumber={pageNumber} scale={scale} />
+                {/* {Array.from({ length: numPages }, (v, i) => i + 1).map(
+                  (e, i) => {
+                    return <Page pageNumber={e} scale={scale} />;
+                  },
+                )} */}
+                <Page pageNumber={pageNumber} scale={scale} />;
               </Document>
               <div className="absolute top-0 z-10 flex w-full flex-col items-center justify-center py-2">
                 <ButtonGroup color={"default"} variant={"flat"} radius={"none"}>
@@ -279,7 +286,7 @@ function AnalysisView(props: any) {
     <div className={`flex h-full w-full gap-4`}>
       {/*  */}
       <Accordion
-        className="h-fit"
+        className="h-full"
         defaultExpandedKeys={["1"]}
         fullWidth
         variant={"shadow"}

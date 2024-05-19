@@ -165,12 +165,12 @@ export default function SearchBar(props: SearchBarProps): any {
       }}
       onSelectionChange={(e) => {
         const query = createQueryString("query", e.toString());
-        router.push("/home/result" + "?" + query);
+        router.push("/search/result" + "?" + query);
       }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           const query = createQueryString("query", textInput);
-          router.push("/home/result" + "?" + query);
+          router.push("/search/result" + "?" + query);
         }
       }}
       startContent={
