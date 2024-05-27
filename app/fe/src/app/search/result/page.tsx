@@ -12,7 +12,6 @@ import {
   Tabs,
   Tab,
 } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useRef, useState } from "react";
@@ -58,7 +57,7 @@ const dataset = [
 export default function Query() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
-  const [indexOfTab, setIndexOfTab] = useState<string>("chatbot");
+  const [indexOfTab, setIndexOfTab] = useState("search");
 
   useEffect(() => {
     const checkResize = () => {
@@ -73,12 +72,13 @@ export default function Query() {
 
   useEffect(() => {
     AOS.init();
+    console.log(indexOfTab);
     return () => {};
   }, []);
 
   return (
     <section
-      className="mx-auto flex w-full max-w-[1200px] flex-row px-4"
+      className="mx-auto flex h-full max-h-[85vh] w-full max-w-[1200px] flex-row px-4"
       style={{
         display: "grid",
         gridTemplateColumns: mobile ? "1fr" : "100px 600px 1fr",
@@ -92,35 +92,94 @@ export default function Query() {
       {/*  */}
       <div className="flex flex-col items-start justify-center gap-1">
         <Tabs
-          aria-label="Options"
+          aria-label="Options2"
           variant={"underlined"}
           color={"primary"}
-          onSelectionChange={(key: any) => {}}
+          onSelectionChange={async (key: any) => {
+            await setIndexOfTab(key);
+          }}
+          defaultSelectedKey={"search"}
         >
-          <Tab key="result-search" title="탐색 탭"></Tab>
+          <Tab key="search" title="탐색 탭"></Tab>
+          {mobile && <Tab key="chatbot" title="챗봇 탭"></Tab>}
+          {mobile && <Tab key="analysis" title="분석 탭"></Tab>}
         </Tabs>
-        <div className="w-full gap-2">
-          {dataset.map((data, i) => {
-            return (
-              <Card
-                key={i}
-                className="w-full max-w-2xl space-y-2 border-0 p-4"
-                isBlurred
-                shadow={"none"}
-                // isPressable
-              >
-                <div className="flex w-full flex-row items-end justify-between">
-                  <div className="flex flex-col items-start justify-center">
-                    <Link href={data.href}>
-                      <p className="text-left text-lg font-bold leading-loose">
-                        {data.title}
+
+        {mobile ? (
+          <>
+            {indexOfTab == "search" && (
+              <div className="w-full gap-2">
+                {dataset.map((data, i) => {
+                  return (
+                    <Card
+                      key={i}
+                      className="w-full max-w-2xl space-y-2 border-0 p-4"
+                      isBlurred
+                      shadow={"none"}
+                      // isPressable
+                    >
+                      <div className="flex w-full flex-row items-end justify-between">
+                        <div className="flex flex-col items-start justify-center">
+                          <Link href={data.href}>
+                            <p className="text-left text-lg font-bold leading-loose">
+                              {data.title}
+                            </p>
+                          </Link>
+                          <p className="text-left text-xs leading-loose text-secondary">
+                            출원번호 {data.patId}, 출원일자 {data.date}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="line-clamp-3 text-justify text-sm leading-loose">
+                        {data.text}
                       </p>
-                    </Link>
-                    <p className="text-left text-xs leading-loose text-secondary">
-                      출원번호 {data.patId}, 출원일자 {data.date}
-                    </p>
-                  </div>
-                  {/* <div className="space-x-2">
+                    </Card>
+                  );
+                })}
+                <div className="flex w-full flex-col items-center justify-center py-8">
+                  <Pagination
+                    total={10}
+                    initialPage={1}
+                    variant={"light"}
+                    showControls
+                  />
+                </div>
+              </div>
+            )}
+            {indexOfTab == "chatbot" && (
+              <div className="h-[500px] w-full pt-2">
+                <ChatbotView></ChatbotView>
+              </div>
+            )}
+            {indexOfTab == "analysis" && (
+              <div className="h-[500px] w-full pt-2">
+                <AnalysisView></AnalysisView>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="w-full gap-2">
+            {dataset.map((data, i) => {
+              return (
+                <Card
+                  key={i}
+                  className="w-full max-w-2xl space-y-2 border-0 p-4"
+                  isBlurred
+                  shadow={"none"}
+                  // isPressable
+                >
+                  <div className="flex w-full flex-row items-end justify-between">
+                    <div className="flex flex-col items-start justify-center">
+                      <Link href={data.href}>
+                        <p className="text-left text-lg font-bold leading-loose">
+                          {data.title}
+                        </p>
+                      </Link>
+                      <p className="text-left text-xs leading-loose text-secondary">
+                        출원번호 {data.patId}, 출원일자 {data.date}
+                      </p>
+                    </div>
+                    {/* <div className="space-x-2">
                   {[
                     {
                       text: "비교하기",
@@ -147,44 +206,48 @@ export default function Query() {
                     );
                   })}
                 </div> */}
-                </div>
-                <p className="line-clamp-3 text-justify text-sm leading-loose">
-                  {data.text}
-                </p>
-              </Card>
-            );
-          })}
-          <div className="flex w-full flex-col items-center justify-center py-8">
-            <Pagination
-              total={10}
-              initialPage={1}
-              variant={"light"}
-              showControls
-            />
+                  </div>
+                  <p className="line-clamp-3 text-justify text-sm leading-loose">
+                    {data.text}
+                  </p>
+                </Card>
+              );
+            })}
+            <div className="flex w-full flex-col items-center justify-center py-8">
+              <Pagination
+                total={10}
+                initialPage={1}
+                variant={"light"}
+                showControls
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/*  */}
-      <div
-        className={`${
-          mobile ? "sticky top-16" : "max-h-[600px]"
-        } sticky top-16 flex h-full w-full flex-col gap-4`}
-      >
-        <Tabs
-          aria-label="Options"
-          variant={"underlined"}
-          color={"primary"}
-          onSelectionChange={async (key: any) => {
-            await setIndexOfTab(key);
-          }}
+      {!mobile && (
+        <div
+          className={`${
+            mobile ? "sticky top-16" : "max-h-[600px]"
+          } sticky top-16 flex h-full w-full flex-col gap-4`}
         >
-          <Tab key="chatbot" title="챗봇 탭"></Tab>
-          <Tab key="analysis" title="분석 탭"></Tab>
-        </Tabs>
-        {indexOfTab == "chatbot" && <ChatbotView></ChatbotView>}
-        {indexOfTab == "analysis" && <AnalysisView></AnalysisView>}
-      </div>
+          <Tabs
+            aria-label="Options"
+            variant={"underlined"}
+            color={"primary"}
+            defaultSelectedKey={"chatbot"}
+            onSelectionChange={async (key: any) => {
+              await setIndexOfTab(key);
+            }}
+          >
+            <Tab key="chatbot" title="챗봇 탭"></Tab>
+            <Tab key="analysis" title="분석 탭"></Tab>
+          </Tabs>
+          {indexOfTab == "chatbot" && <ChatbotView></ChatbotView>}
+          {indexOfTab == "analysis" && <AnalysisView></AnalysisView>}
+        </div>
+      )}
     </section>
   );
 }
@@ -229,39 +292,7 @@ function ChatbotView(props: any) {
             isLoading: false,
             imgSrc: "11",
             name: "MiliPat AI",
-            // text: `K9 자주포, 일명 K9 썬더는 대한민국에서 개발 및 생산된 자주포 시스템입니다. 다음은 K9 자주포의 주요 제원입니다:
-
-            // 1. **중량**: 전투중량으로 47톤에 이르며, 이는 차체의 전체적인 무게를 의미합니다.
-
-            // 2. **전장**: 12m로, 자주포의 길이를 나타냅니다. 차체의 길이는 7.44m입니다.
-
-            // 3. **전폭**: 3.5m로, 자주포의 폭을 의미합니다.
-
-            // 4. **전고**: 3.28m로, 자주포의 높이를 나타냅니다.
-
-            // 5. **주포**: 155mm CN98 곡사포가 장착되어 있습니다.
-
-            // 6. **부무장**: 12.7mm K6 중기관총이 부착되어 있습니다.
-
-            // 7. **급속사격 및 최대발사속도**: 분당 6~8발로, K9A3 버전에서는 분당 10~12발로 예정되어 있습니다.
-
-            // 8. **최대사거리**: 최대 100km까지 활공탄을 사용하여 공격할 수 있습니다.
-
-            // 9. **장갑**: 균질압연강판으로 전방위 35mm 이상의 장갑을 가지고 있습니다. 또한, 10m 위에서 떨어진 152mm 통상고폭탄에 대한 승무원 방호가 제공됩니다.
-
-            // 10. **최고속도**: 67km/h로, 빠른 전투 이동이 가능합니다.
-
-            // 11. **현수장치**: 유기압 현수장치를 사용합니다.
-
-            // 12. **최대주행거리**: 360km로, 광범위한 전투 영역에서 활동할 수 있습니다.
-
-            // 13. **엔진**: 초도 양산분은 MTU MT 881 Ka-500 디젤엔진을 사용하며, 추후 예정으로는 STX 엔진과 SMV-1000 디젤엔진이 개발 중에 있습니다.
-
-            // 14. **승무원**: 5명이 탑승할 수 있습니다. 단, K9A2 및 개량형은 3명의 승무원이 필요합니다.
-
-            // 15. **운용국**: 주로 대한민국에서 운용되며, 노르웨이, 에스토니아, 이집트, 인도, 튀르키, 폴란드, 핀란드, 호주, 우크라이나 등 여러 국가에서도 운용됩니다.`,
             text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
-            // text: "k9 자주포 사격통제장치에 문제가 발생하셨군요.이런 문제가 발생시에 총 3가지의 조치 방법이 있습니다.\n\n1. 일부 측량계 장치의 과부하로 인한 오류입니다. 이 경우, 장비를 완전히 재부팅하고 다시한번 세팅하셔야합니다.\n\n2. 광학센서 장치의 노후화 문제입니다.\n이 장치의 수명은 약 5년이며, 이 기간이 지났을 경우에는 정비근무대를 통한 교체가 필요합니다.\n\n3. 중앙처리장치와 전원이 접촉 불량인 경우입니다.",
           },
         ]);
       }, 500);

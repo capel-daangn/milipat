@@ -165,9 +165,9 @@ function AnalysisView(props: any) {
     >
       {/*  */}
 
-      <div className="sticky flex h-full w-full flex-col gap-4 overflow-x-scroll px-6 scrollbar-hide">
+      <div className="sticky flex h-full w-full flex-col gap-4 overflow-x-scroll px-4 scrollbar-hide">
         <div
-          className="flex h-min w-min gap-2 whitespace-nowrap scrollbar-hide"
+          className="flex h-min w-min gap-2 scrollbar-hide"
           style={{ flexDirection: mobile ? "row" : "column" }}
         >
           {[
@@ -200,7 +200,7 @@ function AnalysisView(props: any) {
               <Card
                 key={i}
                 // style={{ flexDirection: mobile ? "row" : "column" }}
-                style={{ backgroundImage: `url('${e.bgImg}')` }}
+                // style={{ backgroundImage: `url('${e.bgImg}')` }}
                 className="flex aspect-[5/1] h-[60px] items-start justify-center gap-1 border-1 bg-black/50 bg-cover bg-center p-4 bg-blend-darken drop-shadow-md"
                 isPressable
                 onPress={() => {
@@ -225,7 +225,7 @@ function AnalysisView(props: any) {
         radius={"none"}
         className={`${
           mobile ? "h-full" : "h-[85vh]"
-        } grid w-full flex-col items-center justify-center overflow-auto border-1 p-4`}
+        } grid w-full flex-col items-center justify-center overflow-y-scroll border-1 p-4`}
       >
         <div className="flex flex-col items-center justify-center gap-4">
           <p className="text-xl font-bold">기술 동향 분석</p>
@@ -303,9 +303,9 @@ function ChatbotView(props: any) {
     >
       {/*  */}
 
-      <div className="flex h-full w-full flex-col gap-4 overflow-auto px-6 scrollbar-hide">
+      <div className="flex h-full w-full flex-col gap-4 overflow-auto px-4 scrollbar-hide">
         <div
-          className="flex h-min w-min gap-4 whitespace-nowrap"
+          className="flex h-min w-min gap-4"
           style={{ flexDirection: mobile ? "row" : "column" }}
         >
           {[
