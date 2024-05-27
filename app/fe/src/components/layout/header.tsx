@@ -9,12 +9,12 @@ import {
   DropdownItem,
   Avatar,
 } from "@nextui-org/react";
-import { IconLogo, IconLogoSquare } from "../common/icons";
+import { IconLogo } from "../common/icons";
 import { useRouter } from "next/navigation";
 import SearchBar from "../search-bar";
-import { Key, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 type HeaderProps = {
   isLogoVisible?: boolean;
@@ -40,14 +40,7 @@ export default function Header(props: HeaderProps) {
     checkResize();
   }, [isMobile]);
 
-  const [indexOfTabs, setIndexOfTabs] = useState<string>("search");
-  const [indexOfViews, setIndexOfViews] = useState<string>("analysis");
-
-  const queryClient = useQueryClient();
-  const queryIndexOfTabs = useQuery({
-    queryKey: ["indexOfTabs"],
-    queryFn: () => indexOfTabs,
-  });
+  const [indexOfViews, setIndexOfViews] = useState<string>("search");
   const queryIndexOfViews = useQuery({
     queryKey: ["indexOfViews"],
     queryFn: () => indexOfViews,
@@ -70,7 +63,7 @@ export default function Header(props: HeaderProps) {
             ? "3fr"
             : "2fr"
           : "1fr",
-        gap: mobile ? "10px" : "20px",
+        gap: mobile ? "15px" : "20px",
       }}
     >
       {props.isSearchBarVisible &&
@@ -84,64 +77,14 @@ export default function Header(props: HeaderProps) {
               }}
               className="w-fit"
             >
-              <IconLogoSquare width={50} fill="#000"></IconLogoSquare>
+              <IconLogo height={20} fill="#000"></IconLogo>
             </button>
-
-            <div className="w-full"></div>
-
-            <Dropdown placement={"bottom-end"} className="min-w-fit">
-              <DropdownTrigger className="min-w-fit">
-                <Avatar
-                  size={"sm"}
-                  isBordered
-                  as="button"
-                  className="min-w-fit transition-transform"
-                  // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                />
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">zoey@example.com</p>
-                </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem key="analytics">Analytics</DropdownItem>
-                <DropdownItem key="system">System</DropdownItem>
-                <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
-                </DropdownItem>
-                <DropdownItem key="logout" color="danger">
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-
-            <div className="col-span-1"></div>
+            <div className="col-span-1 w-full"></div>
+            <UserDropdown></UserDropdown>
 
             <div className="col-span-3 flex w-full flex-col items-center justify-center">
               <SearchBar value={props.searchedText}></SearchBar>
             </div>
-
-            <div className="col-span-1"></div>
-
-            <Tabs
-              className="col-span-3"
-              aria-label="Options"
-              variant={"underlined"}
-              color={"primary"}
-              onSelectionChange={async (key: any) => {
-                await setIndexOfViews(key);
-                await queryIndexOfViews.refetch();
-                // setIndexOfTabs(key);
-                // queryIndexOfTabs.refetch();
-              }}
-            >
-              <Tab key="search" title="탐색 뷰"></Tab>
-              <Tab key="analysis" title="분석 뷰"></Tab>
-              <Tab key="chatbot" title="챗봇 뷰"></Tab>
-            </Tabs>
           </>
         ) : (
           <>
@@ -155,129 +98,73 @@ export default function Header(props: HeaderProps) {
             >
               <IconLogo width={100} fill="#000"></IconLogo>
             </button>
-
             <div className="flex w-full flex-col items-center justify-center">
               <SearchBar value={props.searchedText}></SearchBar>
             </div>
-
-            <div className="w-full flex-col items-center justify-center opacity-0">
-              <SearchBar value={props.searchedText} isDisabled></SearchBar>
-            </div>
-
-            <Dropdown placement={"bottom-end"} className="min-w-fit">
-              <DropdownTrigger className="min-w-fit">
-                <Avatar
-                  size={"sm"}
-                  isBordered
-                  as="button"
-                  className="min-w-fit transition-transform"
-                  // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                />
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">zoey@example.com</p>
-                </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-                <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                <DropdownItem key="analytics">Analytics</DropdownItem>
-                <DropdownItem key="system">System</DropdownItem>
-                <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
-                </DropdownItem>
-                <DropdownItem key="logout" color="danger">
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-
-            <button className="w-fit">
-              <IconLogo width={100} fill="#00000000"></IconLogo>
-            </button>
-
-            <Tabs
-              aria-label="Options"
-              variant={"underlined"}
-              color={"primary"}
-              onSelectionChange={(key: any) => {
-                // setIndexOfTabs(key);
-                // // console.log(key);
-                // queryIndexOfTabs.refetch();
-              }}
-            >
-              <Tab key="result-search" title="탐색 탭"></Tab>
-              {/* <Tab key="result-analysis" title="분석 뷰"></Tab>
-              <Tab key="result-chatbot" title="챗봇 뷰"></Tab> */}
-            </Tabs>
-
-            <Tabs
-              aria-label="Options"
-              variant={"underlined"}
-              color={"primary"}
-              onSelectionChange={async (key: any) => {
-                await setIndexOfViews(key);
-                // console.log(key);
-                await queryIndexOfViews.refetch();
-              }}
-            >
-              {/* <Tab key="result-search" title="탐색 뷰"></Tab> */}
-              <Tab key="analysis" title="분석 탭"></Tab>
-              <Tab key="chatbot" title="챗봇 탭"></Tab>
-            </Tabs>
+            <div className="col-span-1"></div>
+            <UserDropdown></UserDropdown>
           </>
         ))}
 
       {/*  */}
       {props.isSearchBarVisible == false && (
         <>
-          <Tabs
-            aria-label="Options"
-            variant={"underlined"}
-            color={"primary"}
-            onSelectionChange={async (key: any) => {
-              await setIndexOfTabs(key);
-              await queryIndexOfTabs.refetch();
-            }}
-          >
-            <Tab key="search" title="탐색 뷰"></Tab>
-            <Tab key="analysis" title="분석 뷰"></Tab>
-            <Tab key="chatbot" title="챗봇 뷰"></Tab>
-          </Tabs>
+          <ViewTabs
+            setIndexOfViews={setIndexOfViews}
+            queryIndexOfViews={queryIndexOfViews}
+          ></ViewTabs>
 
           <div></div>
 
-          <Dropdown placement={"bottom-end"} className="min-w-fit">
-            <DropdownTrigger className="min-w-fit">
-              <Avatar
-                size={"sm"}
-                isBordered
-                as="button"
-                className="min-w-fit transition-transform"
-                // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">zoey@example.com</p>
-              </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">
-                Help & Feedback
-              </DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                Log Out
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <UserDropdown></UserDropdown>
         </>
       )}
     </div>
+  );
+}
+
+function ViewTabs(props: any) {
+  return (
+    <Tabs
+      aria-label="Options"
+      variant={"underlined"}
+      color={"primary"}
+      onSelectionChange={async (key: any) => {
+        await props.setIndexOfViews(key);
+        await props.queryIndexOfViews.refetch();
+      }}
+    >
+      <Tab key="search" title="탐색 뷰"></Tab>
+      <Tab key="analysis" title="분석 뷰"></Tab>
+      <Tab key="chatbot" title="챗봇 뷰"></Tab>
+    </Tabs>
+  );
+}
+
+function UserDropdown(props: any) {
+  return (
+    <Dropdown placement={"bottom-end"} className="min-w-fit">
+      <DropdownTrigger className="min-w-fit">
+        <Avatar
+          size={"sm"}
+          isBordered
+          as="button"
+          className="min-w-fit transition-transform"
+          // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+        />
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Profile Actions" variant={"shadow"}>
+        <DropdownItem key="profile" className="h-14 gap-2">
+          <p className="font-semibold">밀라팻 관리자</p>
+          <p className="font-semibold">milipat@admin.com</p>
+        </DropdownItem>
+        <DropdownItem key="settings">나의 프로필</DropdownItem>
+        <DropdownItem key="configurations">설정</DropdownItem>
+        <DropdownItem key="help_and_feedback">도움말</DropdownItem>
+        <DropdownItem key="logout" color="danger">
+          로그아웃
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   );
 }
