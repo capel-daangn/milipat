@@ -4,8 +4,9 @@ import {
   AutocompleteItem,
   AutocompleteSection,
 } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const dataset = [
   {
@@ -120,7 +121,11 @@ export default function SearchBar(props: SearchBarProps): any {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [textInput, setTextInput] = useState<string>(props.value || "");
+  const [textInput, setTextInput] = useState<string | undefined>(props.value);
+  const queryTextInput = useQuery({
+    queryKey: ["textInput"],
+    queryFn: () => textInput,
+  });
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -159,16 +164,22 @@ export default function SearchBar(props: SearchBarProps): any {
       variant="bordered"
       size={pathname == "/home" ? "md" : "sm"}
       isClearable={true}
-      inputValue={textInput}
-      onInputChange={(e) => {
-        setTextInput(e);
+      inputValue={queryTextInput.data}
+      onInputChange={async (e: any) => {
+        await setTextInput(e);
+        await queryTextInput.refetch();
       }}
-      onSelectionChange={(e) => {
-        const query = createQueryString("query", e.toString());
-        router.push("/search/result" + "?" + query);
+      onSelectionChange={async (e: any) => {
+        // console.log(e);
+        if (e != null) {
+          await setTextInput(e?.toString());
+          await queryTextInput.refetch();
+          const query = await createQueryString("query", e?.toString());
+          await router.push("/search/result" + "?" + query);
+        }
       }}
       onKeyDown={(e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && textInput != undefined) {
           const query = createQueryString("query", textInput);
           router.push("/search/result" + "?" + query);
         }
