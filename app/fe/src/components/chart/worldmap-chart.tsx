@@ -16,10 +16,10 @@ export default function WorldmapChart() {
 
   return (
     <WorldMap
-      color="red"
+      color="blue"
       title="Top 10 Populous Countries"
       value-suffix="people"
-      size="lg"
+      size={"responsive"}
       data={data}
     />
   );

@@ -31,7 +31,9 @@ export default function FooterTray(props: any) {
             placeholder={"질의어를 입력하세요."}
             className="w-full"
             variant={"flat"}
-            classNames={{ input: "text-lg w-[75%]", clearButton: "" }}
+            classNames={{
+              input: "text-lg w-[75%] scale-90 text-left",
+            }}
             color={"primary"}
             onClear={() => {
               setInputText("");

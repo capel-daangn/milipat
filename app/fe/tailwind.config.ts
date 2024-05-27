@@ -30,6 +30,7 @@ const config: Config = {
     },
   },
   plugins: [
+    require("tailwind-scrollbar-hide"),
     nextui({
       addCommonColors: true,
       // themes: {

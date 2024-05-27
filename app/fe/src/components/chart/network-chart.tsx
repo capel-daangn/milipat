@@ -123,7 +123,7 @@ export default function ChartNetwork(props: any) {
   });
 
   return (
-    <div className="relative flex h-full min-h-[300px]">
+    <div className="relative flex h-full min-h-[400px]">
       {typeof window !== "undefined" ? (
         <GraphCanvas
           ref={test}
