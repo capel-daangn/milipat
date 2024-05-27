@@ -58,6 +58,7 @@ export default function Query() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [indexOfTab, setIndexOfTab] = useState("search");
+  const [indexOfTab2, setIndexOfTab2] = useState("chatbot");
 
   useEffect(() => {
     const checkResize = () => {
@@ -72,7 +73,6 @@ export default function Query() {
 
   useEffect(() => {
     AOS.init();
-    console.log(indexOfTab);
     return () => {};
   }, []);
 
@@ -238,14 +238,14 @@ export default function Query() {
             color={"primary"}
             defaultSelectedKey={"chatbot"}
             onSelectionChange={async (key: any) => {
-              await setIndexOfTab(key);
+              await setIndexOfTab2(key);
             }}
           >
             <Tab key="chatbot" title="챗봇 탭"></Tab>
             <Tab key="analysis" title="분석 탭"></Tab>
           </Tabs>
-          {indexOfTab == "chatbot" && <ChatbotView></ChatbotView>}
-          {indexOfTab == "analysis" && <AnalysisView></AnalysisView>}
+          {indexOfTab2 == "chatbot" && <ChatbotView></ChatbotView>}
+          {indexOfTab2 == "analysis" && <AnalysisView></AnalysisView>}
         </div>
       )}
     </section>

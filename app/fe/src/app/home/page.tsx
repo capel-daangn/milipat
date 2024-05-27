@@ -100,7 +100,7 @@ function SearchView(props: any) {
         data-aos-duration="1500"
         className="mx-auto flex w-full flex-row items-end justify-center pb-16"
       >
-        <SearchBar mobile></SearchBar>
+        <SearchBar mobile value=""></SearchBar>
       </div>
       <div className="fixed bottom-4 flex flex-col items-center justify-center gap-2">
         <p
