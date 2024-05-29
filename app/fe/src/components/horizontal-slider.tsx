@@ -21,7 +21,7 @@ export default function HorizontalSlider(props: any) {
           {props.content.map((e: any, i: any) => {
             return (
               <Card
-                isPressable
+                // isPressable
                 key={i}
                 className={`shadow-black-90 rounded-lg border-1 bg-center p-4 bg-blend-darken shadow-md`}
                 style={{
@@ -30,9 +30,9 @@ export default function HorizontalSlider(props: any) {
                   height: props.height + "px",
                   backgroundImage: `url('${e.bgImgSrc}')`,
                 }}
-                onPress={() => {
-                  window.open("/workspace");
-                }}
+                // onPress={() => {
+                  // window.open("/workspace");
+                // }}
               >
                 <div className="flex h-full w-full flex-col items-start justify-between gap-2">
                   <div className="flex flex-col gap-2">
