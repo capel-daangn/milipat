@@ -22,7 +22,7 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/components/layout/footer";
-import { IconLogo } from "@/components/common/icons";
+import { IconBadge, IconLogo, IconSign } from "@/components/common/icons";
 import { IconChart, IconLike, IconLock } from "@/components/common/icons";
 import {
   Chart as ChartJS,
@@ -137,10 +137,10 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-4">
-          <LottieArrowDown play loop width={50}></LottieArrowDown>
+          <LottieArrowDown play loop width={80}></LottieArrowDown>
         </div>
-        <div className="absolute z-10 h-screen w-auto min-w-full max-w-none bg-black/75"></div>
-        <video
+        {/* <div className="absolute z-10 h-screen w-auto min-w-full max-w-none bg-black/75"></div> */}
+        {/* <video
           controls={false}
           autoPlay={true}
           loop={true}
@@ -154,7 +154,7 @@ export default function Home() {
             className="h-screen w-screen"
           />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
       </div>
 
       {/* 2. 개발배경 소개  */}
@@ -191,7 +191,7 @@ export default function Home() {
           data-aos-duration="1000"
           className={`${mobile ? "" : "text-lg"} select-none text-center`}
         >
-          팀 밀리팻은 대한민국 국군의 일원으로<br></br>창조적인 아이디어와
+          MiliPat은 대한민국 국군의 일원으로<br></br>창조적인 아이디어와
           혁신적인 기술역량으로<br></br>우리 방산의 미래를 함께 고민합니다.
         </p>
       </div>
@@ -208,10 +208,10 @@ export default function Home() {
             <p className="text-tiny">사용자 인터뷰</p>
           </div>
           <p className="select-none text-center text-3xl font-bold">
-            밀리팻에 담아놓은<br></br>대한민국 방산의 이야기
+          MiliPat에 담아놓은<br></br>대한민국 방산의 이야기
           </p>
           <p className="select-none text-center">
-            우리 육군의 실제 목소리를 담아<br></br>밀리팻이라는 도전을
+            우리 방산의 자랑스러운 성과를 담아<br></br>MiliPat이라는 도전을
             시작하였습니다.
           </p>
         </div>
@@ -263,8 +263,6 @@ export default function Home() {
             격동하는 국제 정세,<br></br>성장하는 대한민국 방산
           </p>
           <p className="select-none text-center">
-            {/* 전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
-            정책을 지향하며<br></br>지속적으로 노력하고 있습니다. */}
             아래 카드를 하나씩 탭하여 자세히 살펴보기
           </p>
         </div>
@@ -285,9 +283,6 @@ export default function Home() {
                 }
           }
         >
-          {/* <p className="col-span-4 select-none text-center">
-            아래 카드를 하나씩 탭하여 자세히 살펴보기
-          </p> */}
           {[
             {
               title:
@@ -302,16 +297,14 @@ export default function Home() {
                 "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
               tappedTitle:
                 "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
-              bgImg: "/images/background-k9.jpeg",
-              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+              bgImg: "/images/background-fk-21.jpeg",
             },
             {
               title:
                 "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
               tappedTitle:
                 "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
-              bgImg: "/images/background-k9.jpeg",
-              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+              bgImg: "/images/background-fk-21-1.jpeg",
             },
             {
               title:
@@ -319,53 +312,149 @@ export default function Home() {
               tappedTitle:
                 "연구 및 개발에 필요한 지적재산권 정보에 신속하게 접근하여, 장래에 양질의 방산 분야 특허 출원을 유도할 수 있음.",
               bgImg: "/images/background-fk-21-2.jpeg",
-              // text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
             },
           ].map((content, i) => {
             return (
               <Card
                 key={i}
                 isPressable
-                // isHoverable
-                // onMouseOver={(e) => {
-                //   setIndexOfPressedCard(i);
-                // }}
-                // onMouseOut={(e) => {
-                //   setIndexOfPressedCard(i);
-                // }}
                 onPressStart={(e) => {
                   setIndexOfPressedCard(i);
                 }}
                 onPressEnd={() => {
                   setIndexOfPressedCard(undefined);
                 }}
-                // data-aos="fade-left"
-                // data-aos-duration="1000"
-                // data-aos-delay={i * 100 + 100}
-                className="h-[250px] w-full bg-cover bg-center p-2 bg-blend-darken"
+                className="h-[150px] w-full bg-cover bg-center p-2 bg-blend-darken"
                 shadow={"sm"}
                 onPress={() => {
                   console.log(11);
                 }}
                 style={{
                   backgroundColor:
-                    i == indexOfPressedCard ? "#000000" : "#00000050",
+                    i == indexOfPressedCard ? "#00000090" : "#00000075",
                   backgroundImage:
-                    i == indexOfPressedCard ? "" : `url('${content.bgImg}')`,
+                    i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
                 }}
               >
                 <CardBody
                   className={`text-balance ${
-                    i == indexOfPressedCard ? "text-right" : ""
+                    i == indexOfPressedCard ? "text-right" : "text-left"
                   } gap-1 break-keep leading-snug`}
                 >
-                  <p className="whitespace-pre-line break-keep text-2xl font-bold leading-relaxed text-white">
+                  <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-yellow-600"}`}>
                     {i == indexOfPressedCard
-                      ? `기대 효과 ${i + 1}`
-                      : `개발 배경 ${i + 1}`}
+                      ? `서비스 기대 효과 ${i + 1}`
+                      : `서비스 개발 배경 ${i + 1}`}
                   </p>
                   <p
-                    className={`text-lg leading-relaxed text-white ${
+                    className={`leading-relaxed text-white ${
+                      i == indexOfPressedCard ? "text-right" : ""
+                    }`}
+                  >
+                    {i == indexOfPressedCard
+                      ? content.tappedTitle
+                      : content.title}
+                  </p>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 핵심기능 */}
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="flex flex-col items-center justify-center space-y-6"
+        >
+          <div className="flex flex-col items-center justify-center gap-1">
+            <IconBadge width={25} strokeFill="#000"></IconBadge>
+            <p className="text-tiny">핵심 기능</p>
+          </div>
+          <p className="select-none text-center text-3xl font-bold leading-snug">
+            격동하는 국제 정세,<br></br>성장하는 대한민국 방산
+          </p>
+          <p className="select-none text-center">
+            아래 카드를 하나씩 탭하여 자세히 살펴보기
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="flex flex-col gap-4 px-8"
+          // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
+          style={
+            mobile
+              ? { gap: "20px" }
+              : {
+                  display: "grid",
+                  // gridTemplateAreas: `"a b" "c d"`,
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gridTemplateRows: "1fr",
+                  gap: "20px",
+                }
+          }
+        >
+          {[
+            {
+              title:
+                "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
+              tappedTitle:
+                "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
+              bgImg: "/images/bg-home.jpeg",
+              // text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
+            },
+            {
+              title:
+                "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
+              tappedTitle:
+                "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
+              bgImg: "/images/bg-chart.jpeg",
+            },
+            {
+              title:
+                "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+              tappedTitle:
+                "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+              bgImg: "/images/bg-llm.jpeg",
+            },
+          ].map((content, i) => {
+            return (
+              <Card
+                key={i}
+                isPressable
+                onPressStart={(e) => {
+                  setIndexOfPressedCard(i);
+                }}
+                onPressEnd={() => {
+                  setIndexOfPressedCard(undefined);
+                }}
+                className="h-[400px] w-full bg-cover bg-center p-2 bg-blend-darken drop-shadow-xl shadow-black"
+                shadow={"sm"}
+                onPress={() => {
+                  console.log(11);
+                }}
+                style={{
+                  backgroundColor:
+                    i == indexOfPressedCard ? "#00000095" : "#00000050",
+                  backgroundImage:
+                    i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
+                }}
+              >
+                <CardBody
+                  className={`text-balance ${
+                    i == indexOfPressedCard ? "text-right" : "text-left"
+                  } gap-1 break-keep leading-snug`}
+                >
+                  <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-red-600"}`}>
+                    {i == indexOfPressedCard
+                      ? `핵심기능 ${i + 1}`
+                      : `서비스 개발 배경 ${i + 1}`}
+                  </p>
+                  <p
+                    className={`leading-relaxed text-white ${
                       i == indexOfPressedCard ? "text-right" : ""
                     }`}
                   >
@@ -401,18 +490,6 @@ export default function Home() {
         </div>
         <div
           className="mx-auto flex w-full flex-col gap-4 px-4"
-          // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4 gap-4"
-          // style={
-          //   mobile
-          //     ? { gap: "20px" }
-          //     : {
-          //         display: "grid",
-          //         gridTemplateAreas: `"a b" "c d"`,
-          //         gridTemplateColumns: "1fr 1fr",
-          //         gridTemplateRows: "1fr",
-          //         gap: "20px",
-          //       }
-          // }
         >
           {[
             {
@@ -491,13 +568,8 @@ export default function Home() {
                     {content.title}
                   </p>
                 </CardHeader>
-                {/* <Divider></Divider> */}
-                <CardBody className="text-balance gap-4 break-keep">
-                  {/* <p className="text-secondary leading-relaxed text-sm">
-                    {content.text}
-                  </p> */}
+                <CardBody className="text-balance gap-4 break-keep flex flex-col items-center justify-center">
                   {content.img}
-                  <></>
                 </CardBody>
               </Card>
             );
@@ -696,10 +768,6 @@ export default function Home() {
           <p className="select-none text-center text-3xl font-bold leading-snug">
             밀리팻에 숨겨진<br></br>또다른 놀라운 기술들
           </p>
-          {/* <p className="select-none text-center">
-            우리 육군의 실제 목소리를 담아<br></br>밀리팻이라는 도전을
-            시작하였습니다.
-          </p> */}
         </div>
         <div
           data-aos="fade-up"
@@ -712,150 +780,32 @@ export default function Home() {
             backgroundColor="#fefefe"
             content={[
               {
-                title: "Ollama를 활용한 온디바이스 생성형 AI",
-                img: (
-                  <Image
-                    src={"/images/logo_ollama.png"}
-                    width={100}
-                    height={100}
-                    alt="img"
-                    className="mx-auto h-[120px] w-fit drop-shadow-md"
-                  ></Image>
-                ),
-                text: "자체적으로 구분된 독립적인 서버를 사용하여 보안 문제를 해결하기 위해 Ollama 프레임워크를 활용하였습니다. 이 덕분에 Mistral 등의 다양한 LLM 모델을 운용할 수 있습니다.",
+                title: "Ollama 프레임워크를 활용한 LLM 서버 구축",
+                text: "보안 문제를 해결하기 위해 Ollama 프레임워크를 활용하여 독립적인 서버를 구축했습니다. 이를 통해 Mistral 등의 다양한 LLM 모델을 효과적으로 운용할 수 있습니다.",
               },
               {
-                title: "Agent 간 Ensemble을 통한 정확도 개선",
-                img: (
-                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                    <LottieEnsemble height={120} goTo={10}></LottieEnsemble>
-                  </div>
-                ),
-                text: " 다수의 에이전트 모델 간의 상호작용을 시키는 앙상블 기법을 활용하여 LLM 특유의 ‘할루시네이션’(환각) 현상을 최소화하고 경제적인 관점에서 최대한의 효율적인 성능을 확보할 수 있습니다.",
+                title: "Qdrant를 활용한 Vector 데이터베이스 구축",
+                text: "LLM 특유의 '할루시네이션'(환각) 현상을 최소화하고, 경제적인 측면에서 최대한 효율적인 성능을 확보하기 위해 다수의 에이전트 모델 간의 상호작용을 시키는 앙상블 기법을 활용했습니다.",
               },
               {
-                title: "특허 유사도 분석 및 기술 동향 예측",
-                img: (
-                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                    <LottieEnsemble
-                      // play
-                      // loop
-                      height={80}
-                      goTo={12}
-                    ></LottieEnsemble>
-                  </div>
-                ),
-                text: "텍스트 질의 뿐만 아니라 카메라 또는 음성 인식 등의 멀티모달 인터페이스를 지원하여 사용자 편의성을 개선하였습니다.",
+                title: "React-Query를 활용한 서버 동기화 및 전역상태 관리",
+                text: "React-Query를 활용하여 서버 동기화와 전역상태 관리를 구현했으며, 이를 통해 사용자 편의성을 높였습니다.",
               },
               {
-                title: "구조도 실시간 3D 렌더링",
-                img: (
-                  <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                    <Lottie3DModel goTo={30} height={120}></Lottie3DModel>
-                  </div>
-                ),
-                text: "blender 등의 소프트웨어로 작성된 3D 모델링 구조도를 통해 운용장비의 파트에 대해 직관적으로 접근할 수 있습니다.",
+                title: "Three.js를 활용한 실시간 3D 렌더링 기법",
+                text: "Three.js를 활용하여 실시간 3D 렌더링을 구현하였으며, 이를 통해 사용자 경험을 개선했습니다.",
               },
+              {
+                title: "Docker Compose를 활용한 컨테이너 간의 오케스트레이션",
+                text: "Docker Compose를 활용하여 여러 컨테이너 간의 오케스트레이션을 구현하였으며, blender 등의 소프트웨어로 작성된 3D 모델링 구조도를 통해 운용 장비의 파트에 직관적으로 접근할 수 있게 했습니다.",
+              }
             ]}
           ></HorizontalSlider>
         </div>
       </div>
 
-      {/* 핵심 기술 설명 */}
-      {/* <div className="flex h-full min-h-screen flex-col items-center justify-center space-y-8 bg-primary-50 py-16">
-        <p className="select-none text-2xl font-bold text-primary">
-          핵심기능 소개
-        </p>
-        <div
-          className="flex min-h-[40vh] w-full max-w-[1024px] select-none flex-col items-center justify-between px-4"
-          style={
-            mobile
-              ? { gap: "20px" }
-              : {
-                  display: "grid",
-                  gridTemplateAreas: `"a b" "c d"`,
-                  gridTemplateColumns: "1fr 1fr",
-                  gridTemplateRows: "1fr 1fr",
-                  gap: "20px",
-                }
-          }
-        >
-          {[
-            {
-              title: "Ollama를 활용한 온디바이스 생성형 AI",
-              gridArea: "a",
-              img: (
-                <Image
-                  src={"/images/logo_ollama.png"}
-                  width={100}
-                  height={100}
-                  alt="img"
-                  className="mx-auto h-[120px] w-fit drop-shadow-md"
-                ></Image>
-              ),
-              text: "자체적으로 구분된 독립적인 서버를 사용하여 보안 문제를 해결하기 위해 Ollama 프레임워크를 활용하였습니다. 이 덕분에 Mistral 등의 다양한 LLM 모델을 운용할 수 있습니다.",
-            },
-            {
-              title: "Agent 간 Ensemble을 통한 정확도 개선",
-              gridArea: "b",
-              img: (
-                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                  <LottieEnsemble height={120} goTo={10}></LottieEnsemble>
-                </div>
-              ),
-              text: " 다수의 에이전트 모델 간의 상호작용을 시키는 앙상블 기법을 활용하여 LLM 특유의 ‘할루시네이션’(환각) 현상을 최소화하고 경제적인 관점에서 최대한의 효율적인 성능을 확보할 수 있습니다.",
-            },
-            {
-              title: "특허 유사도 분석 및 기술 동향 예측",
-              gridArea: "c",
-              img: (
-                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                  <LottieEnsemble
-                    // play
-                    // loop
-                    height={80}
-                    goTo={12}
-                  ></LottieEnsemble>
-                </div>
-              ),
-              text: "텍스트 질의 뿐만 아니라 카메라 또는 음성 인식 등의 멀티모달 인터페이스를 지원하여 사용자 편의성을 개선하였습니다.",
-            },
-            {
-              title: "구조도 실시간 3D 렌더링",
-              gridArea: "d",
-              img: (
-                <div className="mx-auto flex h-[120px] w-fit flex-col justify-center">
-                  <Lottie3DModel goTo={30} height={120}></Lottie3DModel>
-                </div>
-              ),
-              text: "blender 등의 소프트웨어로 작성된 3D 모델링 구조도를 통해 운용장비의 파트에 대해 직관적으로 접근할 수 있습니다.",
-            },
-          ].map((content, i) => {
-            return (
-              <Card
-                key={i}
-                className="h-full min-h-[300px] w-full p-4"
-                style={{ gridArea: content.gridArea }}
-                shadow={"sm"}
-              >
-                <CardHeader>
-                  <p className="text-md font-bold texprimary">
-                    {content.title}
-                  </p>
-                </CardHeader>
-                <Divider></Divider>
-                <CardBody className="text-pretty gap-2">
-                  {content.img}
-                  <p className="text-justify leading-loose">{content.text}</p>
-                </CardBody>
-              </Card>
-            );
-          })}
-        </div>
-      </div> */}
-
       {/* Footer */}
-      <div className="mx-auto max-w-[600px] px-8 py-12 pt-36">
+      <div className="mx-auto max-w-[600px] px-8 py-12 pt-12">
         <Accordion variant={"shadow"} className="bg-black/20" isDisabled>
           <AccordionItem
             key="1"
