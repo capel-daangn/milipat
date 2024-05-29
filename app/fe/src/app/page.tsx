@@ -290,7 +290,6 @@ export default function Home() {
               tappedTitle:
                 "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
               bgImg: "/images/background-k9.jpeg",
-              // text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
             },
             {
               title:
@@ -324,14 +323,14 @@ export default function Home() {
                 onPressEnd={() => {
                   setIndexOfPressedCard(undefined);
                 }}
-                className="h-[150px] w-full bg-cover bg-center p-2 bg-blend-darken"
+                className="h-[175px] w-full bg-cover bg-center p-2 bg-blend-darken"
                 shadow={"sm"}
                 onPress={() => {
                   console.log(11);
                 }}
                 style={{
                   backgroundColor:
-                    i == indexOfPressedCard ? "#00000090" : "#00000075",
+                    i == indexOfPressedCard ? "#00000095" : "#00000050",
                   backgroundImage:
                     i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
                 }}
@@ -339,7 +338,7 @@ export default function Home() {
                 <CardBody
                   className={`text-balance ${
                     i == indexOfPressedCard ? "text-right" : "text-left"
-                  } gap-1 break-keep leading-snug`}
+                  } gap-2 break-keep leading-snug flex flex-col justify-center`}
                 >
                   <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-yellow-600"}`}>
                     {i == indexOfPressedCard
@@ -362,8 +361,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 핵심기능 */}
-      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
+      {/* 핵심 기능 */}
+      <div className="mx-auto flex h-fit max-w-[1200px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -390,8 +389,7 @@ export default function Home() {
               ? { gap: "20px" }
               : {
                   display: "grid",
-                  // gridTemplateAreas: `"a b" "c d"`,
-                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gridTemplateColumns: "1fr 1fr 1fr 1fr",
                   gridTemplateRows: "1fr",
                   gap: "20px",
                 }
@@ -420,6 +418,13 @@ export default function Home() {
                 "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
               bgImg: "/images/bg-llm.jpeg",
             },
+            {
+              title:
+                "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+              tappedTitle:
+                "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+              bgImg: "/images/bg-llm.jpeg",
+            },
           ].map((content, i) => {
             return (
               <Card
@@ -438,7 +443,7 @@ export default function Home() {
                 }}
                 style={{
                   backgroundColor:
-                    i == indexOfPressedCard ? "#00000095" : "#00000050",
+                    i == indexOfPressedCard ? "#00000015" : "#00000075",
                   backgroundImage:
                     i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
                 }}
@@ -450,8 +455,8 @@ export default function Home() {
                 >
                   <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-red-600"}`}>
                     {i == indexOfPressedCard
-                      ? `핵심기능 ${i + 1}`
-                      : `서비스 개발 배경 ${i + 1}`}
+                      ? ``
+                      : `핵심기능 <${i + 1}>`}
                   </p>
                   <p
                     className={`leading-relaxed text-white ${
@@ -459,7 +464,7 @@ export default function Home() {
                     }`}
                   >
                     {i == indexOfPressedCard
-                      ? content.tappedTitle
+                      ? ""
                       : content.title}
                   </p>
                 </CardBody>
