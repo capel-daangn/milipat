@@ -7,7 +7,6 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Divider,
 } from "@nextui-org/react";
 import {
   Lottie3DModel,
@@ -22,7 +21,7 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/components/layout/footer";
-import { IconBadge, IconLogo, IconSign } from "@/components/common/icons";
+import { IconBadge, IconLogo, IconPerson, IconVoice } from "@/components/common/icons";
 import { IconChart, IconLike, IconLock } from "@/components/common/icons";
 import {
   Chart as ChartJS,
@@ -73,7 +72,7 @@ export default function Home() {
   return (
     <section className="mx-auto h-full min-h-full w-screen select-none overflow-x-clip">
       {/* 1. 프로젝트 소개  */}
-      <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-pattern.jpg')] bg-cover bg-center">
+      <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/index/background-pattern.jpg')] bg-cover bg-center">
         <div className="z-20 flex w-full flex-col items-center justify-center space-y-4">
           {/* 소개 텍스트 */}
           <div className="flex w-full flex-col items-center justify-center gap-2">
@@ -157,34 +156,7 @@ export default function Home() {
         </video> */}
       </div>
 
-      {/* 2. 개발배경 소개  */}
-      {/* <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[url('../../public/images/background-fk-21-2.jpeg')] bg-cover bg-center">
-        <div className="flex w-full flex-col items-center justify-center space-y-4">
-          <div
-            data-aos={"fade-in"}
-            data-aos-duration="500"
-            className="flex flex-col items-center justify-center space-y-4"
-          >
-            <p
-              className={`${
-                mobile ? "text-xl" : "text-2xl"
-              } select-none font-bold text-white`}
-            >
-              미래기술강군으로 도약하기 위한 디딤돌
-            </p>
-            <p
-              className={`${
-                mobile ? "w-[80%] text-sm" : "text-md"
-              } select-none text-center text-white`}
-            >
-              신속하고 정확한 특허 검색, 통합된 분석 솔루션으로 양질의 특허자산
-              확보를 유도
-            </p>
-          </div>
-        </div>
-      </div> */}
-
-      {/* 3. 사명 */}
+      {/* 2. 사명 */}
       <div className="flex h-[400px] flex-col items-center justify-center gap-8 pt-48">
         <p
           data-aos="fade-in"
@@ -196,15 +168,15 @@ export default function Home() {
         </p>
       </div>
 
-      {/* 이야기  */}
-      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
+      {/* 3. 사용자 인터뷰  */}
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
           className="flex flex-col items-center justify-center space-y-8"
         >
           <div className="flex flex-col items-center justify-center gap-1">
-            <IconLock width={20}></IconLock>
+            <IconPerson width={25}></IconPerson>
             <p className="text-tiny">사용자 인터뷰</p>
           </div>
           <p className="select-none text-center text-3xl font-bold">
@@ -221,35 +193,46 @@ export default function Home() {
           className="flex h-fit w-full flex-col gap-4"
         >
           <HorizontalSlider
+            textColor={'#ffffff'}
             width={300}
-            height={300}
-            backgroundColor="#00000050"
+            height={250}
+            backgroundColor="#00000030"
             content={[
               {
-                title: "육군종합정비창",
-                text: "K1A1 전차 종합 정비",
-                bgImgSrc: "/images/thumbnail/engineer.png",
-                tags: ["정비"],
+                title: "[단독]'한국형 패트리엇' 천궁-Ⅱ, 이라크에 수출한다…최소 3.5조원",
+                text: "한국과 이라크가 국산 탄도탄 요격미사일 체계인 '천궁-Ⅱ'(M-SAM2) 도입 협상을 진행하고 있는 것으로 확인됐다. 천궁-Ⅱ 수출이 이뤄지면 2022년 1월 UAE(아랍에미리트), 지난 2월 사우디아라비아에 이어 이라크가 세 번째다. 수출 규모는 천궁-Ⅱ 8개 포대로 최소 3조5000억원 수준으로 알려졌다.",
+                bgImgSrc: "/images/index/new_1.jpg",
+                tags: ["방산수출", "미사일"],
+                link: "https://news.mt.co.kr/mtview.php?no=2024052913101015077"
               },
               {
-                title: "육군1사단 기동정비반",
-                text: "파손된 차량의 엔진 교체 작업 중",
-                bgImgSrc: "/images/thumbnail/engineer1.jpg",
-                tags: ["기동정비반"],
+                title: "한화, '기회의땅' 루마니아 방산전시회 첫 참가…레드백 실물전시",
+                text: "한화에어로스페이스(012450)는 22~24일 루마니아 부쿠레슈티에서 열리는 방산전시회 'BSDA 2024'에 참가해 루마니아와 유럽 잠재 고객을 대상으로 마케팅에 나선다고 22일 밝혔다. BSDA는 루마니아 국방부가 주최하고 약 400개 기업이 참가하는 방산우주항공 전시회로, 한화에어로스페이스는 이번에 처음으로 참가했다.",
+                bgImgSrc: "/images/index/new_2.png",
+                tags: ["레드백", "장갑차", "한화"],
+                link: "https://www.news1.kr/articles/5422936"
               },
               {
-                title: "육군종합정비창",
-                text: "인터뷰 내용",
-                bgImgSrc: "/images/thumbnail/engineer2.jpg",
-                tags: ["정비"],
+                title: "작년 폴란드에 1.5조원 방산수출…무역흑자 5위국 올라",
+                text: "한국이 '방산 잭폿' 계약을 바탕으로 지난해 폴란드에 경공격기 FA-50, K-9 자주포 등 1조5천억원 이상 규모의 방산 수출을 한 것으로 나타났다. 기존 주력 상품인 이차전지 양극재에 대규모 방산 수출까지 더해지면서 폴란드는 미국, 베트남, 홍콩, 인도에 이어 단숨에 한국의 5위 무역수지 흑자국으로 떠올랐다.",
+                bgImgSrc: "/images/index/new_3.png",
+                tags: ["무역흑자", "방산수출"],
+                link: "https://news.mt.co.kr/mtview.php?no=2024052913101015077"
+              },
+              {
+                title: "\'K방산\' 희소식…폴란드 이어 루마니아도 ‘한국무기 쇼핑’ 가시권",
+                text: "한국 방산업계가 러시아·우크라이나 전쟁과 중동 분쟁으로 불안해진 국제정세 속에서 수출 영토를 넓히고 있다. 한반도 긴장이 길어지며 한국군의 실기동 훈련과 대비 태세가 강화된 것도 역설적으로 K방산의 신뢰도를 높였다.",
+                bgImgSrc: "/images/index/new_4.png",
+                tags: ["국산무기", "루마니아", "K9자주포"],
+                link: "https://news.mt.co.kr/mtview.php?no=2024052913101015077"
               },
             ]}
           ></HorizontalSlider>
         </div>
       </div>
 
-      {/* 목적 */}
-      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
+      {/* 4. 목적 */}
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -289,33 +272,36 @@ export default function Home() {
                 "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
               tappedTitle:
                 "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
-              bgImg: "/images/background-k9.jpeg",
+              bgImg: "/images/index/background-k9.jpeg",
             },
             {
               title:
                 "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
               tappedTitle:
                 "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
-              bgImg: "/images/background-fk-21.jpeg",
+              bgImg: "/images/index/background-fk-21.jpeg",
             },
             {
               title:
                 "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
               tappedTitle:
                 "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
-              bgImg: "/images/background-fk-21-1.jpeg",
+              bgImg: "/images/index/background-heli.png",
             },
             {
               title:
                 '대한민국 방산사업은 현 정부의 핵심 사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 설정함.',
               tappedTitle:
                 "연구 및 개발에 필요한 지적재산권 정보에 신속하게 접근하여, 장래에 양질의 방산 분야 특허 출원을 유도할 수 있음.",
-              bgImg: "/images/background-fk-21-2.jpeg",
+              bgImg: "/images/index/background-fk-21-2.jpeg",
             },
           ].map((content, i) => {
             return (
               <Card
                 key={i}
+                data-aos={"fade-up"}
+                data-aos-duration="1000"
+                data-aos-id={`super-duper`}
                 isPressable
                 onPressStart={(e) => {
                   setIndexOfPressedCard(i);
@@ -323,14 +309,14 @@ export default function Home() {
                 onPressEnd={() => {
                   setIndexOfPressedCard(undefined);
                 }}
-                className="h-[175px] w-full bg-cover bg-center p-2 bg-blend-darken"
+                className="h-[180px] w-full bg-cover bg-center p-2 bg-blend-darken"
                 shadow={"sm"}
                 onPress={() => {
                   console.log(11);
                 }}
                 style={{
                   backgroundColor:
-                    i == indexOfPressedCard ? "#00000095" : "#00000050",
+                    i == indexOfPressedCard ? "#00000099" : "#00000050",
                   backgroundImage:
                     i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
                 }}
@@ -340,7 +326,7 @@ export default function Home() {
                     i == indexOfPressedCard ? "text-right" : "text-left"
                   } gap-2 break-keep leading-snug flex flex-col justify-center`}
                 >
-                  <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-yellow-600"}`}>
+                  <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-orange-600" : "bg-teal-600"}`}>
                     {i == indexOfPressedCard
                       ? `서비스 기대 효과 ${i + 1}`
                       : `서비스 개발 배경 ${i + 1}`}
@@ -361,7 +347,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 핵심 기능 */}
+      {/* 5. 핵심 기능 */}
       <div className="mx-auto flex h-fit max-w-[1200px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
@@ -401,34 +387,40 @@ export default function Home() {
                 "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
               tappedTitle:
                 "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
-              bgImg: "/images/bg-home.jpeg",
-              // text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
+              bgImg: "/images/index/bg-home.jpeg",
             },
             {
               title:
                 "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
               tappedTitle:
                 "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
-              bgImg: "/images/bg-chart.jpeg",
+              bgImg: "/images/index/bg-chart.jpeg",
             },
             {
               title:
                 "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
               tappedTitle:
                 "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
-              bgImg: "/images/bg-llm.jpeg",
+              bgImg: "/images/index/bg-llm.jpeg",
             },
             {
               title:
                 "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
               tappedTitle:
                 "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
-              bgImg: "/images/bg-llm.jpeg",
+              bgImg: "/images/index/bg-llm.jpeg",
             },
           ].map((content, i) => {
             return (
               <Card
-                key={i}
+
+              key={i}
+              data-aos={"fade-up"}
+              data-aos-duration="1000"
+              data-aos-id={`super-duper`}
+              // className="h-full w-full py-4"
+              // shadow={"none"}
+                // key={i}
                 isPressable
                 onPressStart={(e) => {
                   setIndexOfPressedCard(i);
@@ -437,13 +429,13 @@ export default function Home() {
                   setIndexOfPressedCard(undefined);
                 }}
                 className="h-[400px] w-full bg-cover bg-center p-2 bg-blend-darken drop-shadow-xl shadow-black"
-                shadow={"sm"}
+                shadow={"lg"}
                 onPress={() => {
                   console.log(11);
                 }}
                 style={{
                   backgroundColor:
-                    i == indexOfPressedCard ? "#00000015" : "#00000075",
+                    i == indexOfPressedCard ? "#00000015" : "#00000099",
                   backgroundImage:
                     i == indexOfPressedCard ? `url('${content.bgImg}` : `url('${content.bgImg}')`,
                 }}
@@ -456,7 +448,7 @@ export default function Home() {
                   <p className={`whitespace-pre-line break-keep font-bold leading-relaxed text-white w-fit px-2 ${i == indexOfPressedCard ? "bg-sky-600" : "bg-red-600"}`}>
                     {i == indexOfPressedCard
                       ? ``
-                      : `핵심기능 <${i + 1}>`}
+                      : `핵심기능 ${i + 1}`}
                   </p>
                   <p
                     className={`leading-relaxed text-white ${
@@ -475,7 +467,7 @@ export default function Home() {
       </div>
 
       {/* 1. 차별화 포인트 - 놀라운 성능 */}
-      <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -494,7 +486,7 @@ export default function Home() {
           </p>
         </div>
         <div
-          className="mx-auto flex w-full flex-col gap-4 px-4"
+          className={`mx-auto w-full flex-col px-4 ${mobile ? "flex gap-4" : "grid grid-cols-2 gap-8"}`}
         >
           {[
             {
@@ -583,7 +575,7 @@ export default function Home() {
       </div>
 
       {/* 2. 차별화 포인트 - 강력한 보안 */}
-      <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -602,24 +594,11 @@ export default function Home() {
           </p>
         </div>
         <div
-          className="flex flex-col gap-4 px-8"
-          // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
-          // style={
-          //   mobile
-          //     ? { gap: "20px" }
-          //     : {
-          //         display: "grid",
-          //         gridTemplateAreas: `"a b" "c d"`,
-          //         gridTemplateColumns: "1fr 1fr",
-          //         gridTemplateRows: "1fr",
-          //         gap: "20px",
-          //       }
-          // }
+        className={`mx-auto w-full flex-col px-4 ${mobile ? "flex gap-4" : "grid grid-cols-2 gap-8"}`}
         >
           {[
             {
               title: "개발자도구 감지 및 차단 장치로 소스코드 유출 방지",
-              // gridArea: "a",
               img: (
                 <Image
                   src={"/images/index/devtool_detection.png"}
@@ -633,7 +612,6 @@ export default function Home() {
             },
             {
               title: "적대적 프롬프트 주입 공격을 필터링하는 sLLM 에이전트",
-              // gridArea: "a",
               img: (
                 <Image
                   src={"/images/index/defensive_agent.png"}
@@ -676,7 +654,7 @@ export default function Home() {
       </div>
 
       {/* 3. 차별화 포인트 - 직관적인  */}
-      <div className="mx-auto flex h-fit max-w-[600px] flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -695,19 +673,7 @@ export default function Home() {
           </p>
         </div>
         <div
-          className="flex flex-col gap-4 px-8"
-          // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
-          // style={
-          //   mobile
-          //     ? { gap: "20px" }
-          //     : {
-          //         display: "grid",
-          //         gridTemplateAreas: `"a b" "c d"`,
-          //         gridTemplateColumns: "1fr 1fr",
-          //         gridTemplateRows: "1fr",
-          //         gap: "20px",
-          //       }
-          // }
+        className={`mx-auto w-full flex-col px-4 ${mobile ? "flex gap-4" : "grid grid-cols-2 gap-8"}`}
         >
           {[
             {
@@ -764,14 +730,14 @@ export default function Home() {
       </div>
 
       {/* 추가 기술 설명  */}
-      <div className="mx-auto flex h-fit max-w-[800px] flex-col items-center justify-center gap-8 pt-48">
+      <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
           className="flex flex-col items-center justify-center space-y-8"
         >
           <p className="select-none text-center text-3xl font-bold leading-snug">
-            밀리팻에 숨겨진<br></br>또다른 놀라운 기술들
+            MiliPat에 숨겨진<br></br>또다른 놀라운 기술들
           </p>
         </div>
         <div
@@ -780,6 +746,7 @@ export default function Home() {
           className="flex h-fit w-full flex-col gap-4"
         >
           <HorizontalSlider
+            textColor={'#000000'}
             width={300}
             height={200}
             backgroundColor="#fefefe"
@@ -824,7 +791,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <Footer isFixed></Footer>
+      <Footer isFixed title={"MiliPat"} subtitle={"2024년 국방 공공데이터 활용 경진대회"}></Footer>
     </section>
   );
 }

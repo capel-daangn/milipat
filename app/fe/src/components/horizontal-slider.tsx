@@ -5,7 +5,7 @@ export default function HorizontalSlider(props: any) {
     <div className="grid w-full flex-col gap-1">
       {props.isHeaderVisible && (
         <div className="flex w-full flex-row items-center justify-between">
-          <p className="px-4 text-lg font-bold text-black">{props.title}</p>
+          <p className="px-4 text-lg font-bold ">{props.title}</p>
           <Button
             variant={"light"}
             disableRipple
@@ -21,7 +21,7 @@ export default function HorizontalSlider(props: any) {
           {props.content.map((e: any, i: any) => {
             return (
               <Card
-                // isPressable
+                isPressable
                 key={i}
                 className={`shadow-black-90 rounded-lg border-1 bg-center p-4 bg-blend-darken shadow-md`}
                 style={{
@@ -29,17 +29,18 @@ export default function HorizontalSlider(props: any) {
                   width: props.width + "px",
                   height: props.height + "px",
                   backgroundImage: `url('${e.bgImgSrc}')`,
+                  color:props.textColor
                 }}
-                // onPress={() => {
-                  // window.open("/workspace");
-                // }}
+                onPress={() => {
+                    window.open(e.link);
+                }}
               >
                 <div className="flex h-full w-full flex-col items-start justify-between gap-2">
                   <div className="flex flex-col gap-2">
                     <p
                       className={`${
                         props.height >= 200 ? "text-xl" : "text-md"
-                      } text-pretty w-full whitespace-normal text-start font-bold text-black`}
+                      } text-pretty w-full whitespace-normal text-start font-bold `}
                     >
                       {e.title}
                     </p>
@@ -50,6 +51,7 @@ export default function HorizontalSlider(props: any) {
                             key={i}
                             variant={"solid"}
                             radius={"sm"}
+                            size={'sm'}
                             className="opacity-75"
                           >
                             #{e}
@@ -58,7 +60,7 @@ export default function HorizontalSlider(props: any) {
                       </div>
                     )}
                   </div>
-                  <p className="text-pretty text-md line-clamp-3 w-full whitespace-normal text-start text-black">
+                  <p className="text-pretty text-sm line-clamp-4 w-full whitespace-normal text-start ">
                     {e.text}
                   </p>
                   {e?.badge && e?.badge != null && (

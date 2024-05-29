@@ -4,12 +4,11 @@ import {
   Button,
   ButtonGroup,
   Card,
-  Chip,
-  CircularProgress,
-  Pagination,
   Accordion,
   AccordionItem,
+  Pagination,
   Tabs,
+  CircularProgress,
   Tab,
 } from "@nextui-org/react";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -21,16 +20,15 @@ import { scaleOrdinal } from "d3-scale";
 import { schemeCategory10 } from "d3-scale-chromatic";
 import { Radar } from "react-chartjs-2";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url,
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/build/pdf.worker.min.js",
+//   import.meta.url,
+// ).toString();
 
 import dynamic from "next/dynamic";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import TextBubble from "@/components/text-bubble";
-import FooterTray from "@/components/common/footer-tray";
-import { useQuery } from "@tanstack/react-query";
+
 import {
   Chart,
   RadialLinearScale,
@@ -39,13 +37,11 @@ import {
   ArcElement,
 } from "chart.js";
 import ThreeRender from "@/components/3d-render";
-import { usePathname, useSearchParams } from "next/navigation";
-
-// import ChartNetwork from "@/components/chart/network-chart";
-
-// const DynamicComponentWithNoSSR = dynamic(() => import("./Chart"), {
-//   ssr: false,
-// });
+import { useSearchParams } from "next/navigation";
+import FooterTray from "@/components/common/footer-tray";
+import { IconBack, IconChat } from "@/components/common/icons";
+import PdfRender from "@/components/pdf-render";
+import { usePdfTextSearch } from "@/hooks/usePdfTextSearch";
 
 const ChartNetworkComponent = dynamic(
   () => import("../../../components/chart/network-chart"),
@@ -53,9 +49,7 @@ const ChartNetworkComponent = dynamic(
     ssr: false,
   },
 );
-
 Chart.register(RadialLinearScale, PointElement, LineElement, ArcElement);
-
 const TldrawComponent = dynamic(
   () => import("../../../components/tldraw-component"),
   {
@@ -64,15 +58,11 @@ const TldrawComponent = dynamic(
 );
 
 export default function DetailPage(props: any): any {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [type, setType] = useState<string | null>("patent");
 
   useEffect(() => {
-    // console.log(pathname);
-    console.log(searchParams.get("type"));
-
     if (searchParams.get("type") && searchParams.get("type") != undefined) {
       setType(searchParams.get("type"));
     }
@@ -81,12 +71,15 @@ export default function DetailPage(props: any): any {
   //
   const [numPages, setNumPages] = useState<any>();
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [isLoaded, setisLoaded] = useState(false);
+  // const [isLoaded, setisLoaded] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [scale, setScale] = useState<number>(1.25);
   const [indexOfTab, setIndexOfTab] = useState<string>("chatbot");
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const checkResize = () => {
@@ -98,11 +91,6 @@ export default function DetailPage(props: any): any {
     };
     checkResize();
   }, [isMobile]);
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-    setisLoaded(true);
-  }
 
   return (
     <section
@@ -171,30 +159,136 @@ export default function DetailPage(props: any): any {
         <Card
           shadow={"none"}
           radius={"none"}
-          className="relative row-span-2 flex aspect-square h-full min-h-full w-full flex-col items-center justify-center border-1"
+          className="relative row-span-2 flex aspect-square overflow-scroll border-1"
         >
           {type == "patent" ? (
             <>
-              <Document
-                file={"/sample.pdf"}
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={
-                  <div className="flex h-[500px] w-full flex-col items-center justify-center">
-                    <CircularProgress></CircularProgress>
+              <PdfRender
+                searchText={searchText}
+                pageNumber={pageNumber}
+                scale={scale}
+              ></PdfRender>
+              {isSidebarVisible ? (
+                <div className="absolute left-0 top-0 z-20 flex h-full w-[300px] flex-col items-start justify-start gap-2 border-r-1 bg-white p-4 drop-shadow-md">
+                  <div className="flex h-fit w-full flex-row items-center justify-between">
+                    <div className="flex flex-row gap-1 bg-primary-500 px-3 py-1">
+                      <IconChat width={20}></IconChat>
+                      <p className="text-md select-none font-bold">AI 책갈피</p>
+                    </div>
+                    <Button
+                      className="rounded-none"
+                      isIconOnly
+                      variant={"flat"}
+                      size={"sm"}
+                      onPress={() => {
+                        setIsSidebarVisible(false);
+                      }}
+                    >
+                      <IconBack></IconBack>
+                    </Button>
                   </div>
-                }
-                className={
-                  "flex h-full w-full flex-col items-center overflow-auto overflow-x-auto"
-                }
-              >
-                {/* {Array.from({ length: numPages }, (v, i) => i + 1).map(
-                  (e, i) => {
-                    return <Page pageNumber={e} scale={scale} />;
-                  },
-                )} */}
-                <Page pageNumber={pageNumber} scale={scale} />;
-              </Document>
-              <div className="absolute top-0 z-10 flex w-full flex-col items-center justify-center py-2">
+                  <Card
+                    className="h-fit w-full select-none rounded-none bg-primary-300 p-2 text-sm"
+                    shadow={"none"}
+                  >
+                    AI 책갈피 기능은 특허 문서를 분석하여 주요한 원문 문장을
+                    표시해주는 기능입니다.
+                  </Card>
+                  <Accordion>
+                    {[
+                      {
+                        title: "요약",
+                        contents: [
+                          {
+                            text: "발명 내용",
+                            sentence:
+                              "본 발명은 소형으로 제작하여 용이하게 휴대할 수 있고, 신속하게 사용할 수 있으며, 근거리의 적군뿐만 아니라 일정 거리 이상의 적군 측으로 날려 정밀 공격할 수 있는 휴대형 드론 폭탄 장치에 관한 것",
+                          },
+                        ],
+                      },
+                      {
+                        title: "청구범위",
+                        contents: [
+                          {
+                            text: "청구항 1",
+                            sentence:
+                              "본 발명에 따르면, 장치 하우징; 상기 장치 하우징에 구비되는 회전 모터; 상기 장치 하우징의 상단부에서 상기 회전 모터의 회전축에 연결되어 구비되는 로터 모듈; 상기 장치 하우징에 구비되며, 하기 제어 모듈의 제어 신호의 의해 기폭하여 폭발하는 신관 어셈블리 모듈을 포함하는 살상 수단; 상기 장치 하우징에 구비되어 영상을 촬영하도록 구성되는 짐벌 카메라 모듈; 상기 회전 모터와 신관 어셈블리 모듈 및 짐벌 카메라 모듈에 대한 작동 전원의 공급 및 동작을 제어하는 제어 모듈; 및 상기 장치 하우징에 구비되며, 상기 제어 모듈에 전력을 공급하는 배터리 모듈;을 포함하는 것을 특징으로 하는 휴대형 군사용 드론 폭탄 장치가 제공된다.",
+                          },
+                        ],
+                      },
+                      {
+                        title: "발명의 설명",
+                        contents: [
+                          {
+                            text: "기술분야",
+                            sentence:
+                              "본 발명은 소형으로 제작하여 용이하게 휴대할 수 있고, 신속하게 사용할 수 있으며, 근거리의 적군뿐만 아니라 일정 거리 이상의 적군 측으로 날려 정밀 공격할 수 있는 휴대형 드론 폭탄 장치에 관한 것이다.",
+                          },
+                          {
+                            text: "배경기술",
+                            sentence:
+                              "본 발명은 소형으로 제작하여 용이하게 휴대할 수 있고, 신속하게 사용할 수 있으며, 근거리의 적군뿐만 아니라 일정 거리 이상의 적군 측으로 날려 정밀 공격할 수 있는 휴대형 드론 폭탄 장치에 관한 것이다.",
+                          },
+                          {
+                            text: "발명의 효과",
+                            sentence:
+                              "본 발명은 소형으로 제작하여 용이하게 휴대할 수 있고, 신속하게 사용할 수 있으며, 근거리의 적군뿐만 아니라 일정 거리 이상의 적군 측으로 날려 정밀 공격할 수 있는 휴대형 드론 폭탄 장치에 관한 것이다.",
+                          },
+                        ],
+                      },
+                    ].map((e, i) => {
+                      return (
+                        <AccordionItem
+                          key={i + 1}
+                          aria-label={e.title}
+                          title={e.title}
+                          classNames={{
+                            title: "text-md",
+                            content: "text-sm pl-2",
+                          }}
+                        >
+                          <div className="flex flex-col gap-1">
+                            {e.contents.map((c, i) => {
+                              return (
+                                <Button
+                                  onPress={() => {
+                                    setSearchText(c.sentence);
+                                  }}
+                                  key={i}
+                                  isIconOnly
+                                  variant={"light"}
+                                  className="w-fit px-2"
+                                  disableRipple={true}
+                                  disableAnimation={true}
+                                >
+                                  {c.text}
+                                </Button>
+                              );
+                            })}
+                          </div>
+                        </AccordionItem>
+                      );
+                    })}
+                  </Accordion>
+                </div>
+              ) : (
+                <div className="absolute left-4 top-4 z-20 flex h-fit w-fit">
+                  <div>
+                    <Button
+                      className="rotate-180 rounded-none"
+                      isIconOnly
+                      variant={"flat"}
+                      size={"sm"}
+                      onPress={() => {
+                        setIsSidebarVisible(true);
+                      }}
+                    >
+                      <IconBack></IconBack>
+                    </Button>
+                  </div>
+                </div>
+              )}
+              <div className="absolute bottom-4 z-10 flex w-full flex-col items-center justify-center py-2">
                 <ButtonGroup color={"default"} variant={"flat"} radius={"none"}>
                   <Button
                     isIconOnly
@@ -224,7 +318,7 @@ export default function DetailPage(props: any): any {
                   </Button>
                 </ButtonGroup>
               </div>
-              <div className="absolute bottom-0 z-10 flex w-full flex-col items-center justify-center py-2">
+              {/* <div className="absolute bottom-0 z-10 flex w-full flex-col items-center justify-center py-2">
                 <Pagination
                   className="opacity-90"
                   loop
@@ -246,7 +340,7 @@ export default function DetailPage(props: any): any {
                   // }}
                   radius={"none"}
                 />
-              </div>
+              </div> */}
             </>
           ) : (
             <div className="h-full w-full overflow-clip">
@@ -267,11 +361,25 @@ export default function DetailPage(props: any): any {
         >
           <Tab key="chatbot" title="챗봇 탭"></Tab>
           <Tab key="analysis" title="분석 탭"></Tab>
+          <Tab key="memo" title="메모 탭"></Tab>
         </Tabs>
         {indexOfTab == "analysis" && <AnalysisView></AnalysisView>}
         {indexOfTab == "chatbot" && <ChatbotView></ChatbotView>}
+        {indexOfTab == "memo" && <MemoView></MemoView>}
       </div>
     </section>
+  );
+}
+
+function MemoView(props: any) {
+  return (
+    <Card
+      className="relative flex h-full w-full flex-col border-1"
+      radius={"none"}
+      shadow={"none"}
+    >
+      <TldrawComponent></TldrawComponent>
+    </Card>
   );
 }
 
@@ -294,10 +402,10 @@ function AnalysisView(props: any) {
     <div className={`flex h-full w-full gap-4`}>
       {/*  */}
       <Accordion
-        className="h-full"
+        className="h-full rounded-s-none border-1"
         defaultExpandedKeys={["1"]}
         fullWidth
-        variant={"shadow"}
+        variant={"bordered"}
         keepContentMounted
       >
         <AccordionItem
