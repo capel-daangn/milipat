@@ -35,7 +35,7 @@ export default function Home() {
         gridTemplateRows: mobile ? "1fr 1fr" : "1fr",
       }}
     >
-      <div className="flex h-full w-full flex-col bg-[url('../../public/images/background-development.jpg')] bg-cover bg-center"></div>
+      <div className="flex h-full w-full flex-col bg-[url('../../public/images/index/background-development.jpg')] bg-cover bg-center"></div>
       <Card
         className={`flex h-full max-h-fit w-full flex-col bg-primary-50 px-4 pb-8 ${
           mobile ? "" : ""

@@ -6,7 +6,7 @@ import {
   IconChat,
   IconHome,
   IconPerson,
-  IconPhone,
+  // IconPhone,
 } from "@/components/common/icons";
 import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
@@ -112,13 +112,13 @@ export default function FooterTray(props: any) {
               },
               icon: <IconChat height={25} fill="#fff"></IconChat>,
             },
-            {
-              text: "예약관리",
-              onPress: async () => {
-                await props.setIndexOfView(() => 3);
-              },
-              icon: <IconPhone height={25} fill="#000"></IconPhone>,
-            },
+            // {
+            //   text: "예약관리",
+            //   onPress: async () => {
+            //     await props.setIndexOfView(() => 3);
+            //   },
+            //   icon: <IconPhone height={25} fill="#000"></IconPhone>,
+            // },
             {
               text: "내 정보",
               onPress: async () => {
