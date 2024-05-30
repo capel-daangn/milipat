@@ -262,7 +262,11 @@ export default function Home() {
               격동하는 세계 속에서,<br></br>나아가는 대한민국 방산
             </p>
             <p className="select-none text-center">
-              아래 카드를 하나씩 탭하여 자세히 살펴보기
+              MiliPat은 대한민국 방위사업의 성장과 더불어<br></br>오늘날 시대적
+              상황의 속에서 영감을 얻었습니다.
+            </p>
+            <p className="select-none text-center text-sm">
+              * 아래 카드를 하나씩 탭하여 자세히 살펴보기
             </p>
           </div>
           <div
@@ -288,27 +292,31 @@ export default function Home() {
                   "최근 발생한 군사분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
                 tappedTitle:
                   "방산 특허의 AI 분석으로 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
-                bgImg: "/images/index/background-k9.jpeg",
+                keword: "군사적 충돌",
+                bgImg: "/images/index/background-war.jpg",
               },
               {
                 title:
                   "독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
                 tappedTitle:
                   "기확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
-                bgImg: "/images/index/background-fk-21.jpeg",
+                keword: "방위비 증액",
+                bgImg: "/images/index/background-money.jpg",
               },
               {
                 title:
-                  "대한민국 주요 방산수출 품목(K9 자주포 등)은 최점단 기술집약 장비이므로, 지적재산권의 확보 및 보호가 필수적임.",
+                  "대한민국 주요 방산수출 품목은 최점단 기술집약 장비이므로, 지적재산권의 확보 및 보호가 필수적임.",
                 tappedTitle:
                   "미래 전장에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+                keword: "기술 집약 산업",
                 bgImg: "/images/index/background-heli.png",
               },
               {
                 title:
-                  '대한민국 방산사업은 정부의 핵심사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 함.',
+                  '방산사업은 정부의 핵심사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 함.',
                 tappedTitle:
                   "연구 및 개발에 필요한 정보에 신속하게 접근하여, 양질의 방산특허 출원을 유도할 수 있음.",
+                keword: "국가 핵심 사업",
                 bgImg: "/images/index/background-fk-21-2.jpeg",
               },
             ].map((content, i) => {
@@ -326,14 +334,14 @@ export default function Home() {
                   onPressEnd={() => {
                     setIndexOfPressedCard(undefined);
                   }}
-                  className="h-[250px] w-full bg-cover bg-center px-2 py-1 bg-blend-darken"
+                  className="h-[270px] w-full bg-cover bg-center p-1 bg-blend-darken"
                   shadow={"sm"}
                   onPress={() => {
                     console.log(11);
                   }}
                   style={{
                     backgroundColor:
-                      i == indexOfPressedCard ? "#00000099" : "#00000099",
+                      i == indexOfPressedCard ? "#00000099" : "#00000025",
                     backgroundImage:
                       i == indexOfPressedCard
                         ? `url('${content.bgImg}`
@@ -341,41 +349,45 @@ export default function Home() {
                   }}
                 >
                   <CardBody
-                    className={`text-balance ${"items-start"} flex w-full flex-col justify-center gap-2 break-keep leading-snug`}
+                    className={`text-balance ${"items-center"} flex w-full flex-col justify-center gap-4 break-keep leading-snug`}
                   >
                     {i == indexOfPressedCard ? (
                       <>
-                        <p
-                          className={`w-fit whitespace-pre-line break-keep bg-teal-600 px-2 font-bold leading-relaxed text-white`}
-                        >
-                          서비스 개발 배경 {i + 1}
-                        </p>
-                        <p
-                          className={`font-bold leading-relaxed text-white ${
-                            i == indexOfPressedCard ? "text-right" : ""
-                          }`}
-                        >
-                          {content.title}
-                        </p>
-                        <p
-                          className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
-                            i == indexOfPressedCard
-                              ? "bg-orange-600"
-                              : "bg-teal-600"
-                          }`}
-                        >
-                          서비스 기대 효과 {i + 1}
-                        </p>
-                        <p
-                          className={`font-bold leading-relaxed text-white ${
-                            i == indexOfPressedCard ? "text-right" : ""
-                          }`}
-                        >
-                          {content.tappedTitle}
-                        </p>
+                        <div className="flex flex-col items-start gap-1">
+                          <p
+                            className={`w-fit whitespace-pre-line break-keep bg-teal-600 px-2 font-bold leading-relaxed text-white`}
+                          >
+                            서비스 개발 배경 {i + 1}
+                          </p>
+                          <p
+                            className={`text-sm font-bold leading-relaxed text-white`}
+                          >
+                            {content.title}
+                          </p>
+                        </div>
+                        <div className="flex flex-col items-end gap-1">
+                          <p
+                            className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
+                              i == indexOfPressedCard
+                                ? "bg-orange-600"
+                                : "bg-teal-600"
+                            }`}
+                          >
+                            서비스 기대 효과 {i + 1}
+                          </p>
+                          <p
+                            className={`text-sm font-bold leading-relaxed text-white ${
+                              i == indexOfPressedCard ? "text-right" : ""
+                            }`}
+                          >
+                            {content.tappedTitle}
+                          </p>
+                        </div>
                       </>
                     ) : (
-                      <></>
+                      <p className="bg-black/75 px-2 py-1 text-2xl font-bold text-white">
+                        {content.keword}
+                      </p>
                     )}
                   </CardBody>
                 </Card>
@@ -458,15 +470,15 @@ export default function Home() {
                     setIndexOfPressedCard(undefined);
                   }}
                   className={`${
-                    mobile ? "h-[250px]" : "h-[400px]"
+                    mobile ? "h-[300px]" : "h-[400px]"
                   } w-full border-1 bg-cover bg-center bg-blend-darken shadow-black`}
                   shadow={"lg"}
                   onPress={() => {
                     console.log(11);
                   }}
                   style={{
-                    backgroundColor:
-                      i == indexOfPressedCard ? "#00000099" : "#00000025",
+                    // backgroundColor:
+                    //   i == indexOfPressedCard ? "#00000099" : "#00000025",
                     backgroundImage:
                       i == indexOfPressedCard
                         ? `url('${content.bgImg}`
@@ -492,7 +504,11 @@ export default function Home() {
                     </p>
                   </CardHeader>
                   <CardBody
-                    className={`text-balance flex flex-col justify-end gap-1 break-keep p-4 leading-snug`}
+                    className={`text-balance flex flex-col justify-end gap-1 break-keep p-4 leading-snug bg-blend-darken`}
+                    style={{
+                      backgroundColor:
+                        i == indexOfPressedCard ? "#00000099" : "#00000025",
+                    }}
                   >
                     <p className={`text-right leading-relaxed text-white`}>
                       {i == indexOfPressedCard ? content.tappedTitle : ""}
