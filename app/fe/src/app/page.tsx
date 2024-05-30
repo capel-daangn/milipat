@@ -562,7 +562,7 @@ export default function Home() {
                 img: (
                   <div className="flex h-[300px] w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
                     {isThreeModelVisible ? (
-                      <ThreeRender src={"/models/k9.glb"}></ThreeRender>
+                      <ThreeRender src={"/models/drone.glb"}></ThreeRender>
                     ) : (
                       <div className="flex flex-col items-center justify-center gap-4">
                         <Button

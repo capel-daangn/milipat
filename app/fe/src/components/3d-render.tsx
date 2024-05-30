@@ -9,7 +9,7 @@ import { Progress } from "@nextui-org/react";
 
 const Model = ({ url }: any) => {
   const { scene }: any = useGLTF(url);
-  return <Clone object={scene} scale={0.025} position={[35, -35, 35]} />;
+  return <Clone object={scene} scale={4} position={[0, 0, 0]} />;
 };
 
 export default function ThreeRender(props: any) {
