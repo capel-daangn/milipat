@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
 } from "@nextui-org/react";
 import {
@@ -59,10 +60,9 @@ export default function Home() {
   >(undefined);
 
   useEffect(() => {
-    toast("아래로 스크롤하기", {
+    toast.success("아래로 스크롤하기", {
       className: "font-bold text-sm",
-      position: "bottom-center",
-      duration: 5000,
+      // duration: 5000,
     });
     const checkResize = () => {
       if (isMobile) {
@@ -205,6 +205,7 @@ export default function Home() {
             className="flex h-fit w-full flex-col gap-4"
           >
             <HorizontalSlider
+              isPressable={true}
               textColor={"#ffffff"}
               width={300}
               height={250}
@@ -258,7 +259,7 @@ export default function Home() {
               <p className="text-tiny">개발 배경</p>
             </div>
             <p className="select-none text-center text-3xl font-bold leading-snug">
-              격동하는 국제 정세,<br></br>성장하는 대한민국 방산
+              격동하는 세계 속에서,<br></br>나아가는 대한민국 방산
             </p>
             <p className="select-none text-center">
               아래 카드를 하나씩 탭하여 자세히 살펴보기
@@ -267,7 +268,7 @@ export default function Home() {
           <div
             data-aos="fade-up"
             data-aos-duration="1500"
-            className="flex flex-col gap-4 px-8"
+            className="flex w-full flex-col gap-4 px-8"
             // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
             style={
               mobile
@@ -284,30 +285,30 @@ export default function Home() {
             {[
               {
                 title:
-                  "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
+                  "최근 발생한 군사분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
                 tappedTitle:
-                  "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
+                  "방산 특허의 AI 분석으로 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
                 bgImg: "/images/index/background-k9.jpeg",
               },
               {
                 title:
-                  "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
+                  "독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
                 tappedTitle:
-                  "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
+                  "기확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
                 bgImg: "/images/index/background-fk-21.jpeg",
               },
               {
                 title:
-                  "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+                  "대한민국 주요 방산수출 품목(K9 자주포 등)은 최점단 기술집약 장비이므로, 지적재산권의 확보 및 보호가 필수적임.",
                 tappedTitle:
-                  "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+                  "미래 전장에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
                 bgImg: "/images/index/background-heli.png",
               },
               {
                 title:
-                  '대한민국 방산사업은 현 정부의 핵심 사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 설정함.',
+                  '대한민국 방산사업은 정부의 핵심사업으로 2027년까지 "세계 4대 방산 강국"으로 도약하는 것을 목표로 함.',
                 tappedTitle:
-                  "연구 및 개발에 필요한 지적재산권 정보에 신속하게 접근하여, 장래에 양질의 방산 분야 특허 출원을 유도할 수 있음.",
+                  "연구 및 개발에 필요한 정보에 신속하게 접근하여, 양질의 방산특허 출원을 유도할 수 있음.",
                 bgImg: "/images/index/background-fk-21-2.jpeg",
               },
             ].map((content, i) => {
@@ -317,6 +318,7 @@ export default function Home() {
                   data-aos={"fade-up"}
                   data-aos-duration="1500"
                   data-aos-id={`super-duper`}
+                  data-aos-delay={mobile ? 0 : i * 200}
                   isPressable
                   onPressStart={(e) => {
                     setIndexOfPressedCard(i);
@@ -324,7 +326,7 @@ export default function Home() {
                   onPressEnd={() => {
                     setIndexOfPressedCard(undefined);
                   }}
-                  className="h-[150px] w-full bg-cover bg-center px-2 py-1 bg-blend-darken"
+                  className="h-[250px] w-full bg-cover bg-center px-2 py-1 bg-blend-darken"
                   shadow={"sm"}
                   onPress={() => {
                     console.log(11);
@@ -339,30 +341,42 @@ export default function Home() {
                   }}
                 >
                   <CardBody
-                    className={`text-balance ${
-                      i == indexOfPressedCard ? "items-end" : "items-start"
-                    } flex w-full flex-col justify-center gap-2 break-keep leading-snug`}
+                    className={`text-balance ${"items-start"} flex w-full flex-col justify-center gap-2 break-keep leading-snug`}
                   >
-                    <p
-                      className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
-                        i == indexOfPressedCard
-                          ? "bg-orange-600"
-                          : "bg-teal-600"
-                      }`}
-                    >
-                      {i == indexOfPressedCard
-                        ? `서비스 기대 효과 ${i + 1}`
-                        : `서비스 개발 배경 ${i + 1}`}
-                    </p>
-                    <p
-                      className={`font-bold leading-relaxed text-white ${
-                        i == indexOfPressedCard ? "text-right" : ""
-                      }`}
-                    >
-                      {i == indexOfPressedCard
-                        ? content.tappedTitle
-                        : content.title}
-                    </p>
+                    {i == indexOfPressedCard ? (
+                      <>
+                        <p
+                          className={`w-fit whitespace-pre-line break-keep bg-teal-600 px-2 font-bold leading-relaxed text-white`}
+                        >
+                          서비스 개발 배경 {i + 1}
+                        </p>
+                        <p
+                          className={`font-bold leading-relaxed text-white ${
+                            i == indexOfPressedCard ? "text-right" : ""
+                          }`}
+                        >
+                          {content.title}
+                        </p>
+                        <p
+                          className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
+                            i == indexOfPressedCard
+                              ? "bg-orange-600"
+                              : "bg-teal-600"
+                          }`}
+                        >
+                          서비스 기대 효과 {i + 1}
+                        </p>
+                        <p
+                          className={`font-bold leading-relaxed text-white ${
+                            i == indexOfPressedCard ? "text-right" : ""
+                          }`}
+                        >
+                          {content.tappedTitle}
+                        </p>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </CardBody>
                 </Card>
               );
@@ -382,7 +396,7 @@ export default function Home() {
               <p className="text-tiny">핵심 기능</p>
             </div>
             <p className="select-none text-center text-3xl font-bold leading-snug">
-              격동하는 국제 정세,<br></br>성장하는 대한민국 방산
+              인공지능으로 완성한,<br></br>MiliPat이 전달하는 가치
             </p>
             <p className="select-none text-center">
               아래 카드를 하나씩 탭하여 자세히 살펴보기
@@ -391,7 +405,7 @@ export default function Home() {
           <div
             data-aos="fade-up"
             data-aos-duration="1500"
-            className="flex flex-col gap-4 px-8"
+            className="flex w-full flex-col gap-4 px-8"
             style={
               mobile
                 ? { gap: "20px" }
@@ -405,31 +419,27 @@ export default function Home() {
           >
             {[
               {
-                title:
-                  "최근에 발생한 군사적 분쟁의 사례에서 방산 분야의 새로운 기술이 폭발적으로 등장하고 있음.",
+                title: "방산 특허 검색 기능",
                 tappedTitle:
-                  "국내외의 방산 특허의 AI 분석을 통해, 기술 동향을 예측하여, 국내 방산 기업의 기술 대응 능력을 강화할 수 있음.",
+                  "국내 방산 특허 뿐만 아니라 미국, 일본 등의 해외 방산 특허의 메타데이터를 검색하고 그 원문을 조회하는 기능을 제공합니다.",
                 bgImg: "/images/index/bg-home.jpeg",
               },
               {
-                title:
-                  "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+                title: "AI 요약 책갈피 기능",
                 tappedTitle:
-                  "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+                  "RAG 기법의 LLM 모델이 특허 데이터를 분석하여, 핵심적인 문장을 추출하고 하이라이트하여 사용자 편의성을 증강합니다.",
                 bgImg: "/images/index/bg-pdf.jpeg",
               },
               {
-                title:
-                  "이러한 국제 정세를 반영하여 독일, 노르웨이 등의 여러 국가가 최첨단 무기 도입 위해 국방예산을 증액하고 있음",
+                title: "AI 자동 시각화 기능",
                 tappedTitle:
-                  "이미 확보한 방산 분야 지적재산권을 효과적으로 활용하여, 글로벌 방산 시장에서 수출 경쟁력을 획득할 수 있음.",
+                  "시각화 인공지능이 특허 데이터를 전처리하고 산출한 결과값의 형태에 적절한 시각화 형태를 탐색하고 적절하게 표현합니다.",
                 bgImg: "/images/index/bg-chart.jpeg",
               },
               {
-                title:
-                  "대한민국 주력 방산 수출 품목(K9 자주포 등)은 최점단 기술이 집약된 장비이므로 지적재산권의 확보 및 보호가 필수적임.",
+                title: "RAG 챗봇 기능",
                 tappedTitle:
-                  "미래 전장의 기술에 대하여 지적재산권을 조기에 확보하여, 장래에 예상되는 특허 경쟁에서 우위를 선점할 수 있음.",
+                  "RAG 프로세스의 LLM 챗봇이 국방분야 공공데이터와 특허데이터를 기반으로 질의어에 적절한 응답을 반환합니다.",
                 bgImg: "/images/index/bg-llm.jpeg",
               },
             ].map((content, i) => {
@@ -439,9 +449,7 @@ export default function Home() {
                   data-aos={"fade-up"}
                   data-aos-duration="1500"
                   data-aos-id={`super-duper`}
-                  // className="h-full w-full py-4"
-                  // shadow={"none"}
-                  // key={i}
+                  data-aos-delay={mobile ? 0 : i * 200}
                   isPressable
                   onPressStart={(e) => {
                     setIndexOfPressedCard(i);
@@ -451,38 +459,43 @@ export default function Home() {
                   }}
                   className={`${
                     mobile ? "h-[250px]" : "h-[400px]"
-                  } w-full bg-cover bg-center p-2 bg-blend-darken shadow-black drop-shadow-xl`}
+                  } w-full border-1 bg-cover bg-center bg-blend-darken shadow-black`}
                   shadow={"lg"}
                   onPress={() => {
                     console.log(11);
                   }}
                   style={{
                     backgroundColor:
-                      i == indexOfPressedCard ? "#00000015" : "#00000099",
+                      i == indexOfPressedCard ? "#00000099" : "#00000025",
                     backgroundImage:
                       i == indexOfPressedCard
                         ? `url('${content.bgImg}`
                         : `url('${content.bgImg}')`,
                   }}
                 >
-                  <CardBody
-                    className={`text-balance ${
+                  <CardHeader
+                    className={`text-balance flex flex-row items-start ${
                       i == indexOfPressedCard ? "text-right" : "text-left"
-                    } gap-1 break-keep leading-snug`}
+                    } gap-2 break-keep bg-black/50 leading-snug`}
                   >
                     <p
-                      className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
-                        i == indexOfPressedCard ? "bg-sky-600" : "bg-red-600"
-                      }`}
+                      className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${"bg-red-600"}`}
                     >
-                      {i == indexOfPressedCard ? `` : `핵심기능 ${i + 1}`}
+                      {`핵심기능 ${i + 1}`}
                     </p>
                     <p
-                      className={`leading-relaxed text-white ${
+                      className={`font-bold leading-relaxed text-white ${
                         i == indexOfPressedCard ? "text-right" : ""
                       }`}
                     >
-                      {i == indexOfPressedCard ? "" : content.title}
+                      {content.title}
+                    </p>
+                  </CardHeader>
+                  <CardBody
+                    className={`text-balance flex flex-col justify-end gap-1 break-keep p-4 leading-snug`}
+                  >
+                    <p className={`text-right leading-relaxed text-white`}>
+                      {i == indexOfPressedCard ? content.tappedTitle : ""}
                     </p>
                   </CardBody>
                 </Card>
@@ -503,11 +516,11 @@ export default function Home() {
               <p className="text-tiny">차별화 포인트 1</p>
             </div>
             <p className="select-none text-3xl font-bold leading-snug">
-              최고의 분석력을 위한<br></br> 밀리팻의 놀라운 성능
+              최고의 분석력을 위한<br></br> MiliPat의 놀라운 성능
             </p>
             <p className="select-none text-center">
-              기술교범 계의 챗 GPT로 등장한 밀리팻은<br></br>뛰어난 성능에서부터
-              시작합니다.
+              다채로운 기술역량을 도입한 MiliPat은<br></br>그 뛰어난
+              성능에서부터 시작합니다.
             </p>
           </div>
           <div
@@ -531,7 +544,7 @@ export default function Home() {
                             backgroundColor: "#74AA9C80",
                           },
                           {
-                            label: "밀리팻 LLM",
+                            label: "MiliPat LLM",
                             data: [56.94, 59.05],
                             backgroundColor: "#1D4A8380",
                           },
@@ -588,6 +601,7 @@ export default function Home() {
                   data-aos={"fade-up"}
                   data-aos-duration="1500"
                   data-aos-id={`super-duper`}
+                  data-aos-delay={mobile ? 0 : i * 200}
                   className="h-full w-full py-4"
                   shadow={"none"}
                 >
@@ -617,10 +631,10 @@ export default function Home() {
               <p className="text-tiny">차별화 포인트 2</p>
             </div>
             <p className="select-none text-center text-3xl font-bold leading-snug">
-              데이터를 보호하기 위한<br></br>밀리팻의 지속적인 노력
+              데이터를 보호하기 위한<br></br>MiliPat의 지속적인 노력
             </p>
             <p className="select-none text-center">
-              전자 교범 데이터를 운용하는 밀리팻은<br></br>강력한 수준의 보안
+              방산 분야 지적재산권을 다루는 MiliPat은<br></br>강력한 수준의 보안
               정책을 지향하며<br></br>지속적으로 노력하고 있습니다.
             </p>
           </div>
@@ -661,8 +675,7 @@ export default function Home() {
                 <Card
                   key={i}
                   data-aos="fade-left"
-                  // data-aos-delay={i * 100 + 100}
-
+                  data-aos-delay={mobile ? 0 : i * 200}
                   data-aos-duration="1500"
                   className="h-full w-full bg-black p-4"
                   // style={{ gridArea: content.gridArea }}
@@ -740,8 +753,7 @@ export default function Home() {
                 <Card
                   key={i}
                   data-aos="fade-right"
-                  // data-aos-delay={i * 100 + 100}
-
+                  data-aos-delay={mobile ? 0 : i * 200}
                   data-aos-duration="1500"
                   className="h-full w-full break-keep bg-primary-300 p-4"
                   // style={{ gridArea: content.gridArea }}
@@ -782,6 +794,7 @@ export default function Home() {
             className="flex h-fit w-full flex-col gap-4"
           >
             <HorizontalSlider
+              isPressable={false}
               textColor={"#000000"}
               width={300}
               height={200}
