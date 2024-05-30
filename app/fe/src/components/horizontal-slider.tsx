@@ -29,17 +29,17 @@ export default function HorizontalSlider(props: any) {
                   width: props.width + "px",
                   height: props.height + "px",
                   backgroundImage: `url('${e.bgImgSrc}')`,
-                  color:props.textColor
+                  color: props.textColor,
                 }}
                 onPress={() => {
-                    window.open(e.link);
+                  window.open(e.link);
                 }}
               >
                 <div className="flex h-full w-full flex-col items-start justify-between gap-2">
                   <div className="flex flex-col gap-2">
                     <p
                       className={`${
-                        props.height >= 200 ? "text-xl" : "text-md"
+                        props.height >= 200 ? "text-lg" : "text-md"
                       } text-pretty w-full whitespace-normal text-start font-bold `}
                     >
                       {e.title}
@@ -51,7 +51,7 @@ export default function HorizontalSlider(props: any) {
                             key={i}
                             variant={"solid"}
                             radius={"sm"}
-                            size={'sm'}
+                            size={"sm"}
                             className="opacity-75"
                           >
                             #{e}
@@ -60,7 +60,7 @@ export default function HorizontalSlider(props: any) {
                       </div>
                     )}
                   </div>
-                  <p className="text-pretty text-sm line-clamp-4 w-full whitespace-normal text-start ">
+                  <p className="text-pretty line-clamp-4 w-full whitespace-normal text-start text-sm ">
                     {e.text}
                   </p>
                   {e?.badge && e?.badge != null && (
