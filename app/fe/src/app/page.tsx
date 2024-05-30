@@ -126,7 +126,7 @@ export default function Home() {
                   color={"default"}
                   variant={"bordered"}
                   onClick={() => {
-                    window.open("https://github.com/ziweek/밀리팻");
+                    window.open("https://github.com/ziweek/milipat");
                   }}
                 >
                   프로젝트 소개자료
@@ -195,8 +195,8 @@ export default function Home() {
               MiliPat에 담아놓은<br></br>대한민국 방산의 이야기
             </p>
             <p className="select-none text-center">
-              우리 방산의 자랑스러운 성과를 담아<br></br>MiliPat이라는 도전을
-              시작하였습니다.
+              우리 방위사업의 자랑스러운 성과를 담아<br></br>MiliPat이라는
+              도전을 시작하였습니다.
             </p>
           </div>
           <div
@@ -334,7 +334,7 @@ export default function Home() {
                   onPressEnd={() => {
                     setIndexOfPressedCard(undefined);
                   }}
-                  className="h-[270px] w-full bg-cover bg-center p-1 bg-blend-darken"
+                  className="h-[270px] w-full bg-cover bg-center p-2 bg-blend-darken"
                   shadow={"sm"}
                   onPress={() => {
                     console.log(11);
@@ -439,7 +439,7 @@ export default function Home() {
               {
                 title: "AI 요약 책갈피 기능",
                 tappedTitle:
-                  "RAG 기법의 LLM 모델이 특허 데이터를 분석하여, 핵심적인 문장을 추출하고 하이라이트하여 사용자 편의성을 증강합니다.",
+                  "RAG 기법의 LLM 모델이 특허 텍스트 데이터를 분석하여, 핵심적인 문장을 추출하고 하이라이트하여 사용자 편의성을 향상시킵니다.",
                 bgImg: "/images/index/bg-pdf.jpeg",
               },
               {
@@ -591,7 +591,7 @@ export default function Home() {
                 img: (
                   <div className="flex h-[300px] w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
                     {isThreeModelVisible ? (
-                      <ThreeRender src={"/models/drone.glb"}></ThreeRender>
+                      <ThreeRender src={"/models/ciws.glb"}></ThreeRender>
                     ) : (
                       <div className="flex flex-col items-center justify-center gap-4">
                         <Button
@@ -671,7 +671,7 @@ export default function Home() {
                     className="mx-auto w-full"
                   ></Image>
                 ),
-                text: "밀리팻에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
+                text: "MiliPat에는 브라우저의 개발자도구를 탐지하는 코드가 항상 동작하여, 소스코드의 유출 및 악의적인 위변조를 차단하고 있습니다.",
               },
               {
                 title: "적대적 프롬프트 공격을 필터링하는 sLLM 에이전트",
@@ -684,7 +684,7 @@ export default function Home() {
                     className="mx-auto w-full"
                   ></Image>
                 ),
-                text: "밀리팻에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
+                text: "MiliPat에는 프롬프트를 필터링하는 별도의 sLLM 에이전트를 배치하여, 사용자의 악의적인 프롬프트 공격에 대비하고 있습니다.",
               },
             ].map((content, i) => {
               return (
