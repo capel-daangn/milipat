@@ -172,7 +172,7 @@ export default function Home() {
         <div className="flex h-[400px] flex-col items-center justify-center gap-8 pt-48">
           <p
             data-aos="fade-in"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className={`${mobile ? "" : "text-lg"} select-none text-center`}
           >
             MiliPat은 대한민국 국군의 일원으로<br></br>창조적인 아이디어와
@@ -184,7 +184,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-8"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -201,7 +201,7 @@ export default function Home() {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex h-fit w-full flex-col gap-4"
           >
             <HorizontalSlider
@@ -250,7 +250,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-6"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -266,7 +266,7 @@ export default function Home() {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col gap-4 px-8"
             // className="flex h-fit w-full select-none flex-col items-center max-w-[1024px] px-4"
             style={
@@ -315,7 +315,7 @@ export default function Home() {
                 <Card
                   key={i}
                   data-aos={"fade-up"}
-                  data-aos-duration="1000"
+                  data-aos-duration="1500"
                   data-aos-id={`super-duper`}
                   isPressable
                   onPressStart={(e) => {
@@ -374,7 +374,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1200px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-6"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -390,7 +390,7 @@ export default function Home() {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col gap-4 px-8"
             style={
               mobile
@@ -437,7 +437,7 @@ export default function Home() {
                 <Card
                   key={i}
                   data-aos={"fade-up"}
-                  data-aos-duration="1000"
+                  data-aos-duration="1500"
                   data-aos-id={`super-duper`}
                   // className="h-full w-full py-4"
                   // shadow={"none"}
@@ -450,7 +450,7 @@ export default function Home() {
                     setIndexOfPressedCard(undefined);
                   }}
                   className={`${
-                    mobile ? "h-[300px]" : "h-[400px]"
+                    mobile ? "h-[250px]" : "h-[400px]"
                   } w-full bg-cover bg-center p-2 bg-blend-darken shadow-black drop-shadow-xl`}
                   shadow={"lg"}
                   onPress={() => {
@@ -495,7 +495,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-6"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -586,7 +586,7 @@ export default function Home() {
                 <Card
                   key={i}
                   data-aos={"fade-up"}
-                  data-aos-duration="1000"
+                  data-aos-duration="1500"
                   data-aos-id={`super-duper`}
                   className="h-full w-full py-4"
                   shadow={"none"}
@@ -609,7 +609,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-6"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -663,7 +663,7 @@ export default function Home() {
                   data-aos="fade-left"
                   // data-aos-delay={i * 100 + 100}
 
-                  data-aos-duration="1000"
+                  data-aos-duration="1500"
                   className="h-full w-full bg-black p-4"
                   // style={{ gridArea: content.gridArea }}
                   shadow={"sm"}
@@ -690,7 +690,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-6"
           >
             <div className="flex flex-col items-center justify-center gap-1">
@@ -742,7 +742,7 @@ export default function Home() {
                   data-aos="fade-right"
                   // data-aos-delay={i * 100 + 100}
 
-                  data-aos-duration="1000"
+                  data-aos-duration="1500"
                   className="h-full w-full break-keep bg-primary-300 p-4"
                   // style={{ gridArea: content.gridArea }}
                   shadow={"sm"}
@@ -769,7 +769,7 @@ export default function Home() {
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center space-y-8"
           >
             <p className="select-none text-center text-3xl font-bold leading-snug">
@@ -778,7 +778,7 @@ export default function Home() {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="1500"
             className="flex h-fit w-full flex-col gap-4"
           >
             <HorizontalSlider
