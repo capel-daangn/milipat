@@ -9,7 +9,7 @@ import { Progress } from "@nextui-org/react";
 
 const Model = ({ url }: any) => {
   const { scene }: any = useGLTF(url);
-  return <Clone object={scene} scale={4} position={[0, 0, 0]} />;
+  return <Clone object={scene} scale={8} position={[0, -15, 0]} />;
 };
 
 export default function ThreeRender(props: any) {
@@ -36,7 +36,7 @@ export default function ThreeRender(props: any) {
 
   return (
     <div className="h-full w-full">
-      <Canvas camera={{ position: [100, 100, 100], near: 15 }}>
+      <Canvas camera={{ position: [25, 25, 25], near: 5 }}>
         <Suspense fallback={<Loader />}>
           <Model url={Models[0].url} />
           <ambientLight intensity={0} />
