@@ -176,7 +176,7 @@ function AnalysisView(props: any) {
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              bgImg: "/images/background/map.jpg",
+              // bgImg: "/images/background/map.jpg",
               router: "/analytics/tech-trend",
             },
             {
@@ -184,7 +184,7 @@ function AnalysisView(props: any) {
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              bgImg: "/images/background/trend.jpg",
+              // bgImg: "/images/background/trend.jpg",
               router: "/analytics/patent-similarity",
             },
             {
@@ -192,7 +192,7 @@ function AnalysisView(props: any) {
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              bgImg: "/images/background/compare.jpg",
+              // bgImg: "/images/background/compare.jpg",
               router: "/analytics/patent-power",
             },
           ].map((e, i) => {
@@ -201,15 +201,15 @@ function AnalysisView(props: any) {
                 key={i}
                 // style={{ flexDirection: mobile ? "row" : "column" }}
                 // style={{ backgroundImage: `url('${e.bgImg}')` }}
-                className="flex aspect-[5/1] h-[60px] items-start justify-center gap-1 border-1 bg-black/50 bg-cover bg-center p-4 bg-blend-darken drop-shadow-md"
+                className="flex aspect-[5/1] h-[60px] items-start justify-center gap-1 border-1 p-4 drop-shadow-md"
                 isPressable
-                onPress={() => {
+                onClick={() => {
                   setIndexOfAnalysis(e.name);
                 }}
                 radius={"none"}
                 shadow={"none"}
               >
-                <p className="text-lg font-bold text-white">{e.name}</p>
+                <p className="select-none font-bold text-black">{e.name}</p>
                 {/* <p className="line-clamp-2 whitespace-normal break-keep text-start text-tiny font-bold text-white">
                     {e.description}
                   </p> */}
@@ -227,19 +227,25 @@ function AnalysisView(props: any) {
           mobile ? "h-full" : "h-[85vh]"
         } grid w-full flex-col items-center justify-center overflow-y-scroll border-1 p-4`}
       >
-        <div className="flex flex-col items-center justify-center gap-4">
-          <p className="text-xl font-bold">기술 동향 분석</p>
-          <Card className="min-h-fit w-full p-8">
-            <TrendChart></TrendChart>
-          </Card>
-          <p className="text-xl font-bold">특허 유사도 분석</p>
-          <Card className="min-h-fit w-full p-8">
-            <WorldmapChart></WorldmapChart>
-          </Card>
-          <p className="text-xl font-bold"></p>
-          <Card className="min-h-fit w-full p-8">
-            <WorldmapChart></WorldmapChart>
-          </Card>
+        <div className="flex flex-col items-center justify-center gap-16">
+          <div className="flex w-full flex-col items-center justify-center gap-4">
+            <p className="text-xl font-bold">기술 동향 분석</p>
+            <Card className="min-h-fit w-full p-8">
+              <TrendChart></TrendChart>
+            </Card>
+          </div>
+          <div className="flex w-full flex-col items-center justify-center gap-4">
+            <p className="text-xl font-bold">특허 유사도 분석</p>
+            <Card className="min-h-fit w-full p-8">
+              <WorldmapChart></WorldmapChart>
+            </Card>
+          </div>
+          <div className="flex w-full flex-col items-center justify-center gap-4">
+            <p className="text-xl font-bold">특허 경쟁력 진단</p>
+            <Card className="min-h-fit w-full p-8">
+              <WorldmapChart></WorldmapChart>
+            </Card>
+          </div>
         </div>
       </Card>
     </div>
@@ -305,7 +311,7 @@ function ChatbotView(props: any) {
 
       <div className="flex h-full w-full flex-col gap-4 overflow-auto px-4 scrollbar-hide">
         <div
-          className="flex h-min w-min gap-4"
+          className="flex h-min w-min gap-2"
           style={{ flexDirection: mobile ? "row" : "column" }}
         >
           {[
@@ -317,8 +323,7 @@ function ChatbotView(props: any) {
             return (
               <Card
                 key={i}
-                style={{ flexDirection: mobile ? "row" : "column" }}
-                className="flex aspect-[5/1] h-[60px] w-full items-start justify-center border-1 p-4 drop-shadow-md"
+                className="flex aspect-[5/1] h-[60px] w-full items-start justify-center border-1 p-4 font-bold drop-shadow-md"
                 isPressable
                 radius={"none"}
                 shadow={"none"}
