@@ -21,7 +21,7 @@ export default function HorizontalSlider(props: any) {
           {props.content.map((e: any, i: any) => {
             return (
               <Card
-                isPressable
+                isPressable={props.isPressable}
                 key={i}
                 className={`shadow-black-90 rounded-lg border-1 bg-center p-4 bg-blend-darken shadow-md`}
                 style={{

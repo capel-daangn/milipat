@@ -18,11 +18,11 @@ export default function Home() {
 
   useEffect(() => {
     toast("본 데모 버전에서는 아이디와 비밀번호 없이 로그인하실 수 있습니다.", {
-      duration: 10000,
+      // duration: 10000,
     });
     toast.success("안녕하세요!", {
       icon: "👏",
-      duration: 10000,
+      // duration: 10000,
     });
     const checkResize = () => {
       if (isMobile) {
