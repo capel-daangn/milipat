@@ -41,7 +41,6 @@ import { useSearchParams } from "next/navigation";
 import FooterTray from "@/components/common/footer-tray";
 import { IconBack, IconChat } from "@/components/common/icons";
 import PdfRender from "@/components/pdf-render";
-import { usePdfTextSearch } from "@/hooks/usePdfTextSearch";
 
 const ChartNetworkComponent = dynamic(
   () => import("../../../components/chart/network-chart"),
@@ -69,9 +68,7 @@ export default function DetailPage(props: any): any {
   }, [searchParams]);
 
   //
-  const [numPages, setNumPages] = useState<any>();
   const [pageNumber, setPageNumber] = useState<number>(1);
-  // const [isLoaded, setisLoaded] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const isMobile = useIsMobile();
@@ -344,7 +341,11 @@ export default function DetailPage(props: any): any {
             </>
           ) : (
             <div className="h-full w-full overflow-clip">
-              <ThreeRender src={"/models/k9.glb"}></ThreeRender>
+              <ThreeRender
+                src={"/models/k9.glb"}
+                scale={2}
+                position={[0, 0, 0]}
+              ></ThreeRender>
             </div>
           )}
         </Card>
@@ -449,7 +450,11 @@ function ModelView(params: any) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
       {isThreeModelVisible ? (
-        <ThreeRender src={"/models/drone.glb"}></ThreeRender>
+        <ThreeRender
+          src={"/models/drone.glb"}
+          scale={1}
+          position={[0, 0, 0]}
+        ></ThreeRender>
       ) : (
         <div className="flex flex-col items-center justify-center gap-4">
           <Button

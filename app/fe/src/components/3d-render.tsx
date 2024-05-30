@@ -7,12 +7,13 @@ import { OrbitControls, Environment, Clone } from "@react-three/drei";
 import { useGLTF } from "@react-three/drei";
 import { Progress } from "@nextui-org/react";
 
-const Model = ({ url }: any) => {
-  const { scene }: any = useGLTF(url);
-  return <Clone object={scene} scale={8} position={[0, -15, 0]} />;
-};
-
 export default function ThreeRender(props: any) {
+  const Model = ({ url }: any) => {
+    const { scene }: any = useGLTF(url);
+    return (
+      <Clone object={scene} scale={props.scale} position={props.position} />
+    );
+  };
   const Models = [{ name: "k9", url: props.src }];
 
   function Loader() {

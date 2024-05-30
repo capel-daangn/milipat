@@ -13,7 +13,7 @@ const dataset = [
     section: "인공지능",
     documents: [
       {
-        title: "복합무기체계의 BIT공유 시스템",
+        title: "휴대형 군사용 드론 폭탄 장치",
         publish: "국방연구원",
         date: "2019-08-31",
         patentApplicationNumber: "10-2014-0053239",

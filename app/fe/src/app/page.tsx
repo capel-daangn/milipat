@@ -6,7 +6,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
 } from "@nextui-org/react";
 import {
@@ -23,12 +22,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/components/layout/footer";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  IconBadge,
-  IconLogo,
-  IconPerson,
-  IconVoice,
-} from "@/components/common/icons";
+import { IconBadge, IconLogo, IconPerson } from "@/components/common/icons";
 import { IconChart, IconLike, IconLock } from "@/components/common/icons";
 import {
   Chart as ChartJS,
@@ -36,7 +30,6 @@ import {
   LinearScale,
   BarElement,
   Title,
-  Tooltip,
   Legend,
 } from "chart.js";
 
@@ -54,7 +47,6 @@ export default function Home() {
   const [isThreeModelVisible, setIsThreeModelVisible] =
     useState<boolean>(false);
   const theme = useTheme();
-  // const [isPressStarted, setIsPressStarted] = useState<boolean>(false);
   const [indexOfPressedCard, setIndexOfPressedCard] = useState<
     number | undefined
   >(undefined);
@@ -62,7 +54,6 @@ export default function Home() {
   useEffect(() => {
     toast.success("아래로 스크롤하기", {
       className: "font-bold text-sm",
-      // duration: 5000,
     });
     const checkResize = () => {
       if (isMobile) {
@@ -477,8 +468,6 @@ export default function Home() {
                     console.log(11);
                   }}
                   style={{
-                    // backgroundColor:
-                    //   i == indexOfPressedCard ? "#00000099" : "#00000025",
                     backgroundImage:
                       i == indexOfPressedCard
                         ? `url('${content.bgImg}`
@@ -591,7 +580,11 @@ export default function Home() {
                 img: (
                   <div className="flex h-[300px] w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
                     {isThreeModelVisible ? (
-                      <ThreeRender src={"/models/ciws.glb"}></ThreeRender>
+                      <ThreeRender
+                        src={"/models/ciws.glb"}
+                        scale={8}
+                        position={[0, -15, 0]}
+                      ></ThreeRender>
                     ) : (
                       <div className="flex flex-col items-center justify-center gap-4">
                         <Button
