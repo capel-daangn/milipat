@@ -361,10 +361,12 @@ export default function DetailPage(props: any): any {
         >
           <Tab key="chatbot" title="챗봇 탭"></Tab>
           <Tab key="analysis" title="분석 탭"></Tab>
+          <Tab key="model" title="모델링 탭"></Tab>
           <Tab key="memo" title="메모 탭"></Tab>
         </Tabs>
         {indexOfTab == "analysis" && <AnalysisView></AnalysisView>}
         {indexOfTab == "chatbot" && <ChatbotView></ChatbotView>}
+        {indexOfTab == "model" && <ModelView></ModelView>}
         {indexOfTab == "memo" && <MemoView></MemoView>}
       </div>
     </section>
@@ -436,6 +438,33 @@ function AnalysisView(props: any) {
           <ChartRadar></ChartRadar>
         </AccordionItem>
       </Accordion>
+    </div>
+  );
+}
+
+function ModelView(params: any) {
+  const [isThreeModelVisible, setIsThreeModelVisible] =
+    useState<boolean>(false);
+
+  return (
+    <div className="flex h-full w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
+      {isThreeModelVisible ? (
+        <ThreeRender src={"/models/drone.glb"}></ThreeRender>
+      ) : (
+        <div className="flex flex-col items-center justify-center gap-4">
+          <Button
+            color={"primary"}
+            onPress={() => {
+              setIsThreeModelVisible(!isThreeModelVisible);
+            }}
+          >
+            3D 모델링 보기
+          </Button>
+          <p className="text-sm text-primary">
+            수초 이내의 로딩 시간이 소요될 수 있습니다.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
