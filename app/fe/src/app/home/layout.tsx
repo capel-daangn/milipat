@@ -2,7 +2,6 @@
 
 import Header from "@/components/layout/header";
 import { usePathname, useSearchParams } from "next/navigation";
-import { addListener, launch } from "devtools-detector";
 import { useEffect, useState } from "react";
 import useIsDevToolsOpen from "@/hooks/useDevtoolsDetector";
 import { LottieSecurityCheck } from "@/components/common/lotties";
