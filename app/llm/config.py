@@ -2,4 +2,5 @@
 OLLAMA_MODEL = "gemma:2b"
 EMBEDDING_MODEL = "sentence-transformers/all-mpnet-base-v2"
 QDRANT_URL = "http://localhost:6333"
-QDRANT_COLLECTION_NAME = "디지털_크리에이터"
+QDRANT_COLLECTION_NAME = "매뉴얼_데이터"
+CHATBOT_NAME = "테크챗"

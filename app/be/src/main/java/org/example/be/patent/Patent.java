@@ -1,14 +1,16 @@
 package org.example.be.patent;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
 @Entity
+@Getter
+@Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Patent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,18 +19,18 @@ public class Patent {
     @Column(length = 200)
     private String subject;
 
-//    @Column(columnDefinition = "TEXT")
-//    private String abstractText;
-//
-//    @Column
-//    private String inventor;
-//
-//    @Column
-//    private String assignee;
-//
-//    @Column
-//    private LocalDateTime publicationData;
-//
-//    @Column
-//    private String sourceUrl;
+    @Column(columnDefinition = "TEXT")
+    private String abstractText;
+
+    @Column
+    private String inventor;
+
+    @Column
+    private String assignee;
+
+    @Column
+    private LocalDateTime publicationData;
+
+    @Column
+    private String sourceUrl;
 }

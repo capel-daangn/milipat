@@ -17,7 +17,6 @@ warnings.simplefilter("ignore")
 ABS_PATH = Path(__file__).parent.resolve()
 
 
-# Create vector database
 def create_vector_database():
     """
     Creates a vector database using document loaders and embeddings.

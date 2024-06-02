@@ -6,7 +6,7 @@ import {
 } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 const dataset = [
   {
@@ -121,10 +121,14 @@ export default function SearchBar(props: SearchBarProps): any {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [textInput, setTextInput] = useState<string | undefined>(props.value);
   const queryTextInput = useQuery({
     queryKey: ["textInput"],
     queryFn: () => textInput,
+  });
+  const [textInput, setTextInput] = useState<string | undefined>(props.value);
+  const querySetTextInput = useQuery({
+    queryKey: ["textInput"],
+    queryFn: () => setTextInput,
   });
 
   const createQueryString = useCallback(
@@ -164,7 +168,8 @@ export default function SearchBar(props: SearchBarProps): any {
       variant="bordered"
       size={pathname == "/home" ? "md" : "sm"}
       isClearable={true}
-      inputValue={queryTextInput.data}
+      defaultInputValue={queryTextInput.data}
+      value={queryTextInput.data}
       onInputChange={async (e: any) => {
         await setTextInput(e);
         await queryTextInput.refetch();
@@ -184,6 +189,11 @@ export default function SearchBar(props: SearchBarProps): any {
           router.push("/search/result" + "?" + query);
         }
       }}
+      // defaultFilter={(t, i) => {
+      //   console.log("t" + t);
+      //   console.log("i" + i);
+      //   return true;
+      // }}
       startContent={
         <div className="mx-2">
           <IconSearch

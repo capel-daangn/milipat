@@ -45,6 +45,11 @@ export default function Header(props: HeaderProps) {
     queryKey: ["indexOfViews"],
     queryFn: () => indexOfViews,
   });
+  const [textInput, setTextInput] = useState<string | undefined>("");
+  const querySetTextInput = useQuery({
+    queryKey: ["textInput"],
+    queryFn: () => textInput,
+  });
 
   return (
     <div
@@ -73,6 +78,8 @@ export default function Header(props: HeaderProps) {
               onClick={async () => {
                 await setIndexOfViews("search");
                 await queryIndexOfViews.refetch();
+                await setTextInput("")
+                await querySetTextInput.refetch()
                 await router.push("/home");
               }}
               className="w-fit"
@@ -92,6 +99,8 @@ export default function Header(props: HeaderProps) {
               onClick={async () => {
                 await setIndexOfViews("search");
                 await queryIndexOfViews.refetch();
+                await setTextInput("")
+                await querySetTextInput.refetch()
                 await router.push("/home");
               }}
               className="w-fit"
