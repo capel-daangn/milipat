@@ -237,13 +237,13 @@ function AnalysisView(props: any) {
           <div className="flex w-full flex-col items-center justify-center gap-4">
             <p className="text-xl font-bold">특허 유사도 분석</p>
             <Card className="min-h-fit w-full p-8">
-              <WorldmapChart></WorldmapChart>
+              <WorldmapChart size={"responsive"}></WorldmapChart>
             </Card>
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-4">
             <p className="text-xl font-bold">특허 경쟁력 진단</p>
             <Card className="min-h-fit w-full p-8">
-              <WorldmapChart></WorldmapChart>
+              <WorldmapChart size={"responsive"}></WorldmapChart>
             </Card>
           </div>
         </div>

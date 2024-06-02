@@ -15,44 +15,9 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useRef, useState } from "react";
-
-// const dataset = [
-//   {
-//     title: "휴대형 군사용 드론 폭탄 장치",
-//     text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
-//     date: "2004-06-25",
-//     patId: "10-2004-0048382",
-//     href: "/search/detail",
-//   },
-//   {
-//     title: "숄더그루브 깊이를 축소시킨 소형 항공기 타이어",
-//     text: "숄더그루브 깊이를 축소시킨 소형 항공기 타이어는 최근 군사 분야에서의 주목을 받고 있습니다. 이 타이어는 항공기의 안전과 효율성을 높이는 데 기여하는 핵심 부품 중 하나입니다. 국방 분야에서의 인공지능 활용 추세 연구는 빠르게 진화하고 있으며, 무인 시스템 및 자율주행 기술과 결합되어 작전 효율성을 향상시키고 있습니다. 또한, 적응형 알고리즘과 사이버 보안 기술의 강화로 안전한 군사 환경을 조성하고 있습니다. 이러한 기술의 발전은 군사 작전에 있어서 더욱 효율적인 결과를 가져오고 있으며, 향후에는 다양한 도메인에서의 인공지능 적용이 더욱 늘어날 것으로 예상됩니다.",
-//     date: "2005-08-31",
-//     patId: "10-2004-0048381",
-//     href: "/search/detail",
-//   },
-//   {
-//     title: "포드 인양장치 하중시험용 치구",
-//     text: "포드 인양장치 하중시험용 치구는 최근 군사 분야에서의 주목을 받고 있습니다. 이 치구는 항공기의 안전과 효율성을 높이는 데 기여하는 핵심 부품 중 하나입니다. 국방 분야에서의 인공지능 활용 추세 연구는 빠르게 진화하고 있으며, 무인 시스템 및 자율주행 기술과 결합되어 작전 효율성을 향상시키고 있습니다. 또한, 적응형 알고리즘과 사이버 보안 기술의 강화로 안전한 군사 환경을 조성하고 있습니다. 이러한 기술의 발전은 군사 작전에 있어서 더욱 효율적인 결과를 가져오고 있으며, 향후에는 다양한 도메인에서의 인공지능 적용이 더욱 늘어날 것으로 예상됩니다.",
-//     date: "2004-03-02",
-//     patId: "10-2012-0133631",
-//     href: "/search/detail",
-//   },
-//   {
-//     title: "능동 배열 안테나의 성능 검증 시스템 및 방법",
-//     text: "능동 배열 안테나의 성능 검증 시스템 및 방법은 최근 군사 분야에서의 주목을 받고 있습니다. 이 시스템과 방법은 향상된 통신 기술을 통해 핵심 정보를 안전하게 전달하는 데 기여하고 있습니다. 국방 분야에서의 인공지능 활용 추세 연구는 빠르게 진화하고 있으며, 무인 시스템 및 자율주행 기술과 결합되어 작전 효율성을 향상시키고 있습니다. 또한, 적응형 알고리즘과 사이버 보안 기술의 강화로 안전한 군사 환경을 조성하고 있습니다. 이러한 기술의 발전은 군사 작전에 있어서 더욱 효율적인 결과를 가져오고 있으며, 향후에는 다양한 도메인에서의 인공지능 적용이 더욱 늘어날 것으로 예상됩니다.",
-//     date: "2015-01-23",
-//     patId: "10-2013-0005915",
-//     href: "/search/detail",
-//   },
-//   {
-//     title: "전술훈련을 위한 충격조끼",
-//     text: "전술훈련을 위한 충격조끼는 최근 군사 분야에서의 주목을 받고 있습니다. 이 충격조끼는 군인들의 안전을 보장하고 훈련 효율성을 높이는 데 기여합니다. 국방 분야에서의 인공지능 활용 추세 연구는 빠르게 진화하고 있으며, 무인 시스템 및 자율주행 기술과 결합되어 작전 효율성을 향상시키고 있습니다. 또한, 적응형 알고리즘과 사이버 보안 기술의 강화로 안전한 군사 환경을 조성하고 있습니다. 이러한 기술의 발전은 군사 작전에 있어서 더욱 효율적인 결과를 가져오고 있으며, 향후에는 다양한 도메인에서의 인공지능 적용이 더욱 늘어날 것으로 예상됩니다.",
-//     date: "2014-06-02",
-//     patId: "10-2014-0034219",
-//     href: "/search/detail",
-//   },
-// ];
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import WorldmapChart from "@/components/chart/worldmap-chart";
 
 const dataset = [
   {
@@ -60,6 +25,15 @@ const dataset = [
     applicationNumber: "10-2004-0048882",
     patentDate: "2004-06-25",
     filingDate: "6/25/04",
+    status: "등록",
+  },
+  {
+    title:
+      "포드 인양장치 하중시험용 치구(load testing tool for pod lifting equipment)",
+    applicationNumber: "10-2012-064850",
+    filingDate: "6/18/12",
+    patentId: "1.01207E+12",
+    patentDate: "11/26/12",
     status: "등록",
   },
   {
@@ -78,15 +52,6 @@ const dataset = [
     filingDate: "6/25/04",
     patentId: "1.00535E+12",
     patentDate: "12/1/05",
-    status: "등록",
-  },
-  {
-    title:
-      "포드 인양장치 하중시험용 치구(load testing tool for pod lifting equipment)",
-    applicationNumber: "10-2012-064850",
-    filingDate: "6/18/12",
-    patentId: "1.01207E+12",
-    patentDate: "11/26/12",
     status: "등록",
   },
   {
@@ -772,10 +737,33 @@ export default function Query() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [indexOfTab, setIndexOfTab] = useState("search");
-  const [indexOfTab2, setIndexOfTab2] = useState("chatbot");
+  const [indexOfTab2, setIndexOfTab2] = useState("analysis");
   const [numberOfPage, setNumberOfPage] = useState<number>(1);
+  const [termsOfQuery, setTermsOfQuery] = useState<string[] | undefined>();
+
+  const querySetTextInput = useQuery({
+    queryKey: ["textInput"],
+  });
+  // const queryTermsOfQuery = useQuery({
+  //   queryKey: ["termsOfQuery"],
+  //   queryFn: () => termsOfQuery,
+  // });
 
   useEffect(() => {
+    axios
+      .get("http://localhost:8081/tfidf", {
+        params: { text: querySetTextInput.data },
+      })
+      .then(async (value) => {
+        // await console.log(value.data.top_terms);
+        await setTermsOfQuery(value.data.top_terms);
+        await console.log(termsOfQuery);
+        // await queryTermsOfQuery.refetch();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
@@ -837,7 +825,7 @@ export default function Query() {
                       >
                         <div className="flex w-full flex-row items-end justify-between">
                           <div className="flex flex-col items-start justify-center gap-1">
-                            <Link href={`/search/detail`}>
+                            <Link href={`/search/detail?query=${data.title}`}>
                               <p className="text-left text-lg font-bold">
                                 {data.title}
                               </p>
@@ -848,7 +836,7 @@ export default function Query() {
                             </p>
                           </div>
                         </div>
-                        <p className="line-clamp-3 text-justify text-sm leading-loose">
+                        <p className="line-clamp-3 text-justify text-sm">
                           {/* {data.text} */}
                           휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
                           우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는
@@ -875,9 +863,9 @@ export default function Query() {
                 <ChatbotView></ChatbotView>
               </div>
             )}
-            {indexOfTab == "analysis" && (
+            {indexOfTab == "analysis" && termsOfQuery !== null && (
               <div className="h-[500px] w-full pt-2">
-                <AnalysisView></AnalysisView>
+                <AnalysisView termsOfQuery={termsOfQuery}></AnalysisView>
               </div>
             )}
           </>
@@ -896,7 +884,7 @@ export default function Query() {
                   >
                     <div className="flex w-full flex-row items-end justify-between">
                       <div className="flex flex-col items-start justify-center gap-1">
-                        <Link href={`/search/detail`}>
+                        <Link href={`/search/detail?query=${data.title}`}>
                           <p className="text-left text-lg font-bold">
                             {data.title}
                           </p>
@@ -934,7 +922,7 @@ export default function Query() {
                   })}
                 </div> */}
                     </div>
-                    <p className="line-clamp-3 text-justify text-sm leading-loose">
+                    <p className="line-clamp-3 text-justify text-sm">
                       {/* {data.text} */}
                       휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
                       우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형
@@ -968,19 +956,71 @@ export default function Query() {
             aria-label="Options"
             variant={"underlined"}
             color={"primary"}
-            defaultSelectedKey={"chatbot"}
+            defaultSelectedKey={"analysis"}
             onSelectionChange={async (key: any) => {
               await setIndexOfTab2(key);
             }}
           >
-            <Tab key="chatbot" title="챗봇 탭"></Tab>
             <Tab key="analysis" title="분석 탭"></Tab>
+            <Tab key="chatbot" title="챗봇 탭"></Tab>
           </Tabs>
-          {indexOfTab2 == "chatbot" && <ChatbotView></ChatbotView>}
           {indexOfTab2 == "analysis" && <AnalysisView></AnalysisView>}
+          {indexOfTab2 == "chatbot" && <ChatbotView></ChatbotView>}
         </div>
       )}
     </section>
+  );
+}
+
+function AnalysisView(props: any) {
+  return (
+    <div className={`flex h-full w-fit gap-4`}>
+      {/*  */}
+      <Accordion
+        className="h-fit w-fit border-1"
+        defaultExpandedKeys={["1"]}
+        fullWidth
+        variant={"bordered"}
+        keepContentMounted
+      >
+        <AccordionItem
+          key="1"
+          aria-label="wordCloud"
+          title="기술 동향 분석"
+          subtitle="주요 키워드의 빈도를 강조하여 시각적으로 표현합니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+        >
+          {/* <p className="text-black">
+            sdfs
+            {props.termsOfQuery?.map((e: any, i: any) => <p>{e}</p>)}
+          </p> */}
+          {/* {(queryTermsOfQuery.data as any).terms.map((e: any, i: any) => (
+            <p>{e}</p>
+          ))} */}
+          {/* <Cha></Cha>*/}
+        </AccordionItem>
+        <AccordionItem
+          key="2"
+          aria-label="Accordion 2"
+          title="국가별 특허경쟁력 지수"
+          subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+        >
+          <div className="flex w-full flex-col items-center">
+            <WorldmapChart size={"md"}></WorldmapChart>
+          </div>
+        </AccordionItem>
+        <AccordionItem
+          key="3"
+          aria-label="Accordion 3"
+          title="네트워크 그래프"
+          subtitle="핵심어 키워드 간의 관계와 연관성을 나타냅니다."
+          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+        >
+          {/* <ChartNetworkComponent></ChartNetworkComponent> */}
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 }
 
@@ -1081,62 +1121,5 @@ function ChatbotView(props: any) {
         </div>
       </div>
     </Card>
-  );
-}
-
-function AnalysisView(props: any) {
-  const isMobile = useIsMobile();
-  const [mobile, setMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const checkResize = () => {
-      if (isMobile) {
-        setMobile(true);
-      } else {
-        setMobile(false);
-      }
-    };
-    checkResize();
-  }, [isMobile]);
-
-  return (
-    <div className={`flex h-full w-full gap-4`}>
-      {/*  */}
-      <Accordion
-        className="h-fit border-1"
-        defaultExpandedKeys={["1"]}
-        fullWidth
-        variant={"bordered"}
-        keepContentMounted
-      >
-        <AccordionItem
-          key="1"
-          aria-label="wordCloud"
-          title="워드 클라우드"
-          subtitle="주요 키워드의 빈도를 강조하여 시각적으로 표현합니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
-        >
-          {/* <Cha></Cha> */}
-        </AccordionItem>
-        <AccordionItem
-          key="2"
-          aria-label="Accordion 2"
-          title="방사형 그래프"
-          subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
-        >
-          {/* <ChartRadar></ChartRadar> */}
-        </AccordionItem>
-        <AccordionItem
-          key="3"
-          aria-label="Accordion 3"
-          title="네트워크 그래프"
-          subtitle="핵심어 키워드 간의 관계와 연관성을 나타냅니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
-        >
-          {/* <ChartNetworkComponent></ChartNetworkComponent> */}
-        </AccordionItem>
-      </Accordion>
-    </div>
   );
 }
