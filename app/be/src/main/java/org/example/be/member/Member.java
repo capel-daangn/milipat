@@ -1,12 +1,17 @@
 package org.example.be.member;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDateTime;
+
+@Entity
 @Getter
 @Setter
-@Entity
+@Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +20,12 @@ public class Member {
     @Column
     private String email;
 
-//    @Column
-//    private String password;
-//
-//    @Column
-//    private String name;
-//
-//    @Column
-//    private LocalDateTime createDate;
+/*    @Column
+    private String password;
+
+    @Column
+    private String name;
+
+    @Column
+    private LocalDateTime createDate;*/
 }

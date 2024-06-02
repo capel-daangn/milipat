@@ -51,6 +51,8 @@ export default function Home() {
     number | undefined
   >(undefined);
 
+
+
   useEffect(() => {
     toast.success("아래로 스크롤하기", {
       className: "font-bold text-sm",
@@ -325,7 +327,7 @@ export default function Home() {
                   onPressEnd={() => {
                     setIndexOfPressedCard(undefined);
                   }}
-                  className="h-[270px] w-full bg-cover bg-center p-2 bg-blend-darken"
+                  className="h-[220px] w-full bg-cover bg-center p-2 bg-blend-darken"
                   shadow={"sm"}
                   onPress={() => {
                     console.log(11);
