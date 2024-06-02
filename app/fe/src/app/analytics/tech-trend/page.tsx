@@ -62,7 +62,7 @@ function SearchView(props: any) {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4 px-4">
-      <WorldmapChart></WorldmapChart>
+      <WorldmapChart size={"responsive"}></WorldmapChart>
       {/* <div
         data-aos={"fade-in"}
         data-aos-duration="1000"

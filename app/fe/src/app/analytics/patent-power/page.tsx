@@ -173,7 +173,7 @@ export default function DetailPage(props: any): any {
         </Card>
 
         <Card className="relative flex aspect-square h-full min-h-full w-full flex-col items-center justify-center">
-          <WorldmapChart></WorldmapChart>
+          <WorldmapChart size={"md"}></WorldmapChart>
         </Card>
       </div>
 

@@ -1,7 +1,6 @@
 import PyPDF2
 import re
 
-response_payload = {}
 
 
 def pdf_to_sentences(pdf_path):
@@ -109,9 +108,11 @@ stopwords = set(
         "예",
         "징",
         "항",
+        "용",
+        "이르다",
+        ""
     ]
 )
-
 
 # 전처리 및 토큰화 함수
 def preprocess(text):
@@ -122,19 +123,13 @@ def preprocess(text):
     tokens = [word for word in tokens if word not in stopwords]
     return " ".join(tokens)
 
-
 def tokenize_and_remove_stopwords(doc):
     tokens = okt.morphs(doc, stem=True)
     tokens = [token for token in tokens if token not in stopwords]
     return tokens
 
-
-def create_network(parsed_sentences):
-    ################################
-    #
-    ################################
-    documents = parsed_sentences
-    preprocessed_documents = [preprocess(doc) for doc in documents]
+def create_tfidf(parsed_sentences):
+    preprocessed_documents = [preprocess(doc) for doc in parsed_sentences]
 
     # TfidfVectorizer 초기화
     vectorizer = TfidfVectorizer(
@@ -148,6 +143,15 @@ def create_network(parsed_sentences):
     sum_tfidf = tfidf_matrix.sum(axis=0)
     top_indices = np.argsort(sum_tfidf)[-10:]
     top_terms = terms[top_indices]
+
+    return  terms, tfidf_matrix, top_terms, top_indices, X
+
+
+
+
+
+def create_network(parsed_sentences):
+    terms, tfidf_matrix, top_terms, top_indices, X = create_tfidf(parsed_sentences)
 
     # 네트워크 그래프 생성
     G = nx.Graph()
@@ -172,8 +176,8 @@ def create_network(parsed_sentences):
                 )
 
     # 네트워크 그래프 시각화
-    print(terms)
     pos = nx.spring_layout(G)
+
 
     ################################
     #
