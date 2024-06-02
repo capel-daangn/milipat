@@ -850,11 +850,11 @@ export default function Query() {
                         </div>
                         <p className="line-clamp-3 text-justify text-sm leading-loose">
                           {/* {data.text} */}
-                          "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
+                          휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
                           우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는
                           소형 드론과 폭발물을 결합하여 적의 진영을 정밀
                           타격하거나 전략적 목표를 신속하게 파괴하는 데
-                          사용됩니다.",
+                          사용됩니다
                         </p>
                       </Card>
                     );
@@ -936,10 +936,10 @@ export default function Query() {
                     </div>
                     <p className="line-clamp-3 text-justify text-sm leading-loose">
                       {/* {data.text} */}
-                      "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
+                      휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
                       우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형
                       드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나
-                      전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
+                      전략적 목표를 신속하게 파괴하는 데 사용됩니다.
                     </p>
                   </Card>
                 );
