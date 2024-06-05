@@ -121,15 +121,16 @@ export default function SearchBar(props: SearchBarProps): any {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [textInput, setTextInput] = useState<string | undefined>();
   const queryTextInput = useQuery({
     queryKey: ["textInput"],
     queryFn: () => textInput,
+    refetchOnMount: true,
   });
-  const [textInput, setTextInput] = useState<string | undefined>(props.value);
-  const querySetTextInput = useQuery({
-    queryKey: ["textInput"],
-    queryFn: () => setTextInput,
-  });
+  // const querySetTextInput = useQuery({
+  //   queryKey: ["textInput"],
+  //   queryFn: () => setTextInput,
+  // });
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -175,8 +176,8 @@ export default function SearchBar(props: SearchBarProps): any {
         await queryTextInput.refetch();
       }}
       onSelectionChange={async (e: any) => {
-        // console.log(e);
         if (e != null) {
+          console.log(e);
           await setTextInput(e?.toString());
           await queryTextInput.refetch();
           const query = await createQueryString("query", e?.toString());
@@ -252,23 +253,6 @@ export default function SearchBar(props: SearchBarProps): any {
           ))}
         </AutocompleteSection>
       ))}
-      {/* <AutocompleteSection
-        title="Mammals"
-        classNames={{
-          heading:
-            "flex w-full sticky top-1 z-20 py-3 px-2 bg-default-100 shadow-small rounded-small bg-[#dbeafe]",
-        }}
-      >
-        {animals.map((animal) => (
-          <AutocompleteItem
-            key={animal.value}
-            value={animal.value}
-            className="w-full"
-          >
-            {animal.label}
-          </AutocompleteItem>
-        ))}
-      </AutocompleteSection> */}
     </Autocomplete>
   );
 }

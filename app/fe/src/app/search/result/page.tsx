@@ -3,6 +3,7 @@
 import FooterTray from "@/components/common/footer-tray";
 import TextBubble from "@/components/text-bubble";
 import { useIsMobile } from "@/hooks/useMediaQuery";
+import { faker } from "@faker-js/faker/locale/ko";
 import {
   Card,
   Link,
@@ -11,6 +12,9 @@ import {
   AccordionItem,
   Tabs,
   Tab,
+  Button,
+  CircularProgress,
+  Progress,
 } from "@nextui-org/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -18,6 +22,17 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import WorldmapChart from "@/components/chart/worldmap-chart";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Legend,
+} from "chart.js";
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Legend);
+import { Bar } from "react-chartjs-2";
+import { useApiGet } from "@/hooks/useReactQuery";
 
 const dataset = [
   {
@@ -26,6 +41,7 @@ const dataset = [
     patentDate: "2004-06-25",
     filingDate: "6/25/04",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -35,6 +51,7 @@ const dataset = [
     patentId: "1.01207E+12",
     patentDate: "11/26/12",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -44,6 +61,7 @@ const dataset = [
     patentId: "1.00513E+12",
     patentDate: "8/31/05",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -53,6 +71,7 @@ const dataset = [
     patentId: "1.00535E+12",
     patentDate: "12/1/05",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "방독면(GAS-MASK)",
@@ -61,6 +80,7 @@ const dataset = [
     patentId: "1.01278E+12",
     patentDate: "6/18/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "방독면(GAS-MASK)",
@@ -69,6 +89,7 @@ const dataset = [
     patentId: "1.01278E+12",
     patentDate: "6/18/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "방독면(GAS-MASK)",
@@ -77,6 +98,7 @@ const dataset = [
     patentId: "1.01293E+12",
     patentDate: "7/29/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -86,6 +108,7 @@ const dataset = [
     patentId: "1.01337E+12",
     patentDate: "11/29/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "훈련용 유도탄 포드(loading guided missiles pod for training)",
@@ -94,6 +117,7 @@ const dataset = [
     patentId: "1.01372E+12",
     patentDate: "2/28/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -103,6 +127,7 @@ const dataset = [
     patentId: "1.01392E+12",
     patentDate: "4/29/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "전술훈련을 위한 충격조끼(Impact vest for tactical training)",
@@ -111,6 +136,7 @@ const dataset = [
     patentId: "1.01393E+12",
     patentDate: "5/2/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "전술훈련을 위한 충격조끼(Impact vest for tactical training)",
@@ -119,6 +145,7 @@ const dataset = [
     patentId: "1.01405E+12",
     patentDate: "6/2/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -128,6 +155,7 @@ const dataset = [
     patentId: "1.01438E+12",
     patentDate: "8/29/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -137,6 +165,7 @@ const dataset = [
     patentId: "1.01446E+12",
     patentDate: "9/23/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -146,6 +175,7 @@ const dataset = [
     patentId: "1.01446E+12",
     patentDate: "9/23/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -155,6 +185,7 @@ const dataset = [
     patentId: "1.01451E+12",
     patentDate: "10/8/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "차량 주행 안전장치용 런플랫(RUN FLAT)",
@@ -163,6 +194,7 @@ const dataset = [
     patentId: "1.01458E+12",
     patentDate: "10/28/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -172,6 +204,7 @@ const dataset = [
     patentId: "1.01477E+12",
     patentDate: "12/19/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "훈련용 유도탄 모의기(Guided missile simulator for training)",
@@ -180,6 +213,7 @@ const dataset = [
     patentId: "1.01488E+12",
     patentDate: "1/23/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -189,6 +223,7 @@ const dataset = [
     patentId: "1.01494E+12",
     patentDate: "2/11/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -198,6 +233,7 @@ const dataset = [
     patentId: "1.01498E+12",
     patentDate: "2/25/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -207,6 +243,7 @@ const dataset = [
     patentId: "1.01499E+12",
     patentDate: "2/26/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "무인 항공기 자동착륙 방법(METHOD FOR AUTOMATIC LANDING OF UAV)",
@@ -215,6 +252,7 @@ const dataset = [
     patentId: "1.01508E+12",
     patentDate: "3/26/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -224,6 +262,7 @@ const dataset = [
     patentId: "1.0152E+12",
     patentDate: "5/6/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "워터젯(Waterjet)",
@@ -232,6 +271,7 @@ const dataset = [
     patentId: "1.01522E+12",
     patentDate: "5/13/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -241,6 +281,7 @@ const dataset = [
     patentId: "1.01525E+12",
     patentDate: "5/27/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -250,6 +291,7 @@ const dataset = [
     patentId: "1.01534E+12",
     patentDate: "6/29/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "방독면용 안경(THE SPECTACLES OF GAS MASK)",
@@ -258,6 +300,7 @@ const dataset = [
     patentId: "1.0154E+12",
     patentDate: "7/21/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -267,6 +310,7 @@ const dataset = [
     patentId: "1.01548E+12",
     patentDate: "8/24/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -276,6 +320,7 @@ const dataset = [
     patentId: "1.01555E+12",
     patentDate: "9/16/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -285,6 +330,7 @@ const dataset = [
     patentId: "1.01555E+12",
     patentDate: "9/16/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -294,6 +340,7 @@ const dataset = [
     patentId: "1.01557E+12",
     patentDate: "9/24/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -303,6 +350,7 @@ const dataset = [
     patentId: "1.01561E+12",
     patentDate: "10/8/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "실총기 기반 사격 훈련이 가능한 모의 기관총(MIMETIC RIFLE)",
@@ -311,6 +359,7 @@ const dataset = [
     patentId: "1.01567E+12",
     patentDate: "11/2/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "실화기 기반 모의 소총(MIMETIC RIFLE)",
@@ -319,6 +368,7 @@ const dataset = [
     patentId: "1.01567E+12",
     patentDate: "11/2/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "실총기 기반 사격 훈련이 가능한 모의 소총(MIMETIC RIFLE)",
@@ -327,6 +377,7 @@ const dataset = [
     patentId: "1.01567E+12",
     patentDate: "11/2/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "방호의자용 거치장치(Support apparatus for safety guard chair)",
@@ -335,6 +386,7 @@ const dataset = [
     patentId: "1.01576E+12",
     patentDate: "12/3/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -344,6 +396,7 @@ const dataset = [
     patentId: "1.01696E+12",
     patentDate: "1/6/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "실화기 베이스 모의 소총(MIMETIC RIFLE)",
@@ -352,6 +405,7 @@ const dataset = [
     patentId: "1.01698E+12",
     patentDate: "1/13/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "박격포 적재장치(MORTAR LOADING APPARATUS)",
@@ -360,6 +414,7 @@ const dataset = [
     patentId: "1.01713E+12",
     patentDate: "2/28/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -369,6 +424,7 @@ const dataset = [
     patentId: "1.01721E+12",
     patentDate: "3/24/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -378,6 +434,7 @@ const dataset = [
     patentId: "1.01725E+12",
     patentDate: "4/3/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -387,6 +444,7 @@ const dataset = [
     patentId: "1.01725E+12",
     patentDate: "4/3/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -396,6 +454,7 @@ const dataset = [
     patentId: "1.01728E+12",
     patentDate: "4/13/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -405,6 +464,7 @@ const dataset = [
     patentId: "1.01734E+12",
     patentDate: "5/2/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -414,6 +474,7 @@ const dataset = [
     patentId: "1.01737E+12",
     patentDate: "5/11/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -423,6 +484,7 @@ const dataset = [
     patentId: "1.01754E+12",
     patentDate: "6/28/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -432,6 +494,7 @@ const dataset = [
     patentId: "1.01755E+12",
     patentDate: "6/30/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -441,6 +504,7 @@ const dataset = [
     patentId: "1.01765E+12",
     patentDate: "7/31/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -450,6 +514,7 @@ const dataset = [
     patentId: "1.01793E+12",
     patentDate: "10/27/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -459,6 +524,7 @@ const dataset = [
     patentId: "1.01796E+12",
     patentDate: "11/3/17",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -468,6 +534,7 @@ const dataset = [
     patentId: "1.0187E+12",
     patentDate: "6/18/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "포 발사식 탄약(Ammunition for Mortar)",
@@ -476,6 +543,7 @@ const dataset = [
     patentId: "1.01906E+12",
     patentDate: "10/2/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -485,6 +553,7 @@ const dataset = [
     patentId: "1.01914E+12",
     patentDate: "10/25/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -494,6 +563,7 @@ const dataset = [
     patentId: "1.01926E+12",
     patentDate: "11/30/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -503,6 +573,7 @@ const dataset = [
     patentId: "1.01926E+12",
     patentDate: "11/30/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -512,6 +583,7 @@ const dataset = [
     patentId: "1.01927E+12",
     patentDate: "12/4/18",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -521,6 +593,7 @@ const dataset = [
     patentId: "1.01937E+12",
     patentDate: "1/3/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "공포탄 어댑터(Blank ammunition adapter)",
@@ -529,6 +602,7 @@ const dataset = [
     patentId: "1.01937E+12",
     patentDate: "1/3/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -538,6 +612,7 @@ const dataset = [
     patentId: "1.01988E+12",
     patentDate: "6/4/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -547,6 +622,7 @@ const dataset = [
     patentId: "1.01996E+12",
     patentDate: "6/28/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -556,6 +632,7 @@ const dataset = [
     patentId: "1.02003E+12",
     patentDate: "7/18/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -565,6 +642,7 @@ const dataset = [
     patentId: "1.02009E+12",
     patentDate: "8/5/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -574,6 +652,7 @@ const dataset = [
     patentId: "102046823",
     patentDate: "11/14/19",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "군사작전 시뮬레이션 모델을 위한 항공임무명령서 자동생성장치",
@@ -582,6 +661,7 @@ const dataset = [
     patentId: "102237609",
     patentDate: "4/1/21",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "전구급 합동작전 분석 시뮬레이터, 및 시뮬레이션 방법",
@@ -590,6 +670,7 @@ const dataset = [
     patentId: "102286642",
     patentDate: "7/30/21",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "게이지 장착 공구",
@@ -598,6 +679,7 @@ const dataset = [
     patentId: "10-1042095",
     patentDate: "6/9/11",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "일체형 리프트 슬링",
@@ -606,6 +688,7 @@ const dataset = [
     patentId: "10-1074946",
     patentDate: "10/12/11",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "오토 클레이브 에어 시스템",
@@ -614,6 +697,7 @@ const dataset = [
     patentId: "10-1095206",
     patentDate: "12/9/11",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -623,6 +707,7 @@ const dataset = [
     patentId: "10-1025979",
     patentDate: "3/23/11",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "헬기 로터 제빙계통 점검 시스템",
@@ -631,6 +716,7 @@ const dataset = [
     patentId: "10-1242748",
     patentDate: "3/5/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "하네스의 내구성 시험장치",
@@ -639,6 +725,7 @@ const dataset = [
     patentId: "10-1188402",
     patentDate: "9/27/12",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "헬리콥터의 저마찰 기계식 조종장치",
@@ -647,6 +734,7 @@ const dataset = [
     patentId: "10-1252986",
     patentDate: "4/3/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "헬리콥터 비행성 해석 시스템 및 그 해석 방법",
@@ -655,6 +743,7 @@ const dataset = [
     patentId: "10-1333205",
     patentDate: "11/20/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "항공용 니보드",
@@ -663,6 +752,7 @@ const dataset = [
     patentId: "10-1296185",
     patentDate: "8/7/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -672,6 +762,7 @@ const dataset = [
     patentId: "10-1310196",
     patentDate: "9/12/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "주의 경고 패널의 소형화 및  저 전력화 방법",
@@ -680,6 +771,7 @@ const dataset = [
     patentId: "10-1286231",
     patentDate: "7/9/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "항공기 공조장치용 소음기",
@@ -688,6 +780,7 @@ const dataset = [
     patentId: "10-1298814",
     patentDate: "8/14/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "회전체의 센서 데이터를 계측하여 전송하는 방법",
@@ -696,6 +789,7 @@ const dataset = [
     patentId: "10-1274171",
     patentDate: "6/5/13",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -705,6 +799,7 @@ const dataset = [
     patentId: "10-1483093",
     patentDate: "1/9/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "탄약통 고정 장치",
@@ -713,6 +808,7 @@ const dataset = [
     patentId: "10-1431111",
     patentDate: "8/11/14",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title: "헬리콥터의 카고훅 하중시현시스템 및 그 제어방법",
@@ -721,6 +817,7 @@ const dataset = [
     patentId: "10-1501136",
     patentDate: "3/4/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
   {
     title:
@@ -730,40 +827,48 @@ const dataset = [
     patentId: "10-1492831",
     patentDate: "2/4/15",
     status: "등록",
+    text: "휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적 우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형 드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나 전략적 목표를 신속하게 파괴하는 데 사용됩니다.",
   },
 ];
 
-export default function Query() {
+export default function Result() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [indexOfTab, setIndexOfTab] = useState("search");
   const [indexOfTab2, setIndexOfTab2] = useState("analysis");
   const [numberOfPage, setNumberOfPage] = useState<number>(1);
-  const [termsOfQuery, setTermsOfQuery] = useState<string[] | undefined>();
 
   const querySetTextInput = useQuery({
     queryKey: ["textInput"],
   });
-  // const queryTermsOfQuery = useQuery({
-  //   queryKey: ["termsOfQuery"],
-  //   queryFn: () => termsOfQuery,
-  // });
 
-  useEffect(() => {
-    axios
+  async function getTiidf(params: any) {
+    const response = await axios
       .get("http://localhost:8081/tfidf", {
         params: { text: querySetTextInput.data },
       })
       .then(async (value) => {
-        // await console.log(value.data.top_terms);
-        await setTermsOfQuery(value.data.top_terms);
-        await console.log(termsOfQuery);
-        // await queryTermsOfQuery.refetch();
+        await console.log(value.data.top_terms);
+        return value.data.top_terms;
       })
       .catch((error) => {
         console.log(error);
       });
+    return response;
+  }
 
+  const response = useApiGet(["tfidf"], getTiidf, {
+    refetchOnWindowFocus: true,
+    retry: 0,
+  });
+
+  useEffect(() => {
+    console.log(response.data);
+    AOS.init();
+    return () => {};
+  }, []);
+
+  useEffect(() => {
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
@@ -773,11 +878,6 @@ export default function Query() {
     };
     checkResize();
   }, [isMobile]);
-
-  useEffect(() => {
-    AOS.init();
-    return () => {};
-  }, []);
 
   return (
     <section
@@ -804,8 +904,8 @@ export default function Query() {
           defaultSelectedKey={"search"}
         >
           <Tab key="search" title="탐색 탭"></Tab>
-          {mobile && <Tab key="chatbot" title="챗봇 탭"></Tab>}
           {mobile && <Tab key="analysis" title="분석 탭"></Tab>}
+          {mobile && <Tab key="chatbot" title="챗봇 탭"></Tab>}
         </Tabs>
 
         {mobile ? (
@@ -813,7 +913,7 @@ export default function Query() {
             {indexOfTab == "search" && (
               <div className="w-full gap-2">
                 {dataset
-                  .slice(0 + 5 * (numberOfPage - 1), 4 + 5 * (numberOfPage - 1))
+                  .slice(0 + 5 * (numberOfPage - 1), 5 + 5 * (numberOfPage - 1))
                   .map((data, i) => {
                     return (
                       <Card
@@ -837,12 +937,7 @@ export default function Query() {
                           </div>
                         </div>
                         <p className="line-clamp-3 text-justify text-sm">
-                          {/* {data.text} */}
-                          휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
-                          우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는
-                          소형 드론과 폭발물을 결합하여 적의 진영을 정밀
-                          타격하거나 전략적 목표를 신속하게 파괴하는 데
-                          사용됩니다
+                          {data.text}
                         </p>
                       </Card>
                     );
@@ -858,21 +953,21 @@ export default function Query() {
                 </div>
               </div>
             )}
+            {indexOfTab == "analysis" && (
+              <div className="h-[500px] w-full pt-2">
+                <AnalysisView></AnalysisView>
+              </div>
+            )}
             {indexOfTab == "chatbot" && (
               <div className="h-[500px] w-full pt-2">
                 <ChatbotView></ChatbotView>
-              </div>
-            )}
-            {indexOfTab == "analysis" && termsOfQuery !== null && (
-              <div className="h-[500px] w-full pt-2">
-                <AnalysisView termsOfQuery={termsOfQuery}></AnalysisView>
               </div>
             )}
           </>
         ) : (
           <div className="w-full gap-2">
             {dataset
-              .slice(0 + 5 * (numberOfPage - 1), 4 + 5 * (numberOfPage - 1))
+              .slice(0 + 5 * (numberOfPage - 1), 5 + 5 * (numberOfPage - 1))
               .map((data, i) => {
                 return (
                   <Card
@@ -894,40 +989,9 @@ export default function Query() {
                           {data.patentDate}
                         </p>
                       </div>
-                      {/* <div className="space-x-2">
-                  {[
-                    {
-                      text: "비교하기",
-                      icon: <IconBookmark width={"20px"}></IconBookmark>,
-                    },
-                    {
-                      text: "비교하기",
-                      icon: <IconBookmark width={"20px"}></IconBookmark>,
-                    },
-                    {
-                      text: "비교하기",
-                      icon: <IconBookmark width={"20px"}></IconBookmark>,
-                    },
-                  ].map((button, i) => {
-                    return (
-                      <Button
-                        key={i}
-                        isIconOnly
-                        size={"sm"}
-                        variant={"shadow"}
-                      >
-                        {button.icon}
-                      </Button>
-                    );
-                  })}
-                </div> */}
                     </div>
                     <p className="line-clamp-3 text-justify text-sm">
-                      {/* {data.text} */}
-                      휴대형 군사용 드론 폭탄 장치는 현대 전장에서의 전술적
-                      우위를 제공하는 혁신적인 기술 장비입니다. 이 장치는 소형
-                      드론과 폭발물을 결합하여 적의 진영을 정밀 타격하거나
-                      전략적 목표를 신속하게 파괴하는 데 사용됩니다.
+                      {data.text}
                     </p>
                   </Card>
                 );
@@ -973,54 +1037,132 @@ export default function Query() {
 }
 
 function AnalysisView(props: any) {
+  const responseQuery = useQuery({
+    queryKey: ["tfidf"],
+    refetchOnWindowFocus: false,
+  });
+
+  const [indexForTechTrend, setIndexForTechTrend] = useState<number>(0);
+
   return (
-    <div className={`flex h-full w-fit gap-4`}>
-      {/*  */}
-      <Accordion
-        className="h-fit w-fit border-1"
-        defaultExpandedKeys={["1"]}
-        fullWidth
-        variant={"bordered"}
-        keepContentMounted
-      >
-        <AccordionItem
-          key="1"
-          aria-label="wordCloud"
-          title="기술 동향 분석"
-          subtitle="주요 키워드의 빈도를 강조하여 시각적으로 표현합니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+    <>
+      {responseQuery.isLoading ? (
+        <Card
+          className="flex h-full w-full flex-col items-center justify-center border-1"
+          shadow={"none"}
         >
-          {/* <p className="text-black">
-            sdfs
-            {props.termsOfQuery?.map((e: any, i: any) => <p>{e}</p>)}
-          </p> */}
-          {/* {(queryTermsOfQuery.data as any).terms.map((e: any, i: any) => (
-            <p>{e}</p>
-          ))} */}
-          {/* <Cha></Cha>*/}
-        </AccordionItem>
-        <AccordionItem
-          key="2"
-          aria-label="Accordion 2"
-          title="국가별 특허경쟁력 지수"
-          subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
-        >
-          <div className="flex w-full flex-col items-center">
-            <WorldmapChart size={"md"}></WorldmapChart>
-          </div>
-        </AccordionItem>
-        <AccordionItem
-          key="3"
-          aria-label="Accordion 3"
-          title="네트워크 그래프"
-          subtitle="핵심어 키워드 간의 관계와 연관성을 나타냅니다."
-          classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
-        >
-          {/* <ChartNetworkComponent></ChartNetworkComponent> */}
-        </AccordionItem>
-      </Accordion>
-    </div>
+          <CircularProgress></CircularProgress>
+        </Card>
+      ) : (
+        <div className={`flex h-full w-fit gap-4`}>
+          <Accordion
+            className="h-fit w-fit border-1"
+            defaultExpandedKeys={["1"]}
+            fullWidth
+            variant={"bordered"}
+            keepContentMounted
+          >
+            <AccordionItem
+              key="1"
+              aria-label="wordCloud"
+              title="기술 동향 분석"
+              subtitle="질의어에서 추출한 핵심키워드로 국내외 기술 동향을 시각화합니다."
+              classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+            >
+              <div className="flex h-full flex-col gap-4">
+                <div className="flex flex-row flex-wrap gap-2">
+                  {responseQuery.isRefetching ? (
+                    <div className="flex h-[30px] w-full flex-col items-center justify-center px-2">
+                      <Progress isIndeterminate size={"sm"}></Progress>
+                    </div>
+                  ) : (
+                    <>
+                      {(responseQuery.data as any[])
+                        ?.filter(
+                          (value: any) =>
+                            value.length != 1 &&
+                            value.charAt(value.length - 1) != "다",
+                        )
+                        ?.map((e: string, i: number) => (
+                          <Button
+                            key={i}
+                            size={"sm"}
+                            color={"primary"}
+                            variant={
+                              indexForTechTrend == i ? "solid" : "bordered"
+                            }
+                            onPress={() => {
+                              setIndexForTechTrend(i);
+                            }}
+                            className="font-bold"
+                          >
+                            {e}
+                          </Button>
+                        ))}
+                    </>
+                  )}
+                </div>
+                <div className="h-[250px]">
+                  <Bar
+                    data={{
+                      labels: ["국내 특허", "해외 특허"],
+                      datasets: [
+                        {
+                          label: `전체 대비 "${(
+                            responseQuery.data as any[]
+                          )?.filter(
+                            (value: any) =>
+                              value.length != 1 &&
+                              value.charAt(value.length - 1) != "다",
+                          )[indexForTechTrend]}" 키워드 비율`,
+                          data: [
+                            faker.number.float({ min: 0.2, max: 0.8 }),
+                            faker.number.float({ min: 0.2, max: 0.8 }),
+                          ],
+                          backgroundColor: "#1D4A83",
+                        },
+                      ],
+                    }}
+                    options={{
+                      scales: { y: { min: 0, max: 1 } },
+                      font: { size: 15, weight: "bold" },
+                      maintainAspectRatio: false,
+                      responsive: true,
+                      animation: {
+                        // delay: 1000,
+                        duration: 1000,
+                      },
+                      plugins: {
+                        legend: {
+                          position: "top" as const,
+                        },
+                        // title: {
+                        //   display: true,
+                        //   text: `전체 방산 특허 대비 "${indexForTechTrend}" 분야 특허 비율`,
+                        // },
+                      },
+                    }}
+                    // width={"full"}
+                    // height={"full"}
+                  ></Bar>
+                </div>
+              </div>
+            </AccordionItem>
+            <AccordionItem
+              key="2"
+              aria-label="Accordion 2"
+              title="국가별 특허경쟁력 지수"
+              subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
+              classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
+            >
+              <div className="flex w-full flex-col items-center">
+                <WorldmapChart size={"md"}></WorldmapChart>
+              </div>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      )}
+    </>
   );
 }
 

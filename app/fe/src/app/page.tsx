@@ -63,6 +63,7 @@ export default function Home() {
     checkResize();
     toast.success("아래로 스크롤하기", {
       className: "font-bold text-sm",
+      duration: 10000,
     });
   }, [isMobile]);
 

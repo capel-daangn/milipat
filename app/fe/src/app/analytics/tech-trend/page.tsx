@@ -416,7 +416,7 @@ function ChatbotView(props: any) {
             isSent: false,
             isLoading: false,
             imgSrc: "11",
-            name: "MiliPat AI",
+            name: "MiliPat 챗봇",
             // text: `K9 자주포, 일명 K9 썬더는 대한민국에서 개발 및 생산된 자주포 시스템입니다. 다음은 K9 자주포의 주요 제원입니다:
 
             // 1. **중량**: 전투중량으로 47톤에 이르며, 이는 차체의 전체적인 무게를 의미합니다.
