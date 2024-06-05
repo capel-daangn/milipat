@@ -1,82 +1,100 @@
 version: "3"
 
 services:
-  # nginx:
-  #   image: nginx
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./docker/ssl/conf/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./docker/ssl/data/certbot/conf:/etc/letsencrypt
-  #     - ./docker/ssl/data/certbot/www:/var/www/certbot
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  # certbot:
-  #   image: certbot/certbot
-  #   restart: unless-stopped
-  #   command: certonly -v --webroot --webroot-path=/var/www/certbot --email alex.jiuk.kim@google.com --agree-tos --no-eff-email -d exercise.ziwook.com
-  #   volumes:
-  #     - ./docker/ssl/data/certbot/conf:/etc/letsencrypt
-  #     - ./docker/ssl/data/certbot/www:/var/www/certbot
-  #
-  database:
-    container_name: milipat/database/mysql
-    image: mysql
+  npm:
+    container_name: npm
+    image: "jc21/nginx-proxy-manager:latest"
     restart: unless-stopped
-    volumes:
-      - ./docker/data/database/mysql:/var/lib/mysql
     ports:
-      - 3306:3306
-    environment:
-      - MYSQL_DATABASE=db_Dev
-      - MYSQL_ROOT_PASSWORD=1234
-      # - MYSQL_ROOT_USER=root
-      # - MYSQL_PASSWORD
-      - TZ=Asiz/Seoul
-    networks:
-      - milipat_dev_network
-#   #
-#   backend:
-#     container_name: milipat/backend
-#     platform: linux/amd64
-#     build:
-#       context: ./be/
-#       dockerfile: Dockerfile
-#     depends_on:
-#       - database
-#     restart: on-failure
-#     ports:
-#       - 8080:8080
-#     networks:
-#       - milipat_dev_network
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    volumes:
+      - .docker/data:/data
+      - .docker/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - db
   #
-  backend-nlp:
-    container_name: milipat/backend-nlp
+  #
+  #
+  # database:
+  #   container_name: milipat/database/mysql
+  #   image: mysql
+  #   restart: unless-stopped
+  #   volumes:
+  #     - .docker/data/database/mysql:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - MYSQL_DATABASE=db_Dev
+  #     - MYSQL_ROOT_PASSWORD=1234
+  #     # - MYSQL_ROOT_USER=root
+  #     # - MYSQL_PASSWORD
+  #     - TZ=Asiz/Seoul
+  #   networks:
+  #     - milipat_network
+  #
+  #
+  #
+  backend:
+    container_name: backend
     platform: linux/amd64
     build:
-      context: ./be-nlp/
+      context: ./be/
       dockerfile: Dockerfile
-    depends_on:
-      - database
+    # depends_on:
+    #   - database
     restart: on-failure
     ports:
-      - 8081:80
+      - 8081:8081
     networks:
-      - milipat_dev_network
-#   #
-#   frontend:
-#     container_name: milipat/frontend
-#     platform: linux/amd64
-#     build:
-#       context: ./fe/
-#       dockerfile: Dockerfile
-#     depends_on:
-#       - backend
-#     restart: on-failure
-#     ports:
-#       - 3000:3000
-#     networks:
-#       - milipat_dev_network
+      - milipat_network
+  #
+  #
+  #
+  frontend:
+    container_name: frontend
+    platform: linux/amd64
+    build:
+      context: ./fe/
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    restart: on-failure
+    ports:
+      - 3000:3000
+    networks:
+      - milipat_network
+  #
+  #
+  #
+  # ollama:
+  #   container_name: ollama
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - 11434:11434
+  #   volumes:
+  #     - ./.docker/ollama:/root/.ollama
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - qdrant
+  #   networks:
+  #     - milipat_network
+  #
+  #
+  #
+  # qdrant:
+  #   container_name: qdrant
+  #   image: qdrant/qdrant:v1.7.3
+  #   ports:
+  #     - 6333:6333
+  #   volumes:
+  #     - ./.docker/data/qdrant_storage:/qdrant/storage
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - milipat_network
 
-# networks:
-#   milipat_dev_network:
+networks:
+  milipat_network:
+    driver: bridge
