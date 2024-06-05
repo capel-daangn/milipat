@@ -844,9 +844,13 @@ export default function Result() {
 
   async function getTiidf(params: any) {
     const response = await axios
-      .get("http://localhost:8081/tfidf", {
-        params: { text: querySetTextInput.data },
-      })
+      .get(
+        "http://ec2-13-124-175-105.ap-northeast-2.compute.amazonaws.com:8081/tfidf",
+        // "http://localhost:8081/tfidf",
+        {
+          params: { text: querySetTextInput.data },
+        },
+      )
       .then(async (value) => {
         await console.log(value.data.top_terms);
         return value.data.top_terms;
