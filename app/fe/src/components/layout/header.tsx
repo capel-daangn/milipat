@@ -46,7 +46,7 @@ export default function Header(props: HeaderProps) {
     queryFn: () => indexOfViews,
   });
   const [textInput, setTextInput] = useState<string | undefined>("");
-  const querySetTextInput = useQuery({
+  const queryTextInput = useQuery({
     queryKey: ["textInput"],
     queryFn: () => textInput,
   });
@@ -78,8 +78,8 @@ export default function Header(props: HeaderProps) {
               onClick={async () => {
                 await setIndexOfViews("search");
                 await queryIndexOfViews.refetch();
-                await setTextInput("")
-                await querySetTextInput.refetch()
+                await setTextInput("");
+                await queryTextInput.refetch();
                 await router.push("/home");
               }}
               className="w-fit"
@@ -90,7 +90,7 @@ export default function Header(props: HeaderProps) {
             <UserDropdown></UserDropdown>
 
             <div className="col-span-3 flex w-full flex-col items-center justify-center">
-              <SearchBar value={props.searchedText}></SearchBar>
+              <SearchBar value={queryTextInput.data}></SearchBar>
             </div>
           </>
         ) : (
@@ -99,8 +99,8 @@ export default function Header(props: HeaderProps) {
               onClick={async () => {
                 await setIndexOfViews("search");
                 await queryIndexOfViews.refetch();
-                await setTextInput("")
-                await querySetTextInput.refetch()
+                await setTextInput("");
+                await queryTextInput.refetch();
                 await router.push("/home");
               }}
               className="w-fit"
@@ -108,7 +108,7 @@ export default function Header(props: HeaderProps) {
               <IconLogo width={100} fill="#000"></IconLogo>
             </button>
             <div className="flex w-full flex-col items-center justify-center">
-              <SearchBar value={props.searchedText}></SearchBar>
+              <SearchBar value={queryTextInput.data}></SearchBar>
             </div>
             <div className="col-span-1"></div>
             <UserDropdown></UserDropdown>

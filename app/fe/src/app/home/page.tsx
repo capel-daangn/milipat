@@ -172,7 +172,7 @@ function AnalysisView(props: any) {
         >
           {[
             {
-              name: "기술 동향 분석",
+              name: "기술 동향 분석 도구",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
@@ -180,7 +180,7 @@ function AnalysisView(props: any) {
               router: "/analytics/tech-trend",
             },
             {
-              name: "특허 유사도 분석",
+              name: "특허 유사도 분석 도구",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
@@ -188,7 +188,7 @@ function AnalysisView(props: any) {
               router: "/analytics/patent-similarity",
             },
             {
-              name: "특허 경쟁력 진단",
+              name: "특허 경쟁력 진단 도구",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
@@ -229,19 +229,39 @@ function AnalysisView(props: any) {
       >
         <div className="flex flex-col items-center justify-center gap-16">
           <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">기술 동향 분석</p>
+            <p className="text-xl font-bold">기술 동향 분석 도구</p>
             <Card className="min-h-fit w-full p-8">
               <TrendChart></TrendChart>
             </Card>
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">특허 유사도 분석</p>
-            <Card className="min-h-fit w-full p-8">
-              <WorldmapChart size={"responsive"}></WorldmapChart>
+            <p className="text-xl font-bold">특허 유사도 분석 도구</p>
+            <Card className="flex min-h-fit w-full flex-col justify-between gap-8 p-8">
+              <div className="flex flex-row items-center justify-between gap-8">
+                <Card
+                  isPressable
+                  className="flex aspect-[3/4] w-full flex-col items-center justify-center border-2 bg-gray-300"
+                  radius={"none"}
+                >
+                  <p>비교할 특허 문서 선택하기</p>
+                </Card>
+                <Card
+                  isPressable
+                  className="flex aspect-[3/4] w-full flex-col items-center justify-center border-2 bg-gray-300"
+                  radius={"none"}
+                >
+                  <p>비교할 특허 문서 선택하기</p>
+                </Card>
+              </div>
+              <Card
+                className="h-[300px] w-full border-3 drop-shadow-none"
+                shadow={"none"}
+                radius={"none"}
+              ></Card>
             </Card>
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">특허 경쟁력 진단</p>
+            <p className="text-xl font-bold">특허 경쟁력 진단 도구</p>
             <Card className="min-h-fit w-full p-8">
               <WorldmapChart size={"responsive"}></WorldmapChart>
             </Card>
