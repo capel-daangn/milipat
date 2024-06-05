@@ -867,7 +867,6 @@ export default function Result() {
   });
 
   useEffect(() => {
-    console.log(response.data);
     AOS.init();
     return () => {};
   }, []);
