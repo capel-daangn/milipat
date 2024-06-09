@@ -12,8 +12,8 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
-    # networks:
-    #   - milipat_network
+    networks:
+      - milipat_network
     # volumes:
     #   - .docker/data:/data
     #   - .docker/letsencrypt:/etc/letsencrypt
@@ -50,8 +50,8 @@ services:
     restart: on-failure
     ports:
       - 8081:8081
-    # networks:
-    #   - milipat_network
+    networks:
+      - milipat_network
   #
   #
   #
@@ -106,7 +106,6 @@ services:
 #     external: true
 #     name: npm
 networks:
-  default:
-    name: milipat-network
+  milipat_network:
     driver: bridge
     external: true
