@@ -95,10 +95,10 @@ services:
   #     - backend
   #   networks:
   #     - milipat_network
-# networks:
-# milipat_network:
-#   external: true
 
+# networks:
+#   milipat_network:
+#     driver: bridge
 networks:
   default:
     external: true
