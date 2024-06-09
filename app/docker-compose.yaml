@@ -49,7 +49,7 @@ services:
     #   - database
     restart: on-failure
     ports:
-      - 80:80
+      - 8081:8081
     networks:
       - milipat_network
   #
