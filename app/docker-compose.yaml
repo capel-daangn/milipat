@@ -96,10 +96,11 @@ services:
   #   networks:
   #     - milipat_network
 
-# networks:
-#   milipat_network:
-#     driver: bridge
 networks:
-  default:
+  milipat_network:
     external: true
-    name: npm
+    # driver: bridge
+# networks:
+#   default:
+#     external: true
+#     name: npm
