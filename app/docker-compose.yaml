@@ -12,8 +12,6 @@ services:
     volumes:
       - .docker/data:/data
       - .docker/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - db
   #
   #
   #
