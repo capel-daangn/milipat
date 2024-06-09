@@ -12,6 +12,8 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - milipat_network
     # volumes:
     #   - .docker/data:/data
     #   - .docker/letsencrypt:/etc/letsencrypt
@@ -48,8 +50,8 @@ services:
     restart: on-failure
     ports:
       - 80:80
-    # networks:
-    #   - milipat_network
+    networks:
+      - milipat_network
   #
   #
   #
@@ -93,12 +95,11 @@ services:
   #     - ./.docker/data/qdrant_storage:/qdrant/storage
   #   depends_on:
   #     - backend
-  #   networks:
-  #     - milipat_network
+  # networks:
+  #   - milipat_network
 
 networks:
   milipat_network:
-    external: true
     # driver: bridge
 # networks:
 #   default:
