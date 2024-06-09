@@ -47,9 +47,9 @@ services:
     #   - database
     restart: on-failure
     ports:
-      - 8081:8081
-    networks:
-      - milipat_network
+      - 80:80
+    # networks:
+    #   - milipat_network
   #
   #
   #
@@ -96,6 +96,10 @@ services:
   #   networks:
   #     - milipat_network
 
+# networks:
+#   milipat_network:
+#     driver: bridge
 networks:
-  milipat_network:
-    driver: bridge
+  default:
+    external: true
+    name: npm
