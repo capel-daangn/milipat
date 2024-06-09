@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   npm:
@@ -95,11 +95,9 @@ services:
   #     - backend
   #   networks:
   #     - milipat_network
-
 # networks:
 #   milipat_network:
 #     driver: bridge
-networks:
-  default:
-    external: true
-    name: npm
+# networks:
+#   default:
+#     external: true
