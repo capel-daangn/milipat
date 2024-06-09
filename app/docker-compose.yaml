@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   npm:
@@ -10,8 +10,11 @@ services:
       - "443:443"
       - "81:81"
     volumes:
-      - .docker/data:/data
-      - .docker/letsencrypt:/etc/letsencrypt
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    # volumes:
+    #   - .docker/data:/data
+    #   - .docker/letsencrypt:/etc/letsencrypt
   #
   #
   #
