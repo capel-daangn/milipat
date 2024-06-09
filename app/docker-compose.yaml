@@ -50,19 +50,19 @@ services:
   #
   #
   #
-  frontend:
-    container_name: frontend
-    platform: linux/amd64
-    build:
-      context: ./fe/
-      dockerfile: Dockerfile
-    depends_on:
-      - backend
-    restart: on-failure
-    ports:
-      - 3000:3000
-    networks:
-      - milipat_network
+  # frontend:
+  #   container_name: frontend
+  #   platform: linux/amd64
+  #   build:
+  #     context: ./fe/
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - backend
+  #   restart: on-failure
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - milipat_network
   #
   #
   #
