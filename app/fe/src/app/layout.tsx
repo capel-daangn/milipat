@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
+  icons: {
+    icon: "/images/logo-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -36,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${nanumSquareNeo.className}`}>
       <head>
+        {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
