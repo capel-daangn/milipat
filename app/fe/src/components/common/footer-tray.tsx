@@ -34,7 +34,7 @@ export default function FooterTray(props: any) {
             classNames={{
               input: "text-lg w-[75%] scale-90 text-left",
             }}
-            color={"primary"}
+            color={"default"}
             onClear={() => {
               setInputText("");
             }}
