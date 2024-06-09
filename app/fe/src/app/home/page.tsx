@@ -25,6 +25,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
+import ChatbotTab from "@/components/chatbot-tab";
 
 ChartJS.register(
   CategoryScale,
@@ -273,18 +274,6 @@ function AnalysisView(props: any) {
 }
 
 function ChatbotView(props: any) {
-  const messageEndRef = useRef<HTMLDivElement | null>(null);
-  const [dialogContext, setDialogContext] = useState([
-    {
-      isAnimated: true,
-      isSent: false,
-      isLoading: false,
-      imgSrc: "/images/logo.png",
-      name: "MiliPat 챗봇",
-      text: "어떻게 도와드릴까요?",
-    },
-  ]);
-
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
 
@@ -298,26 +287,6 @@ function ChatbotView(props: any) {
     };
     checkResize();
   }, [isMobile]);
-
-  useEffect(() => {
-    if (dialogContext[dialogContext.length - 1].isSent == true) {
-      // setIsLoading(true);
-      const timer = setTimeout(() => {
-        // setIsLoading(false);
-        setDialogContext([
-          ...dialogContext,
-          {
-            isAnimated: true,
-            isSent: false,
-            isLoading: false,
-            imgSrc: "11",
-            name: "MiliPat AI",
-            text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
-          },
-        ]);
-      }, 500);
-    }
-  }, [dialogContext]);
 
   return (
     <div
@@ -356,46 +325,7 @@ function ChatbotView(props: any) {
       </div>
 
       {/*  */}
-      <Card
-        shadow={"none"}
-        radius={"none"}
-        className={`${
-          mobile ? "h-full pb-1" : "h-[85vh]"
-        } relative flex w-full flex-col items-center justify-start overflow-scroll border-1`}
-        style={{
-          display: "grid",
-          gridTemplateRows: "1fr auto",
-          gridTemplateColumns: "1fr",
-          gap: "1px",
-        }}
-      >
-        <div className="flex h-full w-full flex-col items-center overflow-y-auto px-4 py-4">
-          {dialogContext.map((e, i) => {
-            return (
-              <TextBubble
-                key={i}
-                // indexStage={indexStage}
-                isLoading={false}
-                isAnimated={e.isAnimated}
-                isSent={e.isSent}
-                imgSrc={"1"}
-                name={e.name}
-                text={e.text}
-                isLast={i == dialogContext.length - 1}
-              ></TextBubble>
-            );
-          })}
-          <div ref={messageEndRef} className="h-[100px]"></div>
-        </div>
-        <div className="flex h-fit w-full flex-col items-center">
-          <FooterTray
-            dialogContext={dialogContext}
-            setDialogContext={setDialogContext}
-            showInput
-            setIsModalVisible={props.setIsModalVisible}
-          ></FooterTray>
-        </div>
-      </Card>
+      <ChatbotTab></ChatbotTab>
     </div>
   );
 }

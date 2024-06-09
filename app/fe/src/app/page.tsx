@@ -63,7 +63,7 @@ export default function Home() {
     checkResize();
     toast.success("아래로 스크롤하기", {
       className: "font-bold text-sm",
-      duration: 10000,
+      duration: 5000,
     });
   }, [isMobile]);
 
@@ -710,7 +710,7 @@ export default function Home() {
         </div>
 
         {/* 3. 차별화 포인트 - 직관적인  */}
-        <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
+        {/* <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">
           <div
             data-aos="fade-up"
             data-aos-duration="1250"
@@ -774,7 +774,6 @@ export default function Home() {
                       {content.title}
                     </p>
                   </CardHeader>
-                  {/* <Divider></Divider> */}
                   <CardBody className="text-balance gap-4 break-keep">
                     <p className="text-sm leading-relaxed text-primary">
                       {content.text}
@@ -785,7 +784,7 @@ export default function Home() {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         {/* 추가 기술 설명  */}
         <div className="mx-auto flex h-fit max-w-[1000px] flex-col items-center justify-center gap-8 pt-48">

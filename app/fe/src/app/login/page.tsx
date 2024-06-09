@@ -52,7 +52,7 @@ export default function Home() {
         >
           <div className="mx-auto flex h-full w-full max-w-sm flex-col items-center justify-center gap-8 px-4">
             <div className="flex w-full flex-col items-center justify-center gap-2">
-              <IconLogo width={mobile ? 150 : 200} fill="#000"></IconLogo>
+              <IconLogo width={mobile ? 120 : 200} fill="#000"></IconLogo>
               <p
                 className={`text-center font-bold ${
                   mobile ? "text-tiny" : "text-sm"
