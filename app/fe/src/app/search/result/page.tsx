@@ -845,7 +845,8 @@ export default function Result() {
   async function getTiidf(params: any) {
     const response = await axios
       .get(
-        "http://ec2-13-124-175-105.ap-northeast-2.compute.amazonaws.com:8081/tfidf",
+        "https://api.ziweek.duckdns.org/tfidf",
+        // "http://ec2-13-124-175-105.ap-northeast-2.compute.amazonaws.com:8081/tfidf",
         // "http://localhost:8081/tfidf",
         {
           params: { text: querySetTextInput.data },
