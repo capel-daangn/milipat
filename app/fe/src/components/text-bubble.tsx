@@ -141,7 +141,7 @@ export default function TextBubble(props: propsForTextBubble) {
                     color={"primary"}
                     variant={"shadow"}
                     onPress={() => {
-                      window.open("https://youtu.be/KiN9jtav13I");
+                      window.open("https://youtu.be/KiN9jtav13I?t=122");
                       // props.setDialogContext([
                       //   ...props.dialogContext,
                       //   {
