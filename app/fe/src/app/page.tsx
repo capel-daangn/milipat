@@ -590,6 +590,7 @@ export default function Home() {
                       <div className="flex flex-col items-center justify-center gap-4">
                         <Button
                           color={"primary"}
+                          variant={"shadow"}
                           onPress={() => {
                             setIsThreeModelVisible(!isThreeModelVisible);
                           }}
