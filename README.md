@@ -152,7 +152,7 @@
   <br/>
   <strong>방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼</strong>
   <br/>
-  <strong>An Intelligent Platform for Patent Search and Analysis in the Defense Industry Field</strong>
+  <strong>An Intelligent Platform for Patent Search and AI Analysis in the Defense Industry</strong>
   <br/>
   <br/>
 
