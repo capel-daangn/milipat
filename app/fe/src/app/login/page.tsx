@@ -58,7 +58,7 @@ export default function Home() {
                   mobile ? "text-tiny" : "text-sm"
                 }`}
               >
-                방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼
+                방산 분야 특허 검색 및 AI 분석을 위한 지능형 플랫폼
               </p>
             </div>
             <div className="flex h-fit w-full flex-col items-center justify-center space-y-4">

@@ -118,7 +118,9 @@ export default function Home() {
                   color={"default"}
                   variant={"bordered"}
                   onClick={() => {
-                    window.open("https://github.com/ziweek/milipat");
+                    window.open(
+                      "https://www.canva.com/design/DAGGtLZZIik/pXgzqOEimHFKjbO9cdE3kg/edit?utm_content=DAGGtLZZIik&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                    );
                   }}
                 >
                   프로젝트 소개자료
