@@ -93,7 +93,7 @@ export default function Home() {
                   mobile ? "text-sm" : "text-md"
                 }`}
               >
-                방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼
+                방산 분야 특허 검색 및 AI 분석을 위한 지능형 플랫폼
               </p>
             </div>
             {/*  */}
@@ -361,7 +361,7 @@ export default function Home() {
                           <p
                             className={`w-fit whitespace-pre-line break-keep px-2 font-bold leading-relaxed text-white ${
                               i == indexOfPressedCard
-                                ? "bg-orange-600"
+                                ? "bg-teal-800"
                                 : "bg-teal-600"
                             }`}
                           >
