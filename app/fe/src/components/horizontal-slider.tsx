@@ -40,7 +40,7 @@ export default function HorizontalSlider(props: any) {
                     <p
                       className={`${
                         props.height >= 200 ? "text-lg" : "text-md"
-                      } text-pretty w-full whitespace-normal text-start font-bold `}
+                      } text-pretty w-full whitespace-normal break-keep text-start font-bold`}
                     >
                       {e.title}
                     </p>
