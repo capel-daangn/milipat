@@ -14,7 +14,7 @@ export default function useIsDevToolsOpen(
 ) {
   const {
     interval = 500,
-    enabled = process.env.NODE_ENV === "development" ? false : true, // 여기 수정해야 함.
+    enabled = process.env.NODE_ENV === "development" ? false : false, // 여기 수정해야 함.
   } = options;
   const [isOpen, setIsOpen] = useState(false);
 
