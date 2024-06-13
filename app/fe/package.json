@@ -11,6 +11,7 @@
   "dependencies": {
     "@blocknote/core": "^0.10.1",
     "@faker-js/faker": "^8.4.1",
+    "@next/bundle-analyzer": "^14.2.4",
     "@nextui-org/react": "^2.2.9",
     "@react-aria/i18n": "^3.11.1",
     "@react-three/drei": "^9.105.5",
@@ -30,6 +31,7 @@
     "devtools-detector": "^2.0.17",
     "framer-motion": "^10.18.0",
     "next": "14.0.2",
+    "next-compose-plugins": "^2.2.1",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.3.0",
     "next-videos": "^1.4.1",
