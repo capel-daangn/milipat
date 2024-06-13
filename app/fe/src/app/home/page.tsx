@@ -6,12 +6,9 @@ import { Card } from "@nextui-org/react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { useQuery } from "@tanstack/react-query";
-
-import TextBubble from "@/components/text-bubble";
-import FooterTray from "@/components/common/footer-tray";
 import WorldmapChart from "@/components/chart/worldmap-chart";
 import {
   Chart as ChartJS,
@@ -105,7 +102,7 @@ function SearchView(props: any) {
       </div>
       <div className="fixed bottom-4 flex flex-col items-center justify-center gap-2">
         <p
-          className={`select-none font-bold text-black/30 ${
+          className={`select-none font-bold text-black/50 ${
             mobile ? "text-tiny" : "text-xs"
           }`}
         >
@@ -119,12 +116,13 @@ function SearchView(props: any) {
           }`}
         >
           {[
-            "/images/logo/dod.png",
-            "/images/logo/dapa.png",
-            "/images/logo/data_portal.png",
-            "/images/logo/ai_hub.png",
+            "/images/logo/dod.webp",
+            "/images/logo/dapa.webp",
+            "/images/logo/data_portal.webp",
+            "/images/logo/ai_hub.webp",
           ].map((e, i) => (
             <Image
+              loading={"lazy"}
               key={i}
               src={e}
               width={100}
