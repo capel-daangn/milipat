@@ -84,14 +84,22 @@ function SearchView(props: any) {
         className="flex flex-row items-center justify-center gap-2"
       >
         <IconLogo fill="#000000" width={mobile ? 120 : 150}></IconLogo>
-        <p
-          className={`select-none font-bold ${
-            mobile ? "text-tiny" : "text-md"
-          }`}
-        >
-          미래 기술 강군을 위한,
-          <br /> 방산 분야 특허 관리 지능형 플랫폼
-        </p>
+        <div className="flex flex-col items-start">
+          <p
+            className={`select-none font-bold ${
+              mobile ? "text-tiny" : "text-md"
+            }`}
+          >
+            미래 기술 강군을 위한,
+          </p>
+          <p
+            className={`select-none font-bold ${
+              mobile ? "text-tiny" : "text-md"
+            }`}
+          >
+            방산 분야 특허 관리 지능형 플랫폼
+          </p>
+        </div>
       </div>
       <div
         data-aos={"fade-in"}
@@ -102,7 +110,7 @@ function SearchView(props: any) {
       </div>
       <div className="fixed bottom-4 flex flex-col items-center justify-center gap-2">
         <p
-          className={`select-none font-bold text-black/50 ${
+          className={`select-none font-bold text-black/30 ${
             mobile ? "text-tiny" : "text-xs"
           }`}
         >
@@ -239,14 +247,21 @@ function AnalysisView(props: any) {
               <div className="flex flex-row items-center justify-between gap-8">
                 <Card
                   isPressable
-                  className="flex aspect-[3/4] w-full flex-col items-center justify-center border-2 bg-gray-300"
+                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
                   radius={"none"}
                 >
                   <p>비교할 특허 문서 선택하기</p>
                 </Card>
                 <Card
                   isPressable
-                  className="flex aspect-[3/4] w-full flex-col items-center justify-center border-2 bg-gray-300"
+                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+                  radius={"none"}
+                >
+                  <p>비교할 특허 문서 선택하기</p>
+                </Card>
+                <Card
+                  isPressable
+                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
                   radius={"none"}
                 >
                   <p>비교할 특허 문서 선택하기</p>
