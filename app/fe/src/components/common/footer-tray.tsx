@@ -51,7 +51,6 @@ export default function FooterTray(props: any) {
                     isAnimated: false,
                     isSent: true,
                     isLoading: false,
-                    imgSrc: "/images/logo.png",
                     // sampleStageData[indexStage].content[currentCardIndex]
                     //   .imgSrc,
                     name: "사용자",
@@ -72,7 +71,6 @@ export default function FooterTray(props: any) {
                       isAnimated: false,
                       isSent: true,
                       isLoading: false,
-                      imgSrc: "/images/logo.png",
                       // sampleStageData[indexStage].content[
                       //   currentCardIndex
                       // ].imgSrc,
