@@ -135,6 +135,7 @@ export default function Header(props: HeaderProps) {
 function ViewTabs(props: any) {
   return (
     <Tabs
+      aria-hidden="true"
       aria-label="Options"
       variant={"underlined"}
       color={"primary"}

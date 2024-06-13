@@ -117,6 +117,7 @@ export default function Home() {
                   size={mobile ? "md" : "lg"}
                   color={"default"}
                   variant={"bordered"}
+                  aria-label="information"
                   onClick={() => {
                     window.open(
                       "https://www.canva.com/design/DAGGtLZZIik/pXgzqOEimHFKjbO9cdE3kg/edit?utm_content=DAGGtLZZIik&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
@@ -132,6 +133,7 @@ export default function Home() {
                   size={mobile ? "md" : "lg"}
                   color={"default"}
                   variant={"bordered"}
+                  aria-label="product"
                   onClick={() => {
                     router.push("/login");
                   }}

@@ -3,6 +3,7 @@
 import { IconLogo } from "@/components/common/icons";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { Button, Card, Input } from "@nextui-org/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -43,7 +44,14 @@ export default function Home() {
           gridTemplateRows: mobile ? "1fr 1fr" : "1fr",
         }}
       >
-        <div className="flex h-full w-full flex-col bg-[url('../../public/images/index/background-development.jpg')] bg-cover bg-center"></div>
+        {/* <div className="flex h-full w-full flex-col bg-[url('../../public/images/background/bg-login.webp')] bg-cover bg-center"></div> */}
+        <Image
+          src={"/images/background/bg-login.webp"}
+          width={800}
+          height={800}
+          alt="bg-login"
+          className="h-full w-full object-cover"
+        ></Image>
         <Card
           className={`flex h-full max-h-fit w-full flex-col bg-primary-50 px-4 pb-8 ${
             mobile ? "" : ""
