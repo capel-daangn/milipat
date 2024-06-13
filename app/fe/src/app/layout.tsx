@@ -42,7 +42,7 @@ export default function RootLayout({
         {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover maximum-scale=5"
         />
         {/* <meta
           http-equiv="Content-Security-Policy"
