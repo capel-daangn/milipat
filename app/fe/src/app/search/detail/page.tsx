@@ -16,7 +16,6 @@ import { Radar } from "react-chartjs-2";
 
 import dynamic from "next/dynamic";
 import { useIsMobile } from "@/hooks/useMediaQuery";
-import TextBubble from "@/components/text-bubble";
 
 import toast, { Toaster } from "react-hot-toast";
 
@@ -29,7 +28,6 @@ import {
 } from "chart.js";
 import ThreeRender from "@/components/3d-render";
 import { useSearchParams } from "next/navigation";
-import FooterTray from "@/components/common/footer-tray";
 import { IconBack, IconChat } from "@/components/common/icons";
 import PdfRender from "@/components/pdf-render";
 import { ChartWordCloud } from "@/components/chart/wordcloud-chart";
@@ -417,7 +415,7 @@ function AnalysisView(props: any) {
     <div className={`flex h-full w-full gap-4`}>
       {/*  */}
       <Accordion
-        className="h-full rounded-s-none border-1"
+        className="h-full rounded-none border-1"
         defaultExpandedKeys={["1"]}
         fullWidth
         variant={"bordered"}
@@ -460,7 +458,7 @@ function ModelView(params: any) {
     useState<boolean>(false);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center overflow-clip rounded-xl bg-primary-50">
+    <div className="flex h-full w-full flex-col items-center justify-center overflow-clip bg-primary-50">
       {isThreeModelVisible ? (
         <ThreeRender
           src={"/models/drone.glb"}
@@ -485,126 +483,6 @@ function ModelView(params: any) {
     </div>
   );
 }
-
-// function ChatbotView(props: any) {
-//   const messageEndRef = useRef<HTMLDivElement | null>(null);
-//   const [dialogContext, setDialogContext] = useState([
-//     {
-//       isAnimated: true,
-//       isSent: false,
-//       isLoading: false,
-//       imgSrc: "/images/logo.png",
-//       name: "MiliPat 챗봇",
-//       text: "어떻게 도와드릴까요?",
-//     },
-//   ]);
-
-//   const isMobile = useIsMobile();
-//   const [mobile, setMobile] = useState<boolean>(false);
-
-//   useEffect(() => {
-//     const checkResize = () => {
-//       if (isMobile) {
-//         setMobile(true);
-//       } else {
-//         setMobile(false);
-//       }
-//     };
-//     checkResize();
-//   }, [isMobile]);
-
-//   useEffect(() => {
-//     if (dialogContext[dialogContext.length - 1].isSent == true) {
-//       // setIsLoading(true);
-//       const timer = setTimeout(() => {
-//         // setIsLoading(false);
-//         setDialogContext([
-//           ...dialogContext,
-//           {
-//             isAnimated: true,
-//             isSent: false,
-//             isLoading: false,
-//             imgSrc: "11",
-//             name: "MiliPat 챗봇",
-//             text: `이것은 군사 목적으로 사용되는 드론에 대한 특허 신청입니다.
-
-//             이 드론의 주요 특징은 다음과 같습니다:
-
-//             - 적을 공격할 수 있는 회전 모터가 장착되어 있습니다.
-//             - 적을 공격할 수 있는 비디오 감시 카메라가 장착되어 있습니다.
-//             - 적을 공격할 수 있는 원격 조종기로 제어할 수 있습니다.
-//             - 적을 공격할 수 있는 비디오 감시 카메라로 제어할 수 있습니다.
-
-//             이 드론은 다음과 같은 다른 용도로도 유용합니다:
-
-//             - 감시 목적으로 사용할 수 있습니다.
-//             - 공격 목적으로 사용할 수 있습니다.
-//             - 방어 목적으로 사용할 수 있습니다.
-
-//             이것은 군사 목적으로 사용되는 드론에 대한 특허 신청입니다.",`,
-//             // text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
-//           },
-//         ]);
-//       }, 500);
-//     }
-//   }, [dialogContext]);
-
-//   return (
-//     <Card
-//       className="relative flex h-full w-full flex-col border-1"
-//       radius={"none"}
-//       shadow={"none"}
-//     >
-//       <div
-//         className={`relative grid h-full w-full gap-4`}
-//         style={{
-//           gridTemplateColumns: false ? "1fr" : "1fr",
-//           gridTemplateRows: false ? "1fr" : "1fr",
-//         }}
-//       >
-//         {/*  */}
-//         <div
-//           className={`${
-//             mobile ? "pb-1" : ""
-//           } relative flex h-full w-full flex-col items-center justify-start overflow-scroll`}
-//           style={{
-//             display: "grid",
-//             gridTemplateRows: "1fr auto",
-//             gridTemplateColumns: "1fr",
-//             gap: "1px",
-//           }}
-//         >
-//           <div className="flex h-full w-full flex-col items-center overflow-y-auto px-4 py-4">
-//             {dialogContext.map((e, i) => {
-//               return (
-//                 <TextBubble
-//                   key={i}
-//                   // indexStage={indexStage}
-//                   isLoading={false}
-//                   isAnimated={e.isAnimated}
-//                   isSent={e.isSent}
-//                   imgSrc={"1"}
-//                   name={e.name}
-//                   text={e.text}
-//                   isLast={i == dialogContext.length - 1}
-//                 ></TextBubble>
-//               );
-//             })}
-//             <div ref={messageEndRef} className="h-[100px]"></div>
-//           </div>
-//           <div className="z-50 flex h-fit w-full flex-col items-center">
-//             <FooterTray
-//               dialogContext={dialogContext}
-//               setDialogContext={setDialogContext}
-//               showInput
-//               setIsModalVisible={props.setIsModalVisible}
-//             ></FooterTray>
-//           </div>
-//         </div>
-//       </div>
-//     </Card>
-//   );
-// }
 
 function ChartRadar(params: any) {
   const data = {
@@ -667,5 +545,3 @@ function ChartRadar(params: any) {
     )
   );
 }
-
-function PdfCompo(params: any) {}
