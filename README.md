@@ -150,7 +150,7 @@
   </a>
   <br/>
   <br/>
-  <strong>방산 분야 특허 검색 및 분석 관리를 위한 지능형 플랫폼</strong>
+  <strong>방산 분야 특허 탐색 및 AI 분석을 위한 지능형 플랫폼</strong>
   <br/>
   <strong>An Intelligent Platform for Patent Search and AI Analysis in the Defense Industry</strong>
   <br/>
@@ -208,7 +208,11 @@
 >   
 > - 본 아이디어는, “방위사업청_보유_특허_데이터” 등의 국방 분야 공공데이터를 다면적으로 활용하고 온프레미스 환경의 LLM 앙상블 구조 및 실시간 구조도 3D 렌더링 기술을 적용하여, 국내외의 방산분야 특허를 조회하고 분석하여 양질의 방산특허를 유도하고 글로벌 방산시장에서 지적재산권 경쟁의 우위를 확보할 수 있는 지능형 플랫폼을 연구 및 개발하는 것입니다.
 
-https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-7d2adbb045ec
+
+
+https://github.com/ziweek/milipat/assets/99459331/a662422c-393e-45a4-9d99-41071a16c481
+
+
 
 <table>
   <tr>
@@ -401,25 +405,6 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
     <td>
       <p align='left'>
         "방산분야 특허 검색 및 대응 관리를 위한 지능형 플랫폼 개발" 주제로 국방 공공데이터 활용 공모전에 참여한 경험은 혁신적이고 전략적인 아이디어를 현실로 구현하는 과정에서 귀중한 배움을 안겨주었습니다. 팀원들과의 긴밀한 협업은 아이디어의 다양성과 전문성을 결합해 플랫폼의 핵심 기능을 강화하는 데 일조했습니다. 특허 검색과 대응 관리를 효율적으로 통합하면서도 사용자 중심의 UI/UX를 고려하는 것은 도전적이었지만, 이를 통해 현업에서의 실제 활용성을 높일 수 있었습니다.
-      </p>
-    </td>
-  </tr>
-  
-   <tr>
-    <td width=80>
-      <p align='center'>박병현</p>
-    </td>
-    <td width=150>
-      <p align='center'>
-        <img src="https://drive.google.com/uc?export=view&id=1RXq9nhJ5xsv_tMCUZ4l6QwDeiyR1mtSD" width=300/>
-        <a href='https://github.com/Boo-seon-woong' target="_blank">
-          <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=Github&logoColor=white"/>
-        </a>
-      </p>
-    </td>
-    <td>
-      <p align='left'>
-"방산분야 특허 검색 및 대응 관리를 위한 지능형 플랫폼 개발" 주제로 국방 공공데이터 활용 공모전에 참여한 경험은 혁신적이고 전략적인 아이디어를 현실로 구현하는 과정에서 귀중한 배움을 안겨주었습니다. 팀원들과의 긴밀한 협업은 아이디어의 다양성과 전문성을 결합> 해 플랫폼의 핵심 기능을 강화하는 데 일조했습니다. 특허 검색과 대응 관리를 효율적으로 통합하면서도 사용자 중심의 UI/UX를 고려하는 것은 도전적이었지만, 이를 통해 현업에서의 실제 활용성을 높일 수 있었습니다.
       </p>
     </td>
   </tr>
