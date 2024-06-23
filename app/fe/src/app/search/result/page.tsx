@@ -1018,7 +1018,7 @@ export default function Result() {
       {!mobile && (
         <div
           className={`${
-            mobile ? "sticky top-16" : "max-h-[600px]"
+            mobile ? "sticky top-16" : "max-h-[700px]"
           } sticky top-16 flex h-full w-full flex-col gap-4`}
         >
           <Tabs
@@ -1059,10 +1059,50 @@ function AnalysisView(props: any) {
           <CircularProgress></CircularProgress>
         </Card>
       ) : (
-        <div className={`flex h-full w-fit gap-4`}>
+        <div className={`flex h-full w-full flex-col justify-start gap-2`}>
+          <Card className="flex w-full gap-4 rounded-none border-1 border-[#DCDCDC] p-4 shadow-none">
+            <div>
+              <p className="text-md font-bold">검색어 추출 키워드</p>
+              <p className="text-tiny opacity-50">
+                사용자가 입력한 검색어에서 TF-IDF 기법으로 키워드를 추출합니다.
+              </p>
+            </div>
+            <div className="flex flex-row flex-wrap gap-2">
+              {responseQuery.isRefetching ? (
+                <div className="flex h-[30px] w-full flex-col items-center justify-center px-2">
+                  <Progress isIndeterminate size={"sm"}></Progress>
+                </div>
+              ) : (
+                <>
+                  {(responseQuery.data as any[])
+                    ?.filter(
+                      (value: any) =>
+                        value.length != 1 &&
+                        value.charAt(value.length - 1) != "다",
+                    )
+                    ?.map((e: string, i: number) => (
+                      <Button
+                        key={i}
+                        size={"sm"}
+                        color={"primary"}
+                        variant={indexForTechTrend == i ? "solid" : "bordered"}
+                        onPress={() => {
+                          setIndexForTechTrend(i);
+                        }}
+                        className="font-bold"
+                      >
+                        {e}
+                      </Button>
+                    ))}
+                </>
+              )}
+            </div>
+          </Card>
           <Accordion
-            className="h-fit w-fit border-1"
-            defaultExpandedKeys={["1"]}
+            className="h-fit w-full rounded-none border-1"
+            defaultExpandedKeys={
+              !responseQuery.isRefetching ? ["1"] : undefined
+            }
             fullWidth
             variant={"bordered"}
             keepContentMounted
@@ -1071,46 +1111,19 @@ function AnalysisView(props: any) {
               key="1"
               aria-label="wordCloud"
               title="기술 동향 분석"
-              subtitle="질의어에서 추출한 핵심키워드로 국내외 기술 동향을 시각화합니다."
+              subtitle="키워드 별로 국내와 해외의 기술 동향을 시각화합니다."
               classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
             >
               <div className="flex h-full flex-col gap-4">
-                <div className="flex flex-row flex-wrap gap-2">
-                  {responseQuery.isRefetching ? (
-                    <div className="flex h-[30px] w-full flex-col items-center justify-center px-2">
-                      <Progress isIndeterminate size={"sm"}></Progress>
-                    </div>
-                  ) : (
-                    <>
-                      {(responseQuery.data as any[])
-                        ?.filter(
-                          (value: any) =>
-                            value.length != 1 &&
-                            value.charAt(value.length - 1) != "다",
-                        )
-                        ?.map((e: string, i: number) => (
-                          <Button
-                            key={i}
-                            size={"sm"}
-                            color={"primary"}
-                            variant={
-                              indexForTechTrend == i ? "solid" : "bordered"
-                            }
-                            onPress={() => {
-                              setIndexForTechTrend(i);
-                            }}
-                            className="font-bold"
-                          >
-                            {e}
-                          </Button>
-                        ))}
-                    </>
-                  )}
-                </div>
                 <div className="h-[250px]">
                   <Bar
                     data={{
-                      labels: ["국내 특허", "해외 특허"],
+                      labels: [
+                        "국내 특허",
+                        "미국 특허",
+                        "일본 특허",
+                        "유럽 특허",
+                      ],
                       datasets: [
                         {
                           label: `전체 대비 "${(
@@ -1121,8 +1134,10 @@ function AnalysisView(props: any) {
                               value.charAt(value.length - 1) != "다",
                           )[indexForTechTrend]}" 키워드 비율`,
                           data: [
-                            faker.number.float({ min: 0.2, max: 0.8 }),
-                            faker.number.float({ min: 0.2, max: 0.8 }),
+                            faker.number.float({ min: 0.2, max: 0.4 }),
+                            faker.number.float({ min: 0.5, max: 0.8 }),
+                            faker.number.float({ min: 0.4, max: 0.6 }),
+                            faker.number.float({ min: 0.2, max: 0.6 }),
                           ],
                           backgroundColor: "#1D4A83",
                         },
@@ -1157,11 +1172,31 @@ function AnalysisView(props: any) {
               key="2"
               aria-label="Accordion 2"
               title="국가별 특허경쟁력 지수"
-              subtitle="관련 키워드들을 연결성과 중요도를 시각적으로 파악할 수 있습니다."
+              subtitle="키워드 간의 연결성과 중요도를 시각적으로 파악할 수 있습니다."
               classNames={{ title: "text-md font-bold", subtitle: "text-tiny" }}
             >
               <div className="flex w-full flex-col items-center">
-                <WorldmapChart size={"md"}></WorldmapChart>
+                <WorldmapChart
+                  size={"md"}
+                  data={[
+                    {
+                      country: "cn",
+                      value: faker.number.float({ min: 0.2, max: 0.4 }),
+                    }, // china
+                    {
+                      country: "us",
+                      value: faker.number.float({ min: 0.2, max: 0.4 }),
+                    }, // united states
+                    {
+                      country: "kr",
+                      value: faker.number.float({ min: 0.2, max: 0.4 }),
+                    }, // korea
+                    {
+                      country: "jp",
+                      value: faker.number.float({ min: 0.2, max: 0.4 }),
+                    }, // japan
+                  ]}
+                ></WorldmapChart>
               </div>
             </AccordionItem>
           </Accordion>
@@ -1170,103 +1205,3 @@ function AnalysisView(props: any) {
     </>
   );
 }
-
-// function ChatbotTab(props: any) {
-//   const messageEndRef = useRef<HTMLDivElement | null>(null);
-//   const [dialogContext, setDialogContext] = useState([
-//     {
-//       isAnimated: true,
-//       isSent: false,
-//       isLoading: false,
-//       imgSrc: "/images/logo.png",
-//       name: "MiliPat 챗봇",
-//       text: "어떻게 도와드릴까요?",
-//     },
-//   ]);
-
-//   const isMobile = useIsMobile();
-//   const [mobile, setMobile] = useState<boolean>(false);
-
-//   useEffect(() => {
-//     const checkResize = () => {
-//       if (isMobile) {
-//         setMobile(true);
-//       } else {
-//         setMobile(false);
-//       }
-//     };
-//     checkResize();
-//   }, [isMobile]);
-
-//   useEffect(() => {
-//     if (dialogContext[dialogContext.length - 1].isSent == true) {
-//       // setIsLoading(true);
-//       const timer = setTimeout(() => {
-//         // setIsLoading(false);
-//         setDialogContext([
-//           ...dialogContext,
-//           {
-//             isAnimated: true,
-//             isSent: false,
-//             isLoading: false,
-//             imgSrc: "11",
-//             name: "MiliPat AI",
-//             text: "현재 프론트엔드 테스트 과정 중이며, 이로 인해 질의어에 대한 응답을 담당하는 LLM 서버와 연결되어 있지 않습니다. 프론트엔드 개발 및 테스트가 완료되는 대로 다시 연동될 예정입니다.",
-//           },
-//         ]);
-//       }, 500);
-//     }
-//   }, [dialogContext]);
-
-//   return (
-//     <Card className="relative flex h-full max-h-[75vh] w-full flex-col border-1 shadow-none drop-shadow-none">
-//       <div
-//         className={`relative grid h-full w-full gap-4`}
-//         style={{
-//           gridTemplateColumns: false ? "1fr" : "1fr",
-//           gridTemplateRows: false ? "1fr" : "1fr",
-//         }}
-//       >
-//         {/*  */}
-//         <div
-//           className={`${
-//             mobile ? "pb-1" : ""
-//           } relative flex max-h-[75vh] w-full flex-col items-center justify-start overflow-scroll`}
-//           style={{
-//             display: "grid",
-//             gridTemplateRows: "1fr auto",
-//             gridTemplateColumns: "1fr",
-//             gap: "1px",
-//           }}
-//         >
-//           <div className="flex h-full w-full flex-col items-center overflow-y-auto px-4 py-4">
-//             {dialogContext.map((e, i) => {
-//               return (
-//                 <TextBubble
-//                   key={i}
-//                   // indexStage={indexStage}
-//                   isLoading={false}
-//                   isAnimated={e.isAnimated}
-//                   isSent={e.isSent}
-//                   imgSrc={"1"}
-//                   name={e.name}
-//                   text={e.text}
-//                   isLast={i == dialogContext.length - 1}
-//                 ></TextBubble>
-//               );
-//             })}
-//             <div ref={messageEndRef} className="h-[100px]"></div>
-//           </div>
-//           <div className="z-50 flex h-fit w-full flex-col items-center">
-//             <FooterTray
-//               dialogContext={dialogContext}
-//               setDialogContext={setDialogContext}
-//               showInput
-//               setIsModalVisible={props.setIsModalVisible}
-//             ></FooterTray>
-//           </div>
-//         </div>
-//       </div>
-//     </Card>
-//   );
-// }

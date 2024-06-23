@@ -148,8 +148,7 @@ function SearchView(props: any) {
 function AnalysisView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
-  const [indexOfAnalysis, setIndexOfAnalysis] =
-    useState<string>("기술 동향 분석");
+  const [indexOfAnalysis, setIndexOfAnalysis] = useState("기술 동향 분석 도구");
 
   useEffect(() => {
     const checkResize = () => {
@@ -235,52 +234,92 @@ function AnalysisView(props: any) {
         } grid w-full flex-col items-center justify-center overflow-y-scroll border-1 p-4`}
       >
         <div className="flex flex-col items-center justify-center gap-16">
-          <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">기술 동향 분석 도구</p>
-            <Card className="min-h-fit w-full p-8">
-              <TrendChart></TrendChart>
-            </Card>
-          </div>
-          <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">특허 유사도 분석 도구</p>
-            <Card className="flex min-h-fit w-full flex-col justify-between gap-8 p-8">
-              <div className="flex flex-row items-center justify-between gap-8">
-                <Card
-                  isPressable
-                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
-                  radius={"none"}
-                >
-                  <p>비교할 특허 문서 선택하기</p>
-                </Card>
-                <Card
-                  isPressable
-                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
-                  radius={"none"}
-                >
-                  <p>비교할 특허 문서 선택하기</p>
-                </Card>
-                <Card
-                  isPressable
-                  className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
-                  radius={"none"}
-                >
-                  <p>비교할 특허 문서 선택하기</p>
-                </Card>
-              </div>
-              <Card
-                className="h-[300px] w-full border-3 drop-shadow-none"
-                shadow={"none"}
-                radius={"none"}
-              ></Card>
-            </Card>
-          </div>
-          <div className="flex w-full flex-col items-center justify-center gap-4">
-            <p className="text-xl font-bold">특허 경쟁력 진단 도구</p>
-            <Card className="min-h-fit w-full p-8">
-              <WorldmapChart size={"responsive"}></WorldmapChart>
-            </Card>
-          </div>
+          {indexOfAnalysis == "기술 동향 분석 도구" && <TrendTool></TrendTool>}
+          {indexOfAnalysis == "특허 유사도 분석 도구" && (
+            <SimilarityTool></SimilarityTool>
+          )}
+          {indexOfAnalysis == "특허 경쟁력 진단 도구" && (
+            <CountryTool></CountryTool>
+          )}
         </div>
+      </Card>
+    </div>
+  );
+}
+
+function TrendTool(props: any) {
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-4">
+      <p className="text-xl font-bold">기술 동향 분석 도구</p>
+      <Card className="min-h-fit w-full p-8">
+        <TrendChart></TrendChart>
+      </Card>
+    </div>
+  );
+}
+function SimilarityTool(props: any) {
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-4">
+      <p className="text-xl font-bold">특허 유사도 분석 도구</p>
+      <Card className="flex min-h-fit w-full flex-col justify-between gap-8 p-8">
+        <div className="flex flex-row items-center justify-between gap-8">
+          <Card
+            isPressable
+            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+            radius={"none"}
+          >
+            <p>비교할 특허 문서 선택하기</p>
+          </Card>
+          <Card
+            isPressable
+            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+            radius={"none"}
+          >
+            <p>비교할 특허 문서 선택하기</p>
+          </Card>
+          <Card
+            isPressable
+            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+            radius={"none"}
+          >
+            <p>비교할 특허 문서 선택하기</p>
+          </Card>
+        </div>
+        <Card
+          className="h-[300px] w-full border-3 drop-shadow-none"
+          shadow={"none"}
+          radius={"none"}
+        ></Card>
+      </Card>
+    </div>
+  );
+}
+function CountryTool(props: any) {
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-4">
+      <p className="text-xl font-bold">특허 경쟁력 진단 도구</p>
+      <Card className="min-h-fit w-full p-8">
+        <WorldmapChart
+          size={"responsive"}
+          data={[
+            {
+              country: "cn",
+              value: faker.number.float({ min: 0.2, max: 0.4 }),
+            }, // china
+            {
+              country: "us",
+              value: faker.number.float({ min: 0.2, max: 0.4 }),
+            }, // united states
+            {
+              country: "kr",
+              value: faker.number.float({ min: 0.2, max: 0.4 }),
+            }, // korea
+            {
+              country: "jp",
+              value: faker.number.float({ min: 0.2, max: 0.4 }),
+            }, // japan
+          ]}
+        ></WorldmapChart>
       </Card>
     </div>
   );
@@ -388,5 +427,5 @@ function TrendChart(params: any) {
       },
     ],
   };
-  return <Line options={options} data={data} />;
+  return <Line options={options} data={data} width={700} />;
 }

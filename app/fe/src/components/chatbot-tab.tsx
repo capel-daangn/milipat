@@ -1,5 +1,5 @@
 import { useIsMobile } from "@/hooks/useMediaQuery";
-import { Card } from "@nextui-org/react";
+import { Card, Tabs, Tab, Tooltip } from "@nextui-org/react";
 import { useRef, useState, useEffect } from "react";
 import TextBubble from "./text-bubble";
 import FooterTray from "./common/footer-tray";
@@ -70,7 +70,7 @@ MiliPat 팀 드림
 
   return (
     <Card
-      className="relative flex h-full w-full flex-col border-1"
+      className="relative flex h-full w-full flex-col items-center border-1"
       radius={"none"}
       shadow={"none"}
     >
@@ -115,7 +115,39 @@ MiliPat 팀 드림
             })}
             <div ref={messageEndRef} className="h-[100px]"></div>
           </div>
-          <div className="z-50 flex h-fit w-full flex-col items-center">
+          <div className="z-50 flex h-fit w-full flex-col items-center gap-1">
+            <Tooltip
+              className="max-w-[350px] p-4"
+              color={"primary"}
+              showArrow={true}
+              content={
+                <div className="flex flex-col items-center gap-2">
+                  <p className="text-sm font-bold">
+                    MiliPat은 사용자의 필요에 따라 적절한 LLM 환경을 선택하여
+                    질의할 수 있도록 지원하고 있습니다.
+                  </p>
+                  <div className="flex flex-col gap-1">
+                    <li className="text-tiny">
+                      GPT 성능 모델 : 사전학습모델로 유연한 답변에 특화
+                    </li>
+                    <li className="text-tiny">
+                      MiliPat 보안 모델 : 독립된 서버자원으로 보안에 특화
+                    </li>
+                  </div>
+                </div>
+              }
+            >
+              <Tabs
+                aria-label="Options"
+                className="z-50"
+                size="sm"
+                color={"primary"}
+                variant={"bordered"}
+              >
+                <Tab key="GPT" title="GPT 성능 모델"></Tab>
+                <Tab key="MiliPat" title="MiliPat 보안 모델"></Tab>
+              </Tabs>
+            </Tooltip>
             <FooterTray
               dialogContext={dialogContext}
               setDialogContext={setDialogContext}
