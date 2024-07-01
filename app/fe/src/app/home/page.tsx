@@ -11,6 +11,15 @@ import { useIsMobile } from "@/hooks/useMediaQuery";
 import { useQuery } from "@tanstack/react-query";
 import WorldmapChart from "@/components/chart/worldmap-chart";
 import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "@nextui-org/react";
+
+import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
@@ -21,8 +30,20 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
 import { faker } from "@faker-js/faker";
 import ChatbotTab from "@/components/chatbot-tab";
+import ChartWordCloud from "@/components/chart/wordcloud-chart";
+import { datasetSample } from "@/components/common/data";
+import dynamic from "next/dynamic";
+// import ChartNetwork from "@/components/chart/network-chart";
+
+const ChartNetworkComponent = dynamic(
+  () => import("../../components/chart/network-chart"),
+  {
+    ssr: false,
+  },
+);
 
 ChartJS.register(
   CategoryScale,
@@ -148,7 +169,8 @@ function SearchView(props: any) {
 function AnalysisView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
-  const [indexOfAnalysis, setIndexOfAnalysis] = useState("기술 동향 분석 도구");
+  const [indexOfAnalysis, setIndexOfAnalysis] =
+    useState("특허 데이터 마이닝 도구");
 
   useEffect(() => {
     const checkResize = () => {
@@ -178,11 +200,10 @@ function AnalysisView(props: any) {
         >
           {[
             {
-              name: "기술 동향 분석 도구",
+              name: "특허 데이터 마이닝 도구",
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              // bgImg: "/images/background/map.jpg",
               router: "/analytics/tech-trend",
             },
             {
@@ -190,7 +211,6 @@ function AnalysisView(props: any) {
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              // bgImg: "/images/background/trend.jpg",
               router: "/analytics/patent-similarity",
             },
             {
@@ -198,15 +218,12 @@ function AnalysisView(props: any) {
               description:
                 "특허의 네트워크 분석은 특허 데이터를 활용하여 기술 분야에서의 연결과 상호작용을 이해하는 과정입니다.",
               content: <></>,
-              // bgImg: "/images/background/compare.jpg",
               router: "/analytics/patent-power",
             },
           ].map((e, i) => {
             return (
               <Card
                 key={i}
-                // style={{ flexDirection: mobile ? "row" : "column" }}
-                // style={{ backgroundImage: `url('${e.bgImg}')` }}
                 className="flex aspect-[5/1] h-[60px] items-start justify-center gap-1 border-1 p-4 drop-shadow-md"
                 isPressable
                 onClick={() => {
@@ -231,10 +248,12 @@ function AnalysisView(props: any) {
         radius={"none"}
         className={`${
           mobile ? "h-full" : "h-[85vh]"
-        } grid w-full flex-col items-center justify-center overflow-y-scroll border-1 p-4`}
+        } flex w-full flex-col justify-start overflow-y-scroll border-1 bg-gray-100 p-8`}
       >
-        <div className="flex flex-col items-center justify-center gap-16">
-          {indexOfAnalysis == "기술 동향 분석 도구" && <TrendTool></TrendTool>}
+        <div className="m-auto flex h-fit w-full flex-col items-center justify-center gap-16">
+          {indexOfAnalysis == "특허 데이터 마이닝 도구" && (
+            <DataMiningTool></DataMiningTool>
+          )}
           {indexOfAnalysis == "특허 유사도 분석 도구" && (
             <SimilarityTool></SimilarityTool>
           )}
@@ -247,14 +266,153 @@ function AnalysisView(props: any) {
   );
 }
 
-function TrendTool(props: any) {
+function DataMiningTool(props: any) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [seletedWord, setSeletedWord] = useState<string>("");
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: `"${seletedWord}" 키워드 특허출원 동향`,
+      },
+    },
+  };
+
+  const labels = [2017, 2018, 2019, 2020, 2021, 2022, 2023];
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "국내 특허출원",
+        data: labels.map(() => faker.number.int({ min: 0, max: 20 })),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "해외 특허출원",
+        data: labels.map(() => faker.number.int({ min: 20, max: 80 })),
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-4">
-      <p className="text-xl font-bold">기술 동향 분석 도구</p>
-      <Card className="min-h-fit w-full p-8">
-        <TrendChart></TrendChart>
-      </Card>
-    </div>
+    <>
+      <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+        <p className="text-xl font-bold">특허 데이터마이닝 도구</p>
+        <Card className="grid h-full max-h-[700px] w-full max-w-[700px] select-none p-8">
+          <ChartWordCloud
+            data={[
+              { text: "게임", value: 370 },
+              { text: "기능", value: 350 },
+              { text: "기록", value: 410 },
+              { text: "매체", value: 280 },
+              { text: "방독면", value: 490 },
+              { text: "방법", value: 1890 },
+              { text: "시뮬레이션", value: 770 },
+              { text: "시뮬레이터", value: 360 },
+              { text: "시스템", value: 1500 },
+              { text: "시험", value: 480 },
+              { text: "연동", value: 290 },
+              { text: "워게임", value: 600 },
+              { text: "제어", value: 420 },
+              { text: "제조", value: 240 },
+              { text: "컴퓨터", value: 180 },
+              { text: "타이어", value: 430 },
+              { text: "하중", value: 270 },
+              { text: "항공", value: 340 },
+              { text: "항공기", value: 510 },
+              { text: "훈련", value: 910 },
+            ]}
+            setIsModalVisible={setIsModalVisible}
+            setSeletedWord={setSeletedWord}
+          ></ChartWordCloud>
+        </Card>
+      </div>
+      <Modal
+        isOpen={isModalVisible}
+        // scrollBehavior={"inside"}
+        closeButton={
+          <Button
+            size={"sm"}
+            isIconOnly
+            disableRipple={true}
+            disableAnimation={true}
+            variant="light"
+            onPress={() => {
+              setIsModalVisible(false);
+            }}
+          >
+            x
+          </Button>
+        }
+        size={"4xl"}
+        // shouldBlockScroll={false}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                기술 동향 예측 및 분류 결과: &quot;{seletedWord}&quot; (검색결과{" "}
+                {
+                  datasetSample.filter((value) =>
+                    value.발명의명칭.includes(seletedWord),
+                  ).length
+                }
+                건)
+              </ModalHeader>
+              <ModalBody>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="h-[500px] overflow-auto bg-gray-100 px-4">
+                    {datasetSample
+                      .filter((value) => value.발명의명칭.includes(seletedWord))
+                      .map((e, i) => {
+                        return (
+                          <Card
+                            key={i}
+                            className="my-4 h-fit w-full p-4"
+                            isPressable
+                          >
+                            <div className="flex flex-col justify-center gap-2">
+                              <p className="line-clamp-2 min-h-[40px] break-keep text-start text-sm font-bold">
+                                {e.발명의명칭}
+                              </p>
+                              <div className="flex flex-col gap-1">
+                                <p className="break-keep text-start text-tiny">
+                                  출원번호 : {e.출원번호}
+                                </p>
+                                <p className="break-keep text-start text-tiny">
+                                  출원일자 : {e.출원일자}
+                                </p>
+                              </div>
+                            </div>
+                          </Card>
+                        );
+                      })}
+                  </div>
+                  <div className="h-[500px] gap-4 overflow-auto border-2 bg-primary-50 p-4 px-4">
+                    <div className="m-auto my-4 h-fit rounded-sm bg-white p-2">
+                      <Line options={options} data={data} />
+                    </div>
+                    <div className="m-auto my-4 h-fit rounded-sm bg-white p-2">
+                      <ChartNetworkComponent></ChartNetworkComponent>
+                    </div>
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
 function SimilarityTool(props: any) {
@@ -265,28 +423,21 @@ function SimilarityTool(props: any) {
         <div className="flex flex-row items-center justify-between gap-8">
           <Card
             isPressable
-            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+            className="w-[150px]flex-col flex h-[200px] items-center justify-center border-2 bg-gray-300"
             radius={"none"}
           >
             <p>비교할 특허 문서 선택하기</p>
           </Card>
           <Card
             isPressable
-            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
-            radius={"none"}
-          >
-            <p>비교할 특허 문서 선택하기</p>
-          </Card>
-          <Card
-            isPressable
-            className="flex aspect-[3/4] h-1/2 w-full flex-col items-center justify-center border-2 bg-gray-300"
+            className="w-[150px]flex-col flex h-[200px] items-center justify-center border-2 bg-gray-300"
             radius={"none"}
           >
             <p>비교할 특허 문서 선택하기</p>
           </Card>
         </div>
         <Card
-          className="h-[300px] w-full border-3 drop-shadow-none"
+          className="h-[150px] w-full border-3 drop-shadow-none"
           shadow={"none"}
           radius={"none"}
         ></Card>
@@ -324,7 +475,6 @@ function CountryTool(props: any) {
     </div>
   );
 }
-
 function ChatbotView(props: any) {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
@@ -380,52 +530,4 @@ function ChatbotView(props: any) {
       <ChatbotTab></ChatbotTab>
     </div>
   );
-}
-
-function TrendChart(params: any) {
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Chart.js Line Chart",
-      },
-    },
-  };
-
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 }),
-        ),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Dataset 2",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 }),
-        ),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
-  return <Line options={options} data={data} width={700} />;
 }
