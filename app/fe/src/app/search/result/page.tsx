@@ -34,6 +34,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Legend);
 import { Bar } from "react-chartjs-2";
 import { useApiGet } from "@/hooks/useReactQuery";
 import ChatbotTab from "@/components/chatbot-tab";
+import { datasetSample } from "@/components/common/data";
 
 const dataset = [
   {
@@ -970,8 +971,16 @@ export default function Result() {
             )}
           </>
         ) : (
-          <div className="w-full gap-2">
+          <div className="flex h-full w-full flex-col justify-start gap-2">
             {dataset
+              // .filter((value) =>
+              //   value.title.includes(querySetTextInput.data as string),
+              // )
+              .filter((value) => {
+                return (querySetTextInput.data as string)
+                  .split(" ")
+                  .some((searchString) => value.title.includes(searchString));
+              })
               .slice(0 + 5 * (numberOfPage - 1), 5 + 5 * (numberOfPage - 1))
               .map((data, i) => {
                 return (
@@ -985,7 +994,7 @@ export default function Result() {
                     <div className="flex w-full flex-row items-end justify-between">
                       <div className="flex flex-col items-start justify-center gap-1">
                         <Link href={`/search/detail?query=${data.title}`}>
-                          <p className="text-left text-lg font-bold">
+                          <p className="line-clamp-2 text-left text-lg font-bold">
                             {data.title}
                           </p>
                         </Link>
@@ -1003,7 +1012,15 @@ export default function Result() {
               })}
             <div className="flex w-full flex-col items-center justify-center py-8">
               <Pagination
-                total={Math.ceil(dataset.length / 5)}
+                total={Math.ceil(
+                  dataset.filter((value) => {
+                    return (querySetTextInput.data as string)
+                      .split(" ")
+                      .some((searchString) =>
+                        value.title.includes(searchString),
+                      );
+                  }).length / 5,
+                )}
                 initialPage={numberOfPage}
                 variant={"light"}
                 showControls

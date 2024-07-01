@@ -39,25 +39,20 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${nanumSquareNeo.className}`}>
       <head>
-        {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
-        <meta
+        {/* <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover maximum-scale=5"
         />
-        {/* <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        /> */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-        />
+        /> */}
 
-        <meta name="application-name" content="PWA App" />
+        <meta name="application-name" content="MiliPat" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="PWA App" />
-        <meta name="description" content="Best PWA App in the world" />
+        <meta name="apple-mobile-web-app-title" content="MiliPat" />
+        <meta name="description" content="Best MiliPat in the world" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-config" content="/icons/browserconfig.xml" />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { GraphCanvas, GraphNode } from "reagraph";
+import { GraphCanvas, GraphCanvasRef, GraphNode, useSelection } from "reagraph";
 
 const nodes: GraphNode[] = [
   { id: "어셈블리", label: "어셈블리" },
@@ -122,14 +122,33 @@ export default function ChartNetwork(props: any) {
     console.log(test.current);
   });
 
+  const graphRef = useRef<GraphCanvasRef | null>(null);
+  const { selections, actives, onNodeClick, onCanvasClick } = useSelection({
+    ref: graphRef,
+    nodes: nodes,
+    edges: edges,
+    pathSelectionType: "all",
+  });
+
   return (
     <div className="relative flex h-full min-h-[400px]">
       {typeof window !== "undefined" ? (
         <GraphCanvas
-          ref={test}
-          // animated={false}
+          // sizingType="attribute"
+          // sizingAttribute="priority"
+          // minNodeSize={2}
+          // maxNodeSize={25}
+          ref={graphRef}
           nodes={nodes}
           edges={edges}
+          selections={selections}
+          actives={actives}
+          onCanvasClick={onCanvasClick}
+          onNodeClick={onNodeClick}
+          // ref={test}
+          // animated={false}
+          // nodes={nodes}
+          // edges={edges}
           labelFontUrl={"/NotoSansKR-Regular.ttf"}
         />
       ) : (
