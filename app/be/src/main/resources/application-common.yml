@@ -1,0 +1,12 @@
+spring:
+  config:
+    activate:
+      on-profile: common
+
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      printer:
+        enabled: true
+

@@ -1,79 +1,145 @@
-from fastapi import FastAPI, WebSocket
-from service import pdf_to_sentences, create_tfidf, create_network, convert_to_ts_format
-from schema import *
+from dotenv import load_dotenv
+load_dotenv()
 
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+import streamlit as st
+import streamlit as st
+from streamlit_pdf_viewer import pdf_viewer
+from streamlit_dimensions import st_dimensions
 
-# from langchain_community.llms.ollama import Ollama
+from utils.model import run_llm
+from utils.utils import load_yaml_file
 
-app = FastAPI()
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-    "http://localhost:8080",
-    "https://milipat.vercel.app"
-]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# llm = Ollama(model="mistral", temperature=0, base_url=OLLAMA_BASE_URL)
-
-@app.get("/")
-async def health_check():
-    return "ok"
-
-@app.get("/pdf")
-async def get_pdf(filename: str = "휴대형 군사용 드론 폭탄 장치.pdf"):
-    return FileResponse(f"./static/{filename}", filename=filename, media_type="application/pdf")
-
-@app.get("/network")
-async def get_network(pdf_path: str = "휴대형 군사용 드론 폭탄 장치.pdf"):
-    #
-    response_payload = {}
-
-    #
-    parsed_sentences = pdf_to_sentences("./static/" + pdf_path)
-    # response_payload["parsed_sentences"] = parsed_sentences
-
-    #
-    terms, terms_with_score_sorted, nodes, edges = create_network(parsed_sentences)
-    response_payload["terms"] = terms
-    response_payload["terms_with_score_sorted"] = terms_with_score_sorted
-    response_payload["nodes"] = nodes
-    response_payload["edges"] = edges
-
-    return response_payload
+import pprint
+import requests
+import json
 
 
-@app.get("/tfidf")
-async def get_tfidf(text: str = "휴대형 군사용 드론 폭탄 장치"):
-    #
-    response_payload = {}
 
-    terms, tfidf_matrix, top_terms, top_indices, X =  create_tfidf([text])
-    response_payload["terms"] = list(terms)
-    response_payload["top_terms"] = list(top_terms)
 
-    return response_payload
+st.set_page_config(initial_sidebar_state="expanded")
 
-# @app.websocket('/ws')
-# async def websocket_endpoint(websocket: WebSocket):
-#     await websocket.accept()
-#     try:
-#         while True:
-#             text_data = await websocket.receive_text()
-#             query = text_data
-#             for chunks in llm.stream(query):
-#                 print(chunks)
-#                 await websocket.send_text(chunks)
-#             await websocket.send_text('**|||END|||**')
-#     except Exception as e:
-#         print(f"websocket error: {str(e)}")
-#     finally:
-#         await websocket.close()
+user_data = load_yaml_file("rag/config.yaml")
+user_name = user_data['name']
+user_email = user_data["email"]
+user_github = user_data["github"]
+user_linkedin = user_data["linkedin"]
+
+
+# st.subheader(f"{user_name}")
+# st.text("A machine learning engineer specializing in multilingual NLP solutions, with expertise in developing scalable applications and enhancing global user experiences.")
+
+
+st.title("HireMePleaseGPT")
+st.text("The ultimate job-hunting sidekick that knows your resume better than you do. Ready to charm recruiters with wit, facts, and just the right sprinkle of overachiever vibes!")
+st.caption("* Powered by the Gemini API free plan (thanks to the applicant's budget-friendly lifestyle), HireMePleaseGPT might occasionally stay quiet clearly because someone else who ***used up all the tokens*** is already busy discovering how amazing I am!")
+tab1, tab2 = st.tabs(["Prompt", "My Resume"])
+with tab1:
+    prompt = st.text_area("Please Ask me a Question! :)", placeholder="Enter your prompt")
+    if prompt:
+        with st.spinner("Generating reponse..."):
+            
+            generated_response = run_llm(query=prompt)
+            # pprint.pprint(generated_response)
+            
+            documents_metadata_source = list([document.metadata["source"].replace("rag/src/", "") for document in generated_response["context"]])
+            documents_metadata_page = list([document.metadata["page"] for document in generated_response["context"]])
+            documents_page_contents = list([document.page_content for document in generated_response["context"]])
+            sources_string = "\n\n\n".join([f"{documents_metadata_source} Page {documents_metadata_page}\n{documents_page_contents}" for documents_metadata_source, documents_metadata_page, documents_page_contents in zip(documents_metadata_source, documents_metadata_page, documents_page_contents)])
+        
+            st.markdown(generated_response['answer'])
+            with st.expander("See Sources"):
+                st.text(sources_string)
+with tab2:
+    container_dim = st_dimensions(key="main")
+    pdf_viewer(
+        input=user_data['resume_file_path'],
+        width=int(container_dim['width']) if container_dim else 400,
+        render_text=True
+        )
+    
+
+
+css = '''
+<style>
+    [data-testid="stSidebar"]{
+        min-width: 350px;
+        max-width: 350px;
+    }
+</style>
+'''
+st.markdown(css, unsafe_allow_html=True)
+with st.sidebar:
+    st.header("User Profile")
+    with st.expander("Visit Analytics", expanded=False):
+        col1, col2, col3 = st.columns(3)
+        col1.metric(label="a", value=1, delta="1")
+        col2.metric(label="a", value=1, delta="1")
+        col3.metric(label="a", value=1, delta="1")
+
+    try:
+        github_user_api_url = f"https://api.github.com/users/ziweek"
+        github_user_api_response = requests.get(github_user_api_url)
+        github_user_api_result = json.loads(github_user_api_response.content)
+        img = github_user_api_result["avatar_url"]
+    except:
+        google_drive_url = "https://drive.google.com/uc?export=view&id=1459-NPm4sC50nrQRdjTpmpz_eKunIi04"
+        img = google_drive_url
+    st.image(img, width=300)
+    st.markdown(
+        body="""   
+<div align="center"> 
+    <a href='https://github.com/ziweek' target="_blank">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Github-262731?style=flat-square&logo=github&logoColor=white">
+    <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/Github-F0F2F6?style=flat-square&logo=github&logoColor=black">
+    <img alt="IMAGE" src="http://LIGHT_IMAGE_URL.png">
+    </picture>
+    </a>
+    <a href='https://www.linkedin.com/in/ziweek' target="_blank">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/LinkedIn-262731?style=flat-square&logo=linkedin&logoColor=0A66C2">
+    <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/LinkedIn-F0F2F6?style=flat-square&logo=linkedin&logoColor=0A66C2">
+    <img alt="IMAGE" src="http://LIGHT_IMAGE_URL.png">
+    </picture>
+    </a>
+    <a href='mailto:alex.jiuk.kim@gmail.com' target="_blank">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Gmail-262731?style=flat-square&logo=gmail&logoColor=EA4335">
+    <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/Gmail-F0F2F6?style=flat-square&logo=gmail&logoColor=EA4335">
+    <img alt="IMAGE" src="http://LIGHT_IMAGE_URL.png">
+    </picture>
+    </a>
+</div>
+<br/>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white"/>
+    <img src="https://img.shields.io/badge/LangSmith-1C3C3C?style=flat-square&logo=langchain&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=Ollama&logoColor=white"/>
+    <br/>
+    <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=spring&logoColor=white"/>
+    <img src="https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white"/>
+    <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"/>
+    <br/>
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
+    <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
+    <br/>
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white"/>
+    <br/>
+    <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
+</p>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+# Add a footer
+st.caption("---")
+st.caption("Powered by LangChain, Gemini API, and Streamlit")
+
+
+if __name__ == "__main__":
+    print("HireMePleaseGPT is running...")

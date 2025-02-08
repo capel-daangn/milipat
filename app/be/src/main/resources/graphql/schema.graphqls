@@ -1,0 +1,180 @@
+type Account {
+    id: ID
+    name: String
+    email: String
+    encodedPassword: String
+}
+type Comment {
+    id: ID
+}
+type Document {
+    id: ID
+    title: String
+    author: String
+    publishedAt: String
+    fileUrl: String
+}
+type ModelingAsset {
+    id: ID
+    name: String
+    fileUrl: String
+    fileSize: Int
+}
+type Order {
+    id: ID
+}
+
+input CreateAccountInput {
+    name: String!
+    email: String!
+    encodedPassword: String!
+}
+input UpdateAccountInput {
+    id: ID!
+    name: String
+    email: String
+    encodedPassword: String
+}
+input CreateDocumentInput {
+    title: String!
+    author: String!
+    publishedAt: String!
+    fileUrl: String!
+}
+input UpdateDocumentInput{
+    id: Int!
+    title: String
+    author: String
+    publishedAt: String
+    fileUrl: String
+}
+input CreateModelingAssetInput {
+    id: ID!,
+    name: String!,
+    fileUrl: String!,
+    fileSize: Int!,
+}
+input UpdateModelingAssetInput {
+    id: ID!,
+    name: String,
+    fileUrl: String,
+    fileSize: Int,
+}
+input CreateCommentInput {
+    id: ID!
+}
+input UpdateCommentInput {
+    id: ID!
+}
+input CreateOrderInput {
+    id: ID!,
+}
+input UpdateOrderInput {
+    id: ID!,
+}
+type Query {
+    """
+    Id로 Account 가져오기
+    """
+    getAccountById(id: ID!): Account
+
+    """
+    Email로 Account 가져오기
+    """
+    getAccountByEmail(email: String!): Account
+
+    """
+    """
+    getCommentById(id: ID!): Comment
+
+    """
+    """
+    getCommentsByUserId(id: ID!) : [Comment]
+
+    """
+    Id로 Document 가져오기
+    """
+    getDocumentById(id: ID!): Document
+
+    """
+    getModelingAssetById
+    """
+    getModelingAssetById(id: ID!): ModelingAsset
+
+    """
+    """
+    getOrderById(id: ID!): Order
+}
+type Mutation {
+    """
+    createAccount
+    """
+    createAccount(createAccountInput: CreateAccountInput!): Account
+
+    """
+    updateAccount
+    """
+    updateAccount(updateAccountInput: UpdateAccountInput!): Account
+
+    """
+    deleteAccount
+    """
+    deleteAccount(id: String!): String
+
+    """
+    createComment
+    """
+    createComment(createCommentInput: CreateCommentInput!): Comment
+
+    """
+    updateComment
+    """
+    updateComment(updateCommentInput: UpdateCommentInput!): Comment
+
+    """
+    deleteComment
+    """
+    deleteComment(id: String!): String
+
+    """
+    createDocument
+    """
+    createDocument(createDocumentInput: CreateDocumentInput!): Document
+
+    """
+    updateDocument
+    """
+    updateDocument(updateDocumentInput: UpdateDocumentInput!): Document
+
+    """
+    deleteDocumentById
+    """
+    deleteDocumentById(id: String!): String
+
+    """
+    createModelingAsset
+    """
+    createModelingAsset(createModelingAssetInput: CreateModelingAssetInput!): ModelingAsset
+
+    """
+    UpdateModelingAssetInput
+    """
+    updateModelingAsset(updateModelingAssetInput: UpdateModelingAssetInput): ModelingAsset
+
+    """
+    deleteModelingAsset
+    """
+    deleteModelingAsset(id: ID!): String
+
+    """
+    """
+    createOrder(createOrderInput: CreateOrderInput!): ModelingAsset
+
+    """
+    """
+    updateOrder(updateOrderInput: UpdateOrderInput!): Document
+
+    """
+    """
+    deleteOrderById(id: ID!): String
+}

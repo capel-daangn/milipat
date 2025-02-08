@@ -1,0 +1,3 @@
+package ziweek.milipat.domain.modelingAsset.entity
+
+class ModelingAssetGenerator
